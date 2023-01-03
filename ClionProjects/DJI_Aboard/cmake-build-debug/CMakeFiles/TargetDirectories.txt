@@ -1,0 +1,3 @@
+C:/Users/Lenovo/OneDrive/MyDocs/stm32_workspace/ClionProjects/DJI_Aboard/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Lenovo/OneDrive/MyDocs/stm32_workspace/ClionProjects/DJI_Aboard/cmake-build-debug/CMakeFiles/DJI_Aboard.elf.dir
+C:/Users/Lenovo/OneDrive/MyDocs/stm32_workspace/ClionProjects/DJI_Aboard/cmake-build-debug/CMakeFiles/edit_cache.dir

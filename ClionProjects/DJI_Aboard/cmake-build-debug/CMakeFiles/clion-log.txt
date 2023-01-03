@@ -1,0 +1,5 @@
+"C:\Program Files (x86)\CLion-2021.3.3.win\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files (x86)/CLion-2021.3.3.win/bin/ninja/win/ninja.exe" "-DCMAKE_C_COMPILER=C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/arm-none-eabi-gcc.exe" "-DCMAKE_CXX_COMPILER=C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/arm-none-eabi-g++.exe" -G Ninja C:\Users\Lenovo\OneDrive\MyDocs\stm32_workspace\ClionProjects\DJI_Aboard
+-- Minimal optimization, debug info included
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Lenovo/OneDrive/MyDocs/stm32_workspace/ClionProjects/DJI_Aboard/cmake-build-debug
