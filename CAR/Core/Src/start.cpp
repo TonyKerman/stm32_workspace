@@ -238,7 +238,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     ml.GPIO_EXTI_Callback(GPIO_Pin);
     mr.GPIO_EXTI_Callback(GPIO_Pin);
-
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){

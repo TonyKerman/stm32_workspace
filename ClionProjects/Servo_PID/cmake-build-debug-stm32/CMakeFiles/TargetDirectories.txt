@@ -1,0 +1,3 @@
+/home/tony/stm32_workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32/CMakeFiles/Servo_PID.elf.dir
+/home/tony/stm32_workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32/CMakeFiles/edit_cache.dir
+/home/tony/stm32_workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32/CMakeFiles/rebuild_cache.dir

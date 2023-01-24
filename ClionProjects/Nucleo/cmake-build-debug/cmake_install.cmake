@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Lenovo/OneDrive/MyDocs/stm32_workspace/ClionProjects/Nucleo
+# Install script for directory: /home/tony/stm32_workspace/ClionProjects/Nucleo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Nucleo")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Lenovo/OneDrive/MyDocs/stm32_workspace/ClionProjects/Nucleo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tony/stm32_workspace/ClionProjects/Nucleo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,0 +1,3 @@
+/home/tony/stm32_workspace/ClionProjects/SPI/cmake-build-debug/CMakeFiles/SPI.elf.dir
+/home/tony/stm32_workspace/ClionProjects/SPI/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tony/stm32_workspace/ClionProjects/SPI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
