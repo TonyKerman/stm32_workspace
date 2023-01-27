@@ -1,3 +1,0 @@
-/home/tony/stm32_workspace/ClionProjects/test/cmake-build-debug-stm32/CMakeFiles/test.elf.dir
-/home/tony/stm32_workspace/ClionProjects/test/cmake-build-debug-stm32/CMakeFiles/edit_cache.dir
-/home/tony/stm32_workspace/ClionProjects/test/cmake-build-debug-stm32/CMakeFiles/rebuild_cache.dir
