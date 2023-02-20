@@ -5926,7 +5926,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
                 0x000000000800520c                . = ALIGN (0x4)
                 0x000000000800520c                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000      0x864 load address 0x000000000800520c
+.data           0x0000000020000000      0x860 load address 0x000000000800520c
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -5940,80 +5940,81 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
                 0x0000000020000840                __malloc_sbrk_base
                 0x0000000020000844                __malloc_trim_threshold
  *(.data*)
- .data.steps    0x0000000020000848        0x8 CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj
+ .data.steps    0x0000000020000848        0x4 CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj
                 0x0000000020000848                steps
  .data.SystemCoreClock
-                0x0000000020000850        0x4 CMakeFiles/stepping_motor.elf.dir/Core/Src/system_stm32f4xx.c.obj
-                0x0000000020000850                SystemCoreClock
+                0x000000002000084c        0x4 CMakeFiles/stepping_motor.elf.dir/Core/Src/system_stm32f4xx.c.obj
+                0x000000002000084c                SystemCoreClock
  .data.uwTickFreq
-                0x0000000020000854        0x1 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
-                0x0000000020000854                uwTickFreq
- *fill*         0x0000000020000855        0x3 
+                0x0000000020000850        0x1 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+                0x0000000020000850                uwTickFreq
+ *fill*         0x0000000020000851        0x3 
  .data.uwTickPrio
-                0x0000000020000858        0x4 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
-                0x0000000020000858                uwTickPrio
+                0x0000000020000854        0x4 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+                0x0000000020000854                uwTickPrio
  .data._ZN10__cxxabiv120__unexpected_handlerE
-                0x000000002000085c        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_unex_handler.o)
-                0x000000002000085c                __cxxabiv1::__unexpected_handler
+                0x0000000020000858        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_unex_handler.o)
+                0x0000000020000858                __cxxabiv1::__unexpected_handler
  .data._ZN10__cxxabiv119__terminate_handlerE
-                0x0000000020000860        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_term_handler.o)
-                0x0000000020000860                __cxxabiv1::__terminate_handler
+                0x000000002000085c        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_term_handler.o)
+                0x000000002000085c                __cxxabiv1::__terminate_handler
  *(.RamFunc)
  *(.RamFunc*)
-                0x0000000020000864                . = ALIGN (0x4)
-                0x0000000020000864                _edata = .
+                0x0000000020000860                . = ALIGN (0x4)
+                0x0000000020000860                _edata = .
 
 .tm_clone_table
-                0x0000000020000864        0x0 load address 0x0000000008005a70
+                0x0000000020000860        0x0 load address 0x0000000008005a6c
  .tm_clone_table
-                0x0000000020000864        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+                0x0000000020000860        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
  .tm_clone_table
-                0x0000000020000864        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+                0x0000000020000860        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
 
-.igot.plt       0x0000000020000864        0x0 load address 0x0000000008005a70
- .igot.plt      0x0000000020000864        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
-                0x0000000020000864                . = ALIGN (0x4)
+.igot.plt       0x0000000020000860        0x0 load address 0x0000000008005a6c
+ .igot.plt      0x0000000020000860        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+                0x0000000020000860                . = ALIGN (0x4)
 
-.bss            0x0000000020000864      0x194 load address 0x0000000008005a70
-                0x0000000020000864                _sbss = .
-                0x0000000020000864                __bss_start__ = _sbss
+.bss            0x0000000020000860      0x194 load address 0x0000000008005a6c
+                0x0000000020000860                _sbss = .
+                0x0000000020000860                __bss_start__ = _sbss
  *(.bss)
- .bss           0x0000000020000864       0x1c /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
- .bss           0x0000000020000880       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-mallocr.o)
-                0x0000000020000880                __malloc_top_pad
-                0x0000000020000884                __malloc_current_mallinfo
-                0x00000000200008ac                __malloc_max_sbrked_mem
-                0x00000000200008b0                __malloc_max_total_mem
- .bss           0x00000000200008b4        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-reent.o)
-                0x00000000200008b4                errno
+ .bss           0x0000000020000860       0x1c /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ .bss           0x000000002000087c       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-mallocr.o)
+                0x000000002000087c                __malloc_top_pad
+                0x0000000020000880                __malloc_current_mallinfo
+                0x00000000200008a8                __malloc_max_sbrked_mem
+                0x00000000200008ac                __malloc_max_total_mem
+ .bss           0x00000000200008b0        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-reent.o)
+                0x00000000200008b0                errno
  *(.bss*)
  .bss._Z3strB5cxx11
-                0x00000000200008b8       0x18 CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj
-                0x00000000200008b8                str[abi:cxx11]
+                0x00000000200008b4       0x18 CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj
+                0x00000000200008b4                str[abi:cxx11]
  .bss.__sbrk_heap_end
-                0x00000000200008d0        0x4 CMakeFiles/stepping_motor.elf.dir/Core/Src/sysmem.c.obj
+                0x00000000200008cc        0x4 CMakeFiles/stepping_motor.elf.dir/Core/Src/sysmem.c.obj
  .bss.hdma_usart2_rx
-                0x00000000200008d4       0x60 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
-                0x00000000200008d4                hdma_usart2_rx
+                0x00000000200008d0       0x60 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
+                0x00000000200008d0                hdma_usart2_rx
  .bss.hdma_usart2_tx
-                0x0000000020000934       0x60 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
-                0x0000000020000934                hdma_usart2_tx
- .bss.huart2    0x0000000020000994       0x44 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
-                0x0000000020000994                huart2
- .bss.uwTick    0x00000000200009d8        0x4 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
-                0x00000000200009d8                uwTick
+                0x0000000020000930       0x60 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
+                0x0000000020000930                hdma_usart2_tx
+ .bss.huart2    0x0000000020000990       0x44 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
+                0x0000000020000990                huart2
+ .bss.uwTick    0x00000000200009d4        0x4 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+                0x00000000200009d4                uwTick
  .bss._ZL10eh_globals
-                0x00000000200009dc        0xc /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_globals.o)
+                0x00000000200009d8        0xc /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_globals.o)
  .bss._ZN12_GLOBAL__N_114emergency_poolE
-                0x00000000200009e8       0x10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_alloc.o)
+                0x00000000200009e4       0x10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_alloc.o)
  *(COMMON)
-                0x00000000200009f8                . = ALIGN (0x4)
-                0x00000000200009f8                _ebss = .
-                0x00000000200009f8                __bss_end__ = _ebss
+                0x00000000200009f4                . = ALIGN (0x4)
+                0x00000000200009f4                _ebss = .
+                0x00000000200009f4                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x00000000200009f8      0x600 load address 0x0000000008005a70
+                0x00000000200009f4      0x604 load address 0x0000000008005a6c
                 0x00000000200009f8                . = ALIGN (0x8)
+ *fill*         0x00000000200009f4        0x4 
                 [!provide]                        PROVIDE (end = .)
                 0x00000000200009f8                PROVIDE (_end = .)
                 0x0000000020000bf8                . = (. + _Min_Heap_Size)
@@ -6226,68 +6227,68 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a
  .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-reent.o)
  .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
 
-.debug_info     0x0000000000000000    0x4789b
+.debug_info     0x0000000000000000    0x478ab
  .debug_info    0x0000000000000000      0x4be CMakeFiles/stepping_motor.elf.dir/Core/Src/dma.c.obj
  .debug_info    0x00000000000004be      0x4e4 CMakeFiles/stepping_motor.elf.dir/Core/Src/gpio.c.obj
  .debug_info    0x00000000000009a2      0x5c5 CMakeFiles/stepping_motor.elf.dir/Core/Src/main.c.obj
- .debug_info    0x0000000000000f67     0x9181 CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj
- .debug_info    0x000000000000a0e8      0x2e8 CMakeFiles/stepping_motor.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj
- .debug_info    0x000000000000a3d0      0x6ae CMakeFiles/stepping_motor.elf.dir/Core/Src/stm32f4xx_it.c.obj
- .debug_info    0x000000000000aa7e      0x7af CMakeFiles/stepping_motor.elf.dir/Core/Src/syscalls.c.obj
- .debug_info    0x000000000000b22d      0x15c CMakeFiles/stepping_motor.elf.dir/Core/Src/sysmem.c.obj
- .debug_info    0x000000000000b389      0x391 CMakeFiles/stepping_motor.elf.dir/Core/Src/system_stm32f4xx.c.obj
- .debug_info    0x000000000000b71a      0xc64 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
- .debug_info    0x000000000000c37e       0x30 CMakeFiles/stepping_motor.elf.dir/Core/Startup/startup_stm32f411retx.s.obj
- .debug_info    0x000000000000c3ae      0x975 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
- .debug_info    0x000000000000cd23      0xfe4 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj
- .debug_info    0x000000000000dd07      0xb1f CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
- .debug_info    0x000000000000e826      0x7b0 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj
- .debug_info    0x000000000000efd6      0xafa CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj
- .debug_info    0x000000000000fad0     0x4216 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
- .debug_info    0x0000000000013ce6      0x166 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(atexit_arm.o)
- .debug_info    0x0000000000013e4c    0x1b690 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(string-inst.o)
- .debug_info    0x000000000002f4dc      0x8a2 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(del_op.o)
- .debug_info    0x000000000002fd7e      0xb6b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_arm.o)
- .debug_info    0x00000000000308e9      0xf41 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_catch.o)
- .debug_info    0x000000000003182a      0xa41 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_exception.o)
- .debug_info    0x000000000003226b      0xbd6 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_globals.o)
- .debug_info    0x0000000000032e41     0x22e6 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_personality.o)
- .debug_info    0x0000000000035127      0xbcf /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_terminate.o)
- .debug_info    0x0000000000035cf6      0x3c7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_unex_handler.o)
- .debug_info    0x00000000000360bd      0x8d7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(si_class_type_info.o)
- .debug_info    0x0000000000036994      0x66b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(tinfo.o)
- .debug_info    0x0000000000036fff      0xaa5 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(class_type_info.o)
- .debug_info    0x0000000000037aa4      0x3a1 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(del_ops.o)
- .debug_info    0x0000000000037e45     0x189b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_alloc.o)
- .debug_info    0x00000000000396e0     0x1412 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_call.o)
- .debug_info    0x000000000003aaf2      0x8d5 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_term_handler.o)
- .debug_info    0x000000000003b3c7      0xb82 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_throw.o)
- .debug_info    0x000000000003bf49       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(_aeabi_uldivmod.o)
- .debug_info    0x000000000003bf6f      0x717 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(_udivmoddi4.o)
- .debug_info    0x000000000003c686     0x1e0b /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(unwind-arm.o)
- .debug_info    0x000000000003e491       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(libunwind.o)
- .debug_info    0x000000000003e4b7      0xa03 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(pr-support.o)
- .debug_info    0x000000000003eeba       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_info    0x000000000003eee0       0xcb /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-abort.o)
- .debug_info    0x000000000003efab      0x100 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-atexit.o)
- .debug_info    0x000000000003f0ab      0x136 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-cxa_atexit.o)
- .debug_info    0x000000000003f1e1      0x914 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-errno.o)
- .debug_info    0x000000000003faf5      0x102 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-fini.o)
- .debug_info    0x000000000003fbf7      0x92a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-impure.o)
- .debug_info    0x0000000000040521      0x11a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-init.o)
- .debug_info    0x000000000004063b      0x998 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-malloc.o)
- .debug_info    0x0000000000040fd3      0xe95 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-mallocr.o)
- .debug_info    0x0000000000041e68       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-memcpy.o)
- .debug_info    0x0000000000041e8e      0x137 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-memset.o)
- .debug_info    0x0000000000041fc5      0x942 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-mlock.o)
- .debug_info    0x0000000000042907      0x98e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-sbrkr.o)
- .debug_info    0x0000000000043295      0xf32 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-signal.o)
- .debug_info    0x00000000000441c7      0x9d7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-signalr.o)
- .debug_info    0x0000000000044b9e       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-strcmp.o)
- .debug_info    0x0000000000044bc4      0x9b0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-__atexit.o)
- .debug_info    0x0000000000045574      0xa3d /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-__call_atexit.o)
- .debug_info    0x0000000000045fb1      0xd10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-freer.o)
- .debug_info    0x0000000000046cc1      0xbda /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-reent.o)
+ .debug_info    0x0000000000000f67     0x9191 CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj
+ .debug_info    0x000000000000a0f8      0x2e8 CMakeFiles/stepping_motor.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj
+ .debug_info    0x000000000000a3e0      0x6ae CMakeFiles/stepping_motor.elf.dir/Core/Src/stm32f4xx_it.c.obj
+ .debug_info    0x000000000000aa8e      0x7af CMakeFiles/stepping_motor.elf.dir/Core/Src/syscalls.c.obj
+ .debug_info    0x000000000000b23d      0x15c CMakeFiles/stepping_motor.elf.dir/Core/Src/sysmem.c.obj
+ .debug_info    0x000000000000b399      0x391 CMakeFiles/stepping_motor.elf.dir/Core/Src/system_stm32f4xx.c.obj
+ .debug_info    0x000000000000b72a      0xc64 CMakeFiles/stepping_motor.elf.dir/Core/Src/usart.c.obj
+ .debug_info    0x000000000000c38e       0x30 CMakeFiles/stepping_motor.elf.dir/Core/Startup/startup_stm32f411retx.s.obj
+ .debug_info    0x000000000000c3be      0x975 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+ .debug_info    0x000000000000cd33      0xfe4 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj
+ .debug_info    0x000000000000dd17      0xb1f CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
+ .debug_info    0x000000000000e836      0x7b0 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj
+ .debug_info    0x000000000000efe6      0xafa CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj
+ .debug_info    0x000000000000fae0     0x4216 CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
+ .debug_info    0x0000000000013cf6      0x166 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(atexit_arm.o)
+ .debug_info    0x0000000000013e5c    0x1b690 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(string-inst.o)
+ .debug_info    0x000000000002f4ec      0x8a2 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(del_op.o)
+ .debug_info    0x000000000002fd8e      0xb6b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_arm.o)
+ .debug_info    0x00000000000308f9      0xf41 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_catch.o)
+ .debug_info    0x000000000003183a      0xa41 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_exception.o)
+ .debug_info    0x000000000003227b      0xbd6 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_globals.o)
+ .debug_info    0x0000000000032e51     0x22e6 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_personality.o)
+ .debug_info    0x0000000000035137      0xbcf /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_terminate.o)
+ .debug_info    0x0000000000035d06      0x3c7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_unex_handler.o)
+ .debug_info    0x00000000000360cd      0x8d7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(si_class_type_info.o)
+ .debug_info    0x00000000000369a4      0x66b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(tinfo.o)
+ .debug_info    0x000000000003700f      0xaa5 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(class_type_info.o)
+ .debug_info    0x0000000000037ab4      0x3a1 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(del_ops.o)
+ .debug_info    0x0000000000037e55     0x189b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_alloc.o)
+ .debug_info    0x00000000000396f0     0x1412 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_call.o)
+ .debug_info    0x000000000003ab02      0x8d5 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_term_handler.o)
+ .debug_info    0x000000000003b3d7      0xb82 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libstdc++.a(eh_throw.o)
+ .debug_info    0x000000000003bf59       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .debug_info    0x000000000003bf7f      0x717 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(_udivmoddi4.o)
+ .debug_info    0x000000000003c696     0x1e0b /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(unwind-arm.o)
+ .debug_info    0x000000000003e4a1       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(libunwind.o)
+ .debug_info    0x000000000003e4c7      0xa03 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(pr-support.o)
+ .debug_info    0x000000000003eeca       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x000000000003eef0       0xcb /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-abort.o)
+ .debug_info    0x000000000003efbb      0x100 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-atexit.o)
+ .debug_info    0x000000000003f0bb      0x136 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-cxa_atexit.o)
+ .debug_info    0x000000000003f1f1      0x914 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-errno.o)
+ .debug_info    0x000000000003fb05      0x102 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-fini.o)
+ .debug_info    0x000000000003fc07      0x92a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-impure.o)
+ .debug_info    0x0000000000040531      0x11a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-init.o)
+ .debug_info    0x000000000004064b      0x998 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-malloc.o)
+ .debug_info    0x0000000000040fe3      0xe95 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-mallocr.o)
+ .debug_info    0x0000000000041e78       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-memcpy.o)
+ .debug_info    0x0000000000041e9e      0x137 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-memset.o)
+ .debug_info    0x0000000000041fd5      0x942 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-mlock.o)
+ .debug_info    0x0000000000042917      0x98e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-sbrkr.o)
+ .debug_info    0x00000000000432a5      0xf32 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-signal.o)
+ .debug_info    0x00000000000441d7      0x9d7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-signalr.o)
+ .debug_info    0x0000000000044bae       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-strcmp.o)
+ .debug_info    0x0000000000044bd4      0x9b0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-__atexit.o)
+ .debug_info    0x0000000000045584      0xa3d /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-__call_atexit.o)
+ .debug_info    0x0000000000045fc1      0xd10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-freer.o)
+ .debug_info    0x0000000000046cd1      0xbda /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg.a(lib_a-reent.o)
 
 .debug_abbrev   0x0000000000000000     0xa00d
  .debug_abbrev  0x0000000000000000      0x126 CMakeFiles/stepping_motor.elf.dir/Core/Src/dma.c.obj

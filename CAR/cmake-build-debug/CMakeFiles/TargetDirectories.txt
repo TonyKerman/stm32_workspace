@@ -1,3 +1,0 @@
-/home/tony/stm32_workspace/CAR/cmake-build-debug/CMakeFiles/Car.elf.dir
-/home/tony/stm32_workspace/CAR/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/tony/stm32_workspace/CAR/cmake-build-debug/CMakeFiles/rebuild_cache.dir

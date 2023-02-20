@@ -2,9 +2,9 @@
 0	24	1674744309782870342	CMakeFiles/stepping_motor.elf.dir/Core/Src/dma.c.obj	49d01a5ec8afb1dd
 2	90	1674744309846868997	CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj	2f350d6a7dcb5596
 38	84	1674744309842869080	CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj	a709c2435e48135e
-117	147	1674747392763026709	stepping_motor.elf	9c6fe1e131accefe
+143	203	1674783780903811714	stepping_motor.elf	9c6fe1e131accefe
 0	56	1674744309814869669	CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj	f2501b7124457562
-0	117	1674747392735026706	CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj	6c75def7ad0129
+0	143	1674783780847816564	CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj	6c75def7ad0129
 24	63	1674744309822869501	CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj	344e335704113067
 42	74	1674744309830869333	CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj	7bcf02584676d4c7
 34	92	1674744309850868913	CMakeFiles/stepping_motor.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj	d60a4fcab6795e3e
