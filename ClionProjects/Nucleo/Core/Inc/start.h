@@ -16,5 +16,5 @@ void task2(void);
 }
 #endif
 
-#endif //OLED_START_H
+#endif
 

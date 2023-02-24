@@ -1,4 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
+CAD.formats=
+CAD.pinconfig=
+CAD.provider=
 Dma.Request0=USART2_RX
 Dma.Request1=USART2_TX
 Dma.RequestsNb=2
@@ -23,10 +26,10 @@ Dma.USART2_TX.1.PeriphInc=DMA_PINC_DISABLE
 Dma.USART2_TX.1.Priority=DMA_PRIORITY_LOW
 Dma.USART2_TX.1.RequestParameters=Instance,Direction,PeriphInc,MemInc,PeriphDataAlignment,MemDataAlignment,Mode,Priority,FIFOMode
 FREERTOS.FootprintOK=true
-FREERTOS.INCLUDE_vTaskDelayUntil=1
-FREERTOS.IPParameters=Tasks01,FootprintOK,configENABLE_FPU,INCLUDE_vTaskDelayUntil
-FREERTOS.Tasks01=defaultTask,0,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL;myTask02,0,128,StartTask02,Default,NULL,Dynamic,NULL,NULL
+FREERTOS.IPParameters=Tasks01,FootprintOK,configENABLE_FPU,configUSE_NEWLIB_REENTRANT
+FREERTOS.Tasks01=defaultTask,0,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL;myTask02,-3,128,StartTask02,Default,NULL,Dynamic,NULL,NULL
 FREERTOS.configENABLE_FPU=1
+FREERTOS.configUSE_NEWLIB_REENTRANT=1
 File.Version=6
 GPIO.groupedBy=Group By Peripherals
 KeepUserPlacement=false

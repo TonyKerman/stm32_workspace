@@ -1,16 +1,14 @@
 
 #include "start.h"
 #include "main.h"
-#include "usart.h"
 #include <string>
+#include "serial_debug.h"
 using namespace std;
+
+
 
 void startup()
 {
-    string str = "hello world!";
-    while(1)
-    {
-        HAL_Delay(100);
-        HAL_UART_Transmit(&huart2,(uint8_t *)str.data(),str.size(),0xff);
-    }
+    dbg_start(&huart2);
+
 }

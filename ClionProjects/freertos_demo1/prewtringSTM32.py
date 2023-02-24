@@ -37,16 +37,19 @@ try:
         f.write(text2)
 except FileExistsError as e:
     print("error!! file is existed")
-
+    
 text3=[]
 print("change main.c")
 with open("./Core/Src/main.c","r") as f:
     for line in f.readlines():
+        if '#include"start.h"' in line or 'startup();' in line:
+            continue
         text3.append(line)
         if "/* USER CODE BEGIN Includes */" in line:
-            text3.append('#include"start.h"')
+            text3.append('  #include"start.h"\n')
         if "/* USER CODE BEGIN 2 */" in line:
-            text3.append('startup();')
+            text3.append('  startup();\n')
+        
 
 
 with open("./Core/Src/main.c","w+") as f:
