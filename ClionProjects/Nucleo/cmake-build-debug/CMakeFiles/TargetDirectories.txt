@@ -1,3 +1,0 @@
-/home/tony/stm32_workspace/ClionProjects/Nucleo/cmake-build-debug/CMakeFiles/Nucleo.elf.dir
-/home/tony/stm32_workspace/ClionProjects/Nucleo/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/tony/stm32_workspace/ClionProjects/Nucleo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
