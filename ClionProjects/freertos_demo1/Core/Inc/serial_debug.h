@@ -12,6 +12,7 @@ extern "C"
 #ifdef __cplusplus
 }
 #include "usart.h"
+#include <string>
 using namespace std;
 extern string debug_buffer;
 void dbg_start(__UART_HandleTypeDef * uartx);

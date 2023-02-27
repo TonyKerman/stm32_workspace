@@ -7,7 +7,7 @@
 * SCLK —串行时钟同步输出，同步数据传输，使用主机输出；
 * MOSI —主机输出从机输入，主机通过该线发送数据，从机通过该线接收数据；
 * MISO —主机输入从机输出，主机通过该线接收数据，从机通过该线发送数据；
-* CS —片选，主机输出，用来选中具体的从机。 cs拉低开启通信，拉高结束
+* CS(NSS) —片选，主机输出，用来选中具体的从机。 cs拉低开启通信，拉高结束
 
 ### 注：
 1. SPI会有主从机（或者对于MCU来说会有主模式，从模式）之分，它的区分依据是SCLK同步时钟和SS片选是由谁输出，输出方就会被定义为工作在主机（主模式）状态下。
@@ -18,10 +18,26 @@
 <https://blog.csdn.net/as480133937/article/details/105849607>
 
 ## CubeMX
-* Mode：主机从机全双工半双工
-* hardware NSS ：硬件片选
+#### Mode：主机从机全双工半双工
+#### hardware NSS ：硬件片选
     * enable 开启:开启后不用手动在通讯开始前拉低CS 猜测：一对一时主从机都可以开启，一对多时主机不能开启 主机选output从机选input
     * disable：需要手动在spi通讯开始前拉低CS CS的Pin要在GPIO里手动设置 一对多时需要主机定义多个pin作为 cs1 cs2 ..
+#### First Bit:一个字节中,先发送哪一位
+    * LSB first: 小端在前
+    * MSB first: 大端在前
+    
+    <https://blog.csdn.net/weixin_42868654/article/details/88577851>
+
+* 选择lsb还是msb由连接的硬件决定 ps2:lsb
+#### Prescaler(分频)[Rate频率]
+    根据硬件选择,不能超过硬件的相关频率
+#### CPOL 时钟极性
+    时钟空闲时的高低
+#### CPHA(edge) 时钟相位
+1edge:时钟改变的第一个边沿采样
+
+* CPOL和CPHA根据连接的硬件时序图选择
+
 
 ## 代码
 ### stm32f4xx_hal_spi.c
