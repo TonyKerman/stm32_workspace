@@ -21,26 +21,188 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3d0ac07-a98c-437d-9bfb-093c58419686" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../stepping_motor/Core/Inc/step_motor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../stepping_motor/Core/Src/step_motor.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/.cproject" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/.mxproject" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/CMakeLists_template.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/dma.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/gpio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/main.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/spi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/start.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/stm32f1xx_hal_conf.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Inc/stm32f1xx_it.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/dma.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/gpio.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/spi.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/start.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/stm32f1xx_hal_msp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/stm32f1xx_it.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/syscalls.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/sysmem.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Src/system_stm32f1xx.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Core/Startup/startup_stm32f103c8tx.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Device/ST/STM32F1xx/License.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/cmsis_armcc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/cmsis_armclang.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/cmsis_compiler.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/cmsis_gcc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/cmsis_iccarm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/cmsis_version.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_armv8mbl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_armv8mml.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm0.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm0plus.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm1.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm23.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm3.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm33.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm4.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_cm7.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_sc000.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/core_sc300.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/mpu_armv7.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/mpu_armv8.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/Include/tz_context.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/CMSIS/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_bus.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_cortex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_dma.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_exti.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_pwr.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_rcc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_system.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/License.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/SPI_speaker.ioc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/STM32F103C8TX_FLASH.ld" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SPI_speaker/prewtringSTM32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cout/Core/Inc/oledfont.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.cproject" beforeDir="false" afterPath="$PROJECT_DIR$/.cproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_SPI.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-01-07T04-31-06-0464.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/Core/Src/start.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-010b596b1a88ee646b79.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.cmake/api/v1/reply/index-2023-01-27T01-40-06-0643.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.cmake/api/v1/reply/target-stepping_motor.elf-Debug-9654393bcf041a643547.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/CMakeFiles/stepping_motor.elf.dir/Core/Src/start.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.elf" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.hex" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.hex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.map" beforeDir="false" afterPath="$PROJECT_DIR$/../stepping_motor/cmake-build-debug/stepping_motor.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/.mxproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/spi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/start.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/start.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/stm32f4xx_hal_conf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/stm32f4xx_it.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/usart.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/spi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/stm32f4xx_hal_msp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/stm32f4xx_it.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/system_stm32f4xx.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/usart.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Startup/startup_stm32f411retx.s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/CMSIS/Device/ST/STM32F4xx/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_cortex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_system.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPI.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/SPI.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STM32F411RETX_FLASH.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/STM32F411RETX_RAM.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/.mxproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Inc/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Inc/stm32f1xx_hal_conf.h" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Inc/stm32f1xx_hal_conf.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Inc/stm32f1xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Inc/stm32f1xx_it.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Src/gpio.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Src/spi.c" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Src/spi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/Core/Src/stm32f1xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/Core/Src/stm32f1xx_it.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cout/cout.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/../cout/cout.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +213,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -88,12 +253,12 @@
     </key>
   </component>
   <component name="RunManager" selected="OpenOCD 下载并运行.OCD SPI">
-    <configuration name="SPI.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SPI" TARGET_NAME="SPI.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SPI" RUN_TARGET_NAME="SPI.elf">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="SPI.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SPI" TARGET_NAME="SPI.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SPI" RUN_TARGET_NAME="SPI.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -116,6 +281,10 @@
       <workItem from="1673157037036" duration="620000" />
       <workItem from="1674784037236" duration="69000" />
       <workItem from="1674784186945" duration="614000" />
+      <workItem from="1677730550008" duration="1915000" />
+      <workItem from="1677735248031" duration="8019000" />
+      <workItem from="1677746792510" duration="1148000" />
+      <workItem from="1677748010149" duration="38000" />
     </task>
     <servers />
   </component>
@@ -123,18 +292,10 @@
     <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/start.cpp</url>
-          <line>42</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
         <watch expression="str" />
+        <watch expression="text" />
       </configuration>
     </watches-manager>
   </component>
