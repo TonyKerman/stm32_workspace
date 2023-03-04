@@ -48,17 +48,27 @@ void  dbg_add(float val,const char * vname)
 }
 void dbg_add(double val, const char *vname){dbg_add((float )val, vname);}
 
-void dbg_add(uint8_t * data,const char * vname)
+void dbg_add(uint8_t * data,const char * vname,bool hex)
 {
     string str ="0123456789ABCDEF" ;
     debug_buffer2 +="\n";
     debug_buffer2 += vname;
     debug_buffer2 += ":";
+
     for(int i=0;data[i]!='\0';i++)
     {
-        debug_buffer2 += "\t["+ to_string(i)+"] 0x";
-        debug_buffer2 +=str[data[i]/16];
-        debug_buffer2 +=str[data[i]%16];
+        debug_buffer2 += "\t["+ to_string(i)+"] ";
+        if(hex)
+        {
+            debug_buffer2+="0x";
+            debug_buffer2 +=str[data[i]/16];
+            debug_buffer2 +=str[data[i]%16];
+        } else
+        {
+            debug_buffer2+= to_string(data[i]);
+        }
+
+
     }
 }
 

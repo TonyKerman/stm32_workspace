@@ -19,7 +19,7 @@ void dbg_start(__UART_HandleTypeDef * uartx);
 void dbg_display();
 void  dbg_add(float val, const char * vname);
 void  dbg_add(double val, const char *vname);
-void dbg_add(uint8_t * data,const char * vname);
+void dbg_add(uint8_t * data,const char * vname,bool hex=0);
 template <typename T>
 void dbg_add( T val,const char* vname ) {
     debug_buffer += vname;

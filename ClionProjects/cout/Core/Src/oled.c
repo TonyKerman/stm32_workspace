@@ -1,11 +1,14 @@
+//
+// Created by tony on 2023/3/4.
+//
+/*
 
-#include "start.h"
-#include "main.h"
-#include "ps2.h"
+#include "oled.h"
 #include "oledfont.h"
-using namespace std;
-ps2outputTypeDef dat;
-HAL_StatusTypeDef state;
+#include "spi.h"
+
+SPI_HandleTypeDef  *spi;
+
 
 #define OLED_RES_0 HAL_GPIO_WritePin(RES_GPIO_Port,RES_Pin,GPIO_PIN_RESET)
 #define OLED_RES_1 HAL_GPIO_WritePin(RES_GPIO_Port,RES_Pin,GPIO_PIN_SET)
@@ -32,18 +35,14 @@ void OLED_WR_Byte(uint8_t dat,uint8_t cmd)
     else
         OLED_DC_0;
     OLED_CS_0;
-// do{
-//     state=HAL_SPI_Transmit_DMA(&hspi1,&dat,1);
-// } while (state!=HAL_OK);
-    HAL_SPI_Transmit_DMA(&hspi1,&dat,1);
-    //HAL_Delay(1);
+
+    HAL_SPI_Transmit_DMA(spi,&dat,1);
     if(cmd)
         OLED_DC_0;
     else
         OLED_DC_1;
     OLED_CS_1;
 
-    //OLED_DC_1;
 }
 
 
@@ -446,42 +445,4 @@ void OLED_Init(void)
     OLED_Clear();
     OLED_WR_Byte(0xAF,OLED_CMD);
 }
-
-
-
-
-
-
-void startup()
-{
-    HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_RESET);
-    HAL_Delay(200);
-    HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_SET);
-    HAL_Delay(200);
-    HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_RESET);
-    //dbg_start(&huart1);
-    OLED_Init();
-    OLED_DisPlay_On();
-    uint8_t bts[8]={0x10,0x20,0x30,0x40,0x50,0x60,0x70,0x80};
-
-    while(1)
-    {
-        //OLED_DrawCircle(20,20,10);
-        for (int x = 0; x < 64; ++x) {
-            for (int y = 0; y < 64; ++y) {
-                OLED_ShowNum(x,0,114514,6,8,1);
-                OLED_Refresh();
-                //HAL_Delay(1);
-            }
-
-        }
-
-        //dbg_display();
-
-//        for (int i = 0; i < 8; i++) {
-//            OLED_WR_Byte(bts[i],OLED_CMD);
-//        }
-
-        HAL_Delay(10);
-    }
-}
+*/

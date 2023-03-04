@@ -1,17 +1,21 @@
 text1 = '''
 #include "start.h"
 #include "main.h"
-#include "usart.h"
-#include <string>
+
 using namespace std;
 
 void startup()
 {
-    string str = "hello world!";
+    HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_RESET);
+    HAL_Delay(300);
+    HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_SET);
+    HAL_Delay(300);
+    HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_RESET);
+    
     while(1)
     {
         HAL_Delay(100);
-        HAL_UART_Transmit(&huart2,(uint8_t *)str.data(),str.size(),0xff);
+       
     }
 }'''
 text2 ='''
