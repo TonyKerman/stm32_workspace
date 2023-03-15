@@ -1,0 +1,5 @@
+Adafruit_ssd1306syp是库文件，请将此文件夹复制到x:\arduino-1.5.5\libraries目录下
+
+example是基于Arduino UNO的示例程序，正确接线并运行即可
+
+注意说明：CS脚需要接地

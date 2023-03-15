@@ -1,0 +1,4 @@
+"LQ12864.obj",
+"LQ12864main.obj" 
+TO "LQ_OLED" 
+RAMSIZE(256) 

@@ -1,0 +1,87 @@
+*** Creating Trace Output File '.\Obj\STM3210E-EVAL.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\obj\stm32f10x_it.o"'
+### List of Objects: adding '".\obj\main.o"'
+### List of Objects: adding '".\obj\systime.o"'
+### List of Objects: adding '".\obj\dlg_alarmgeneral.o"'
+### List of Objects: adding '".\obj\dlg_alarmindividual.o"'
+### List of Objects: adding '".\obj\dlg_auxoutput.o"'
+### List of Objects: adding '".\obj\dlg_clrall.o"'
+### List of Objects: adding '".\obj\dlg_domeset.o"'
+### List of Objects: adding '".\obj\dlg_domesetcamera.o"'
+### List of Objects: adding '".\obj\dlg_domesetmotion.o"'
+### List of Objects: adding '".\obj\dlg_domesetparam.o"'
+### List of Objects: adding '".\obj\dlg_linesync.o"'
+### List of Objects: adding '".\obj\dlg_main.o"'
+### List of Objects: adding '".\obj\dlg_password.o"'
+### List of Objects: adding '".\obj\dlg_patrol.o"'
+### List of Objects: adding '".\obj\dlg_pattern.o"'
+### List of Objects: adding '".\obj\dlg_sysinfo.o"'
+### List of Objects: adding '".\obj\dlg_preset.o"'
+### List of Objects: adding '".\obj\dlg_sysinfodisp.o"'
+### List of Objects: adding '".\obj\dlg_timetask.o"'
+### List of Objects: adding '".\obj\dlg_wind.o"'
+### List of Objects: adding '".\obj\dlg_zone.o"'
+### List of Objects: adding '".\obj\dome_draw.o"'
+### List of Objects: adding '".\obj\dome_gui.o"'
+### List of Objects: adding '".\obj\dome_item.o"'
+### List of Objects: adding '".\obj\dome_param.o"'
+### List of Objects: adding '".\obj\gpio.o"'
+### List of Objects: adding '".\obj\iic.o"'
+### List of Objects: adding '".\obj\osd.o"'
+### List of Objects: adding '".\obj\protocol.o"'
+### List of Objects: adding '".\obj\rs485comm.o"'
+### List of Objects: adding '".\obj\rtc.o"'
+### List of Objects: adding '".\obj\fastdome.o"'
+### List of Objects: adding '".\obj\temperature.o"'
+### List of Objects: adding '".\obj\alarm.o"'
+### List of Objects: adding '".\obj\dome_camera.o"'
+### List of Objects: adding '".\obj\usertime.o"'
+### List of Objects: adding '".\obj\autoacting.o"'
+### List of Objects: adding '".\obj\stepmotor.o"'
+### List of Objects: adding '".\obj\dac.o"'
+### List of Objects: adding '".\obj\dome_input.o"'
+### List of Objects: adding '".\obj\dome_inputitem.o"'
+### List of Objects: adding '".\obj\dlg_diagnostic.o"'
+### List of Objects: adding '".\obj\stm32f10x_adc.o"'
+### List of Objects: adding '".\obj\stm32f10x_bkp.o"'
+### List of Objects: adding '".\obj\stm32f10x_can.o"'
+### List of Objects: adding '".\obj\stm32f10x_crc.o"'
+### List of Objects: adding '".\obj\stm32f10x_dac.o"'
+### List of Objects: adding '".\obj\stm32f10x_dbgmcu.o"'
+### List of Objects: adding '".\obj\stm32f10x_dma.o"'
+### List of Objects: adding '".\obj\stm32f10x_exti.o"'
+### List of Objects: adding '".\obj\stm32f10x_flash.o"'
+### List of Objects: adding '".\obj\stm32f10x_fsmc.o"'
+### List of Objects: adding '".\obj\stm32f10x_gpio.o"'
+### List of Objects: adding '".\obj\stm32f10x_i2c.o"'
+### List of Objects: adding '".\obj\stm32f10x_iwdg.o"'
+### List of Objects: adding '".\obj\stm32f10x_lib.o"'
+### List of Objects: adding '".\obj\stm32f10x_nvic.o"'
+### List of Objects: adding '".\obj\stm32f10x_pwr.o"'
+### List of Objects: adding '".\obj\stm32f10x_rcc.o"'
+### List of Objects: adding '".\obj\stm32f10x_rtc.o"'
+### List of Objects: adding '".\obj\stm32f10x_sdio.o"'
+### List of Objects: adding '".\obj\stm32f10x_spi.o"'
+### List of Objects: adding '".\obj\stm32f10x_systick.o"'
+### List of Objects: adding '".\obj\stm32f10x_tim.o"'
+### List of Objects: adding '".\obj\stm32f10x_usart.o"'
+### List of Objects: adding '".\obj\stm32f10x_wwdg.o"'
+### List of Objects: adding '".\obj\stm32f10x_vector.o"'
+### List of Objects: adding '".\obj\cortexm3_macro.o"'
+### ADS-LD Command completed:
+".\obj\stm32f10x_it.o" ".\obj\main.o" ".\obj\systime.o" ".\obj\dlg_alarmgeneral.o" ".\obj\dlg_alarmindividual.o" ".\obj\dlg_auxoutput.o" ".\obj\dlg_clrall.o" ".\obj\dlg_domeset.o" ".\obj\dlg_domesetcamera.o" ".\obj\dlg_domesetmotion.o" ".\obj\dlg_domesetparam.o" ".\obj\dlg_linesync.o" ".\obj\dlg_main.o" ".\obj\dlg_password.o" ".\obj\dlg_patrol.o" ".\obj\dlg_pattern.o" ".\obj\dlg_sysinfo.o" ".\obj\dlg_preset.o" ".\obj\dlg_sysinfodisp.o" ".\obj\dlg_timetask.o" ".\obj\dlg_wind.o" ".\obj\dlg_zone.o" ".\obj\dome_draw.o" ".\obj\dome_gui.o" ".\obj\dome_item.o" ".\obj\dome_param.o" ".\obj\gpio.o" ".\obj\iic.o" ".\obj\osd.o" ".\obj\protocol.o" ".\obj\rs485comm.o" ".\obj\rtc.o" ".\obj\fastdome.o" ".\obj\temperature.o" ".\obj\alarm.o" ".\obj\dome_camera.o" ".\obj\usertime.o" ".\obj\autoacting.o" ".\obj\stepmotor.o" ".\obj\dac.o" ".\obj\dome_input.o" ".\obj\dome_inputitem.o" ".\obj\dlg_diagnostic.o" ".\obj\stm32f10x_adc.o" ".\obj\stm32f10x_bkp.o" ".\obj\stm32f10x_can.o" ".\obj\stm32f10x_crc.o" ".\obj\stm32f10x_dac.o" ".\obj\stm32f10x_dbgmcu.o" ".\obj\stm32f10x_dma.o" ".\obj\stm32f10x_exti.o" ".\obj\stm32f10x_flash.o" ".\obj\stm32f10x_fsmc.o" ".\obj\stm32f10x_gpio.o" ".\obj\stm32f10x_i2c.o" ".\obj\stm32f10x_iwdg.o" ".\obj\stm32f10x_lib.o" ".\obj\stm32f10x_nvic.o" ".\obj\stm32f10x_pwr.o" ".\obj\stm32f10x_rcc.o" ".\obj\stm32f10x_rtc.o" ".\obj\stm32f10x_sdio.o" ".\obj\stm32f10x_spi.o" ".\obj\stm32f10x_systick.o" ".\obj\stm32f10x_tim.o" ".\obj\stm32f10x_usart.o" ".\obj\stm32f10x_wwdg.o" ".\obj\stm32f10x_vector.o" ".\obj\cortexm3_macro.o" --library_type=microlib --device DARMSTM --strict --scatter ".\Obj\STM3210E-EVAL.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\List\STM3210E-EVAL.map" -o ".\Obj\STM3210E-EVAL.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\Obj\STM3210E-EVAL.axf'
+### ADS-LD Command File: '.\Obj\STM3210E-EVAL.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\Obj\STM3210E-EVAL.lnp', Handle=0x0000027C
+### Writing '.lnp' file
+### ADS-LD Command file '.\Obj\STM3210E-EVAL.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

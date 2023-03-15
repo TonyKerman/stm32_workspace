@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+    
+    
+  <CurrentConfigs><Project>k60_led/FLASH</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>647</ColumnWidth1><ColumnWidth2>172</ColumnWidth2><ColumnWidth3>43</ColumnWidth3></Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>310</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <TerminalIO/><Debug-Log><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1221</ColumnWidth1></Debug-Log><SourceBrowser><PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Workspace</Factory></Window></Windows></PreferedWindows></SourceBrowser></Static>
+    <Windows>
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-6544-1639</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-14199-10502</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>1</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-17293-1642</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>k60_led</ExpandedNode><ExpandedNode>k60_led/platforms</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\sysinit.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\sysinit.c</Filename><XPos>0</XPos><YPos>102</YPos><SelStart>4098</SelStart><SelEnd>4098</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\uart\uart.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>240</SelStart><SelEnd>254</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\uart\uart.c</Filename><XPos>0</XPos><YPos>90</YPos><SelStart>3392</SelStart><SelEnd>3392</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\mcg\mcg.h</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>429</SelStart><SelEnd>429</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\mcg\mcg.c</Filename><XPos>0</XPos><YPos>72</YPos><SelStart>362</SelStart><SelEnd>362</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\io.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>234</SelStart><SelEnd>234</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\printf.c</Filename><XPos>0</XPos><YPos>572</YPos><SelStart>15933</SelStart><SelEnd>15933</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\vectors.c</Filename><XPos>0</XPos><YPos>277</YPos><SelStart>5088</SelStart><SelEnd>5088</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\io.h</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>339</SelStart><SelEnd>339</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\start.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\stdlib.h</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\startup.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\Program Files\IAR Systems\Embedded Workbench 6.0\arm\inc\c\intrinsics.h</Filename><XPos>0</XPos><YPos>336</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\memtest.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\memtest.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\queue.c</Filename><XPos>0</XPos><YPos>30</YPos><SelStart>309</SelStart><SelEnd>309</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\uif.h</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>342</SelStart><SelEnd>350</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\uif.c</Filename><XPos>0</XPos><YPos>32</YPos><SelStart>1119</SelStart><SelEnd>1126</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\gpio\gpio.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>449</SelStart><SelEnd>454</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\gpio\gpio.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>472</SelStart><SelEnd>481</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\isr.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>365</SelStart><SelEnd>365</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\includes.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>234</SelStart><SelEnd>234</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\wdog\wdog.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>373</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\vectors.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>729</SelStart><SelEnd>729</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\isr.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>17</SelStart><SelEnd>17</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\crt0.s</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>219</SelStart><SelEnd>219</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\headers\MK60N512VMD100.h</Filename><XPos>0</XPos><YPos>9597</YPos><SelStart>578879</SelStart><SelEnd>578891</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\main.c</Filename><XPos>0</XPos><YPos>17</YPos><SelStart>610</SelStart><SelEnd>610</SelEnd></Tab><ActiveTab>28</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\platforms\k60_tower.h</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>1188</SelStart><SelEnd>1188</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\common\common.h</Filename><XPos>0</XPos><YPos>17</YPos><SelStart>444</SelStart><SelEnd>444</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\k60_config.h</Filename><XPos>0</XPos><YPos>36</YPos><SelStart>1054</SelStart><SelEnd>1054</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\lcf\Ram.icf</Filename><XPos>0</XPos><YPos>17</YPos><SelStart>1868</SelStart><SelEnd>1868</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\start.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>610</SelStart><SelEnd>610</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\arm_cm4.h</Filename><XPos>0</XPos><YPos>72</YPos><SelStart>1576</SelStart><SelEnd>1581</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\dma_channels.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-0262be30><key>iaridepm.enu1</key></Toolbar-0262be30></Sizes></Row0></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>250</Bottom><Right>384</Right><x>-2</x><y>-2</y><xscreen>104</xscreen><yscreen>88</yscreen><sizeHorzCX>112798</sizeHorzCX><sizeHorzCY>149406</sizeHorzCY><sizeVertCX>418655</sizeVertCX><sizeVertCY>427844</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>294</Bottom><Right>924</Right><x>-2</x><y>-2</y><xscreen>926</xscreen><yscreen>296</yscreen><sizeHorzCX>1004338</sizeHorzCX><sizeHorzCY>502547</sizeHorzCY><sizeVertCX>112798</sizeVertCX><sizeVertCY>149406</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

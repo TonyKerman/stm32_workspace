@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>gpio/FLASH</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>250</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      <PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+      <TerminalIO/>
+    <Debug-Log><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1221</ColumnWidth1></Debug-Log><Find-in-Files><ColumnWidth0>440</ColumnWidth0><ColumnWidth1>62</ColumnWidth1><ColumnWidth2>754</ColumnWidth2></Find-in-Files><Disassembly><MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow></Disassembly></Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-7534-31781</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-8979-16673</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-7731-28821</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-5365-27824</Identity><TabName>Workspace</TabName><Factory>Workspace</Factory><Session><NodeDict><ExpandedNode>gpio</ExpandedNode><ExpandedNode>gpio/cpu</ExpandedNode><ExpandedNode>gpio/drivers</ExpandedNode><ExpandedNode>gpio/drivers/gpio</ExpandedNode><ExpandedNode>gpio/project</ExpandedNode><ExpandedNode>gpio/project/isr</ExpandedNode><ExpandedNode>gpio/project/main</ExpandedNode></NodeDict></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\uart\uart.c</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>784</SelStart><SelEnd>784</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\vectors.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>765</SelStart><SelEnd>765</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\crt0.s</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>550</SelStart><SelEnd>555</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\arm_cm4.h</Filename><XPos>0</XPos><YPos>63</YPos><SelStart>1957</SelStart><SelEnd>1957</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\headers\MK60N512VMD100.h</Filename><XPos>0</XPos><YPos>13442</YPos><SelStart>797094</SelStart><SelEnd>797094</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\includes.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>221</SelStart><SelEnd>238</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\gpio\gpio.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>843</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\sysinit.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>330</SelStart><SelEnd>330</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\wdog\wdog.c</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>1366</SelStart><SelEnd>1366</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\startup.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\start.c</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>580</SelStart><SelEnd>580</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\main.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>453</SelStart><SelEnd>453</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\mcg\mcg.c</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>1308</SelStart><SelEnd>1308</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\write.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\vectors.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1069</SelStart><SelEnd>1070</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\start.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>128</SelStart><SelEnd>141</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\common.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>346</SelStart><SelEnd>346</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\drivers\gpio\gpio.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>486</SelStart><SelEnd>486</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\isr.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>17</SelStart><SelEnd>17</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\projects\isr.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\bin\Flash\List\gpio.map</Filename><XPos>0</XPos><YPos>198</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\bin\Flash\Exe\gpio.srec</Filename><XPos>0</XPos><YPos>84</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\dma_channels.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\sysinit.c</Filename><XPos>0</XPos><YPos>22</YPos><SelStart>923</SelStart><SelEnd>923</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\cpu\startup.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>337</SelStart><SelEnd>337</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\02 sci_loop\src\projects\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><ActiveTab>25</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-012ebd28><key>iaridepm.enu1</key></Toolbar-012ebd28></Sizes></Row0></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>687</Bottom><Right>324</Right><x>-2</x><y>-2</y><xscreen>376</xscreen><yscreen>451</yscreen><sizeHorzCX>293750</sizeHorzCX><sizeHorzCY>493435</sizeHorzCY><sizeVertCX>254688</sizeVertCX><sizeVertCY>753829</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>182</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>184</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>201313</sizeHorzCY><sizeVertCX>257031</sizeVertCX><sizeVertCY>373085</sizeVertCY></Rect></Wnd2></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

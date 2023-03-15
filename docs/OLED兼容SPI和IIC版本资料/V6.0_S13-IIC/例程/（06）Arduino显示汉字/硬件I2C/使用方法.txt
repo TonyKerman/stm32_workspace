@@ -1,0 +1,5 @@
+1. CN_SSD1306_Wire是库文件，将此文件夹复制到x:\arduino-1.5.5\libraries目录下；
+
+2. 运行CN_SSD1306_Wire\example里的例程即可
+
+注意说明：CS脚需要接地

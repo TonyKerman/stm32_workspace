@@ -1,0 +1,44 @@
+[DebugChecksum]
+Checksum=978212055
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=1953717315
+Graph=0
+Symbiont=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Disassemble mode]
+mode=0
+[Breakpoints]
+Count=0
+[Aliases]
+A0=_ "D:\Projects\08 K60\k60\K60 ÍêÕû\³ÌÐò\K60_IAR(20110418)\01_light\src\Project_Settings\Startup_Code\crt0.s" ""
+Count=1
+SuppressDialog=1

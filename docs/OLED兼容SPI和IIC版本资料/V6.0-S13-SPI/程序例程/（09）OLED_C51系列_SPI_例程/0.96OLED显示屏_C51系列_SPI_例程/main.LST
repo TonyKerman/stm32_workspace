@@ -1,0 +1,105 @@
+C51 COMPILER V9.00   MAIN                                                                  05/10/2015 16:13:42 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE INCDIR(.\SRC) DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          //////////////////////////////////////////////////////////////////////////////////       
+   2          //±¾³ÌÐòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßÐí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
+   3          //
+   4          //  ÎÄ ¼þ Ãû   : main.c
+   5          //  °æ ±¾ ºÅ   : v2.0
+   6          //  ×÷    Õß   : 
+   7          //  Éú³ÉÈÕÆÚ   : 2014-0101
+   8          //  ×î½üÐÞ¸Ä   : 
+   9          //  ¹¦ÄÜÃèÊö   : OLED 4½Ó¿ÚÑÝÊ¾Àý³Ì(51ÏµÁÐ)
+  10          //              ËµÃ÷: 
+  11          //              ----------------------------------------------------------------
+  12          //              GND    µçÔ´µØ
+  13          //              VCC  ½Ó5V»ò3.3vµçÔ´
+  14          //              D0   P1^0£¨SCL£©
+  15          //              D1   P1^1£¨SDA£©
+  16          //              RES  ½ÓP12
+  17          //              DC   ½ÓP13
+  18          //              CS   ½ÓP14-----±¾Ä£¿éÆ¬Ñ¡½ÅÒÑ¾­°ïÓÃ»§½ÓµØ£¬ÎÞÐèÔÙ½Ó               
+  19          //              ----------------------------------------------------------------
+  20          //******************************************************************************/
+  21          #include "REG51.h"
+  22          #include "oled.h"
+  23          #include "bmp.h"
+  24          
+  25           int main(void)
+  26           {      u8 t;
+  27   1                      //delay_init();          //ÑÓÊ±º¯Êý³õÊ¼»¯         
+  28   1              //      NVIC_Configuration();    //ÉèÖÃNVICÖÐ¶Ï·Ö×é2:2Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬2Î»ÏìÓ¦ÓÅÏÈ¼¶       LED_Init();                          //LED¶Ë¿Ú
+             -³õÊ¼»¯
+  29   1                      OLED_Init();                    //³õÊ¼»¯OLED  
+  30   1                      OLED_Clear()    ; 
+  31   1                      /*
+  32   1                       OLED_ShowString(30,0,"OLED TEST");
+  33   1                      OLED_ShowString(8,2,"ZHONGJINGYUAN");  
+  34   1                      OLED_ShowString(20,4,"2014/05/01");  
+  35   1                      OLED_ShowString(0,6,"ASCII:");  
+  36   1                      OLED_ShowString(63,6,"CODE:");  
+  37   1                      t=' '; 
+  38   1                      OLED_ShowCHinese(0,0,0);//ÖÐ
+  39   1                      OLED_ShowCHinese(18,0,1);//¾°
+  40   1                      OLED_ShowCHinese(36,0,2);//Ô°
+  41   1                      OLED_ShowCHinese(54,0,3);//µç
+  42   1                      OLED_ShowCHinese(72,0,4);//×Ó
+  43   1                      OLED_ShowCHinese(90,0,5);//¿Æ
+  44   1                      OLED_ShowCHinese(108,0,6);//¼¼
+  45   1                      */      
+  46   1                      t=' ';
+  47   1              while(1) 
+  48   1              {               
+  49   2                      OLED_Clear();
+  50   2                      OLED_ShowCHinese(0,0,0);//ÖÐ
+  51   2                      OLED_ShowCHinese(18,0,1);//¾°
+  52   2                      OLED_ShowCHinese(36,0,2);//Ô°
+  53   2                      OLED_ShowCHinese(54,0,3);//µç
+  54   2                      OLED_ShowCHinese(72,0,4);//×Ó
+C51 COMPILER V9.00   MAIN                                                                  05/10/2015 16:13:42 PAGE 2   
+
+  55   2                      OLED_ShowCHinese(90,0,5);//¿Æ
+  56   2                      OLED_ShowCHinese(108,0,6);//¼¼
+  57   2                      OLED_ShowString(0,2,"1.3' OLED TEST");
+  58   2              //      OLED_ShowString(8,2,"ZHONGJINGYUAN");  
+  59   2                      OLED_ShowString(20,4,"2014/05/01");  
+  60   2                      OLED_ShowString(0,6,"ASCII:");  
+  61   2                      OLED_ShowString(63,6,"CODE:");  
+  62   2                      OLED_ShowChar(48,6,t);//ÏÔÊ¾ASCII×Ö·û      
+  63   2                      t++;
+  64   2                      if(t>'~')t=' ';
+  65   2                      OLED_ShowNum(103,6,t,3,16);//ÏÔÊ¾ASCII×Ö·ûµÄÂëÖµ        
+  66   2                              
+  67   2                      
+  68   2                      delay_ms(500);
+  69   2                      OLED_Clear();
+  70   2                      delay_ms(500);
+  71   2                      OLED_DrawBMP(0,0,128,8,BMP1);  //Í¼Æ¬ÏÔÊ¾(Í¼Æ¬ÏÔÊ¾É÷ÓÃ£¬Éú³ÉµÄ×Ö±í½Ï´ó£¬»áÕ¼ÓÃ½Ï¶à¿Õ¼ä£¬FLASH¿Õ¼ä8KÒÔÏÂÉ
+             -÷ÓÃ)
+  72   2                      delay_ms(500);
+  73   2                      OLED_DrawBMP(0,0,128,8,BMP2);
+  74   2                      delay_ms(500);
+  75   2              }         
+  76   1              
+  77   1      }
+  78          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    238    ----
+   CONSTANT SIZE    =   2087    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

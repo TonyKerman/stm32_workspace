@@ -1,0 +1,121 @@
+
+
+#>00000400          ___heap_size (linker command file)
+#>00000800          ___stack_size (linker command file)
+#>40000000          ___IPSBAR (linker command file)
+#>20000000          ___RAMBAR (linker command file)
+#>0000FFFF          ___RAMBAR_SIZE (linker command file)
+#>00000000          ___FLASHBAR (linker command file)
+#>00080000          ___FLASHBAR_SIZE (linker command file)
+#>2000FFFB          ___SP_AFTER_RESET (linker command file)
+
+# .userram
+
+# .code
+
+# .vectorram
+
+# .vectors
+  20000500 00000400 .vectortable _vect	(exceptions.c)
+
+# .text
+  20000900 00000030 .text   delay	(main.c)
+  20000930 0000002E .text   led_init	(main.c)
+  2000095E 000000CA .text   main	(main.c)
+  20000A28 0000001E .text   pll_init	(MCF52259_sysinit.c)
+  20000A46 00000020 .text   scm_init	(MCF52259_sysinit.c)
+  20000A66 0000003E .text   __initialize_hardware	(MCF52259_sysinit.c)
+  20000AA4 00000008 .text   __initialize_system	(startcf.c)
+  20000AAC 00000022 .text   __copy_rom_section	(startcf.c)
+  20000ACE 0000003A .text   __copy_rom_sections_to_ram	(startcf.c)
+  20000B08 00000004 .text   _ExitProcess	(startcf.c)
+  20000B0C 0000006A .text   clear_mem	(startcf.c)
+  20000B76 0000009A .text   _startup	(startcf.c)
+  20000C10 00000004 .text   TrapHandler_printf	(exceptions.c)
+  20000C14 000001D6 .text   mcf_exception_handler	(exceptions.c)
+  20000DEA 00000020 .text   asm_exception_handler	(exceptions.c)
+  20000E0A 00000008 .text   mcf5xxx_wr_vbr	(exceptions.c)
+  20000E12 00000048 .text   initialize_exceptions	(exceptions.c)
+  20000E5A 00000074 .text   LCD_WrDat	(LQ12864.c)
+  20000ECE 00000076 .text   LCD_WrCmd	(LQ12864.c)
+  20000F44 00000040 .text   LCD_Set_Pos	(LQ12864.c)
+  20000F84 00000064 .text   LCD_Fill	(LQ12864.c)
+  20000FE8 0000005E .text   LCD_CLS	(LQ12864.c)
+  20001046 0000002C .text   LCD_DLY_ms	(LQ12864.c)
+  20001072 0000013E .text   LCD_Init	(LQ12864.c)
+  200011B0 00000098 .text   LCD_P6x8Str	(LQ12864.c)
+  20001248 000000D4 .text   LCD_P8x16Str	(LQ12864.c)
+  2000131C 000001A8 .text   LCD_P14x16Str	(LQ12864.c)
+  200014C4 000000A8 .text   LCD_Print	(LQ12864.c)
+  2000156C 00000078 .text   Draw_BMP	(LQ12864.c)
+  200015E4 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
+  20001600 0000002C .text   __destroy_global_chain	(librt.a cf_staticinitia)
+  2000162C 0000000C .text   _ewl_exit	(librt.a abort_exit.o   )
+  20001638 00000011 .rodata @66	(main.c)
+  20001649 0000000F .rodata @67	(main.c)
+  20001658 00000005 .rodata @68	(main.c)
+  2000165D 00000011 .rodata @69	(main.c)
+  2000166E 0000000B .rodata @70	(main.c)
+  20001679 00000228 .rodata F6x8	(LQ12864.c)
+  200018A1 00000033 .rodata F14x16_Idx	(LQ12864.c)
+  200018D4 000002BC .rodata F14x16	(LQ12864.c)
+  20001B90 000005F0 .rodata F8X16	(LQ12864.c)
+#>20002180          ___ROM_AT (linker command file)
+#>20002180          ___DATA_ROM (linker command file)
+
+# .data
+#>20005000          ___DATA_RAM (linker command file)
+#>20005000          __exception_table_start__ (linker command file)
+# Exception index
+  20005000 00000000         Exception Table Index	()
+#>20005000          __exception_table_end__ (linker command file)
+#>20005000          ___sinit__ (linker command file)
+# Linker generated symbols
+  20005000 00000004         static initializer	(linker generated)
+#>20005004          __START_DATA (linker command file)
+  20005004 00000300 .data   longqiu96x64	(LQ12864.c)
+#>20005304          __END_DATA (linker command file)
+#>20005304          __START_SDATA (linker command file)
+#>20005304          __END_SDATA (linker command file)
+#>20005304          ___DATA_END (linker command file)
+#>20005304          __SDA_BASE (linker command file)
+
+# .bss
+#>20005304          ___BSS_START (linker command file)
+#>20005304          __START_SBSS (linker command file)
+#>20005304          __END_SBSS (linker command file)
+#>20005304          __START_BSS (linker command file)
+  20005304 00000004 .bss    __global_destructor_chain	(librt.a cf_staticinitia)
+#>20005308          __END_BSS (linker command file)
+#>20005308          ___BSS_END (linker command file)
+
+# .custom
+#>20005308          ___HEAP_START (linker command file)
+#>20005308          ___heap_addr (linker command file)
+#>20005708          ___HEAP_END (linker command file)
+#>20005708          ___SP_END (linker command file)
+#>20005F08          ___SP_INIT (linker command file)
+#>20000000          ___VECTOR_RAM (linker command file)
+#>20005F08          __SP_INIT (linker command file)
+#>20005708          ___mem_limit (linker command file)
+#>00000010          ___stack_safety (linker command file)
+#>20002484          _romp_at (linker command file)
+
+# .romp
+#>20002484          __S_romp (linker command file)
+
+
+# Memory map:
+  v_addr   p_addr   size     name
+  20000000 20000000 00000000 .vectorram vectorram
+  20000500 20000500 00000000 .code      code
+  20000500 20000500 00000400 .vectors   code
+  20000900 20000900 00001880 .text      code
+  20005000 20005000 00000000 .userram   userram
+  20005000 20002180 00000304 .data      userram
+  20005304 20005304 00000004 .bss       userram
+  20005308 20005308 00000000 .custom    userram
+  20005308 20002484 00000018 .romp      userram
+
+# Link start time: Wed Mar 28 00:40:49 2012
+# Link end time: Wed Mar 28 00:40:49 2012

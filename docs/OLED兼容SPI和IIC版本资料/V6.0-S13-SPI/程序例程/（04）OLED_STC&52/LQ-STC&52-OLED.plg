@@ -1,0 +1,364 @@
+<html>
+<body>
+<pre>
+<h1>µVision3 Build Log</h1>
+<h2>Project:</h2>
+F:\Ä£¿é²âÊÔ³ÌÐò\LCD-UG-12864\LQ-STC&52-OLED\LQ-STC&52-OLED.uv2
+Project File Date:  09/04/2011
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+*** WARNING C318 IN LINE 18 OF LQ12864.c: can't open file 'derivative.h'
+*** WARNING C318 IN LINE 3 OF LQ12864.h: can't open file 'derivative.h'
+LQ12864.H(4): error C129: missing ';' before 'longqiu96x64'
+compiling LQ12864main.c...
+*** WARNING C318 IN LINE 40 OF LQ12864main.c: can't open file 'derivative.h'
+*** WARNING C318 IN LINE 3 OF LQ12864.h: can't open file 'derivative.h'
+LQ12864.H(4): error C129: missing ';' before 'longqiu96x64'
+Target not created
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.C(317): error C141: syntax error near ')'
+LQ12864.C(321): error C141: syntax error near '='
+LQ12864.C(322): error C141: syntax error near '='
+LQ12864.C(326): error C141: syntax error near 'data'
+LQ12864.C(326): error C141: syntax error near '='
+LQ12864.C(327): error C141: syntax error near '='
+LQ12864.C(328): error C141: syntax error near '='
+compiling LQ12864main.c...
+LQ12864MAIN.C(95): error C202: 'PORTB_PB7': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(322): error C141: syntax error near ')'
+LQ12864.C(326): error C141: syntax error near '='
+LQ12864.C(327): error C141: syntax error near '='
+LQ12864.C(331): error C141: syntax error near 'data'
+LQ12864.C(331): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near '='
+LQ12864.C(333): error C141: syntax error near '='
+compiling LQ12864main.c...
+LQ12864MAIN.C(95): error C202: 'PORTB_PB7': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(323): error C141: syntax error near ')'
+LQ12864.C(327): error C141: syntax error near '='
+LQ12864.C(328): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near 'data'
+LQ12864.C(332): error C141: syntax error near '='
+LQ12864.C(333): error C141: syntax error near '='
+LQ12864.C(334): error C141: syntax error near '='
+compiling LQ12864main.c...
+LQ12864MAIN.C(96): error C202: 'PORTB_PB7': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.H(5): error C129: missing ';' before 'longqiu96x64'
+compiling LQ12864main.c...
+LQ12864.H(5): error C129: missing ';' before 'longqiu96x64'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.H(7): error C141: syntax error near 'x', expected ')'
+LQ12864.H(8): error C141: syntax error near 'x', expected ')'
+LQ12864.H(9): error C141: syntax error near 'x', expected ')'
+LQ12864.H(10): error C141: syntax error near 'x', expected ')'
+LQ12864.H(11): error C141: syntax error near 'x1', expected ')'
+LQ12864.H(12): error C141: syntax error near 'dat', expected ')'
+LQ12864.C(323): error C141: syntax error near ')'
+LQ12864.C(327): error C141: syntax error near '='
+LQ12864.C(328): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near 'data'
+LQ12864.C(332): error C141: syntax error near '='
+LQ12864.C(333): error C141: syntax error near '='
+LQ12864.C(334): error C141: syntax error near '='
+compiling LQ12864main.c...
+LQ12864.H(7): error C141: syntax error near 'x', expected ')'
+LQ12864.H(8): error C141: syntax error near 'x', expected ')'
+LQ12864.H(9): error C141: syntax error near 'x', expected ')'
+LQ12864.H(10): error C141: syntax error near 'x', expected ')'
+LQ12864.H(11): error C141: syntax error near 'x1', expected ')'
+LQ12864.H(12): error C141: syntax error near 'dat', expected ')'
+LQ12864MAIN.C(59): error C202: 'byte': undefined identifier
+LQ12864MAIN.C(59): error C141: syntax error near 'i'
+LQ12864MAIN.C(69): error C208: '_LCD_P14x16Str': too many actual parameters
+LQ12864MAIN.C(70): error C208: '_LCD_P14x16Str': too many actual parameters
+LQ12864MAIN.C(71): error C208: '_LCD_P8x16Str': too many actual parameters
+LQ12864MAIN.C(72): error C208: '_LCD_P6x8Str': too many actual parameters
+LQ12864MAIN.C(73): error C208: '_LCD_P6x8Str': too many actual parameters
+LQ12864MAIN.C(96): error C202: 'PORTB_PB7': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(321): error C141: syntax error near ')'
+LQ12864.C(325): error C141: syntax error near '='
+LQ12864.C(326): error C141: syntax error near '='
+LQ12864.C(330): error C141: syntax error near 'data'
+LQ12864.C(330): error C141: syntax error near '='
+LQ12864.C(331): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near '='
+compiling LQ12864main.c...
+LQ12864MAIN.C(96): error C202: 'PORTB_PB7': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.C(321): error C141: syntax error near ')'
+LQ12864.C(325): error C141: syntax error near '='
+LQ12864.C(326): error C141: syntax error near '='
+LQ12864.C(330): error C141: syntax error near 'data'
+LQ12864.C(330): error C141: syntax error near '='
+LQ12864.C(331): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near '='
+compiling LQ12864main.c...
+LQ12864MAIN.C(96): error C202: 'PORTB_PB7': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(321): error C141: syntax error near ')'
+LQ12864.C(325): error C141: syntax error near '='
+LQ12864.C(326): error C141: syntax error near '='
+LQ12864.C(330): error C141: syntax error near 'data'
+LQ12864.C(330): error C141: syntax error near '='
+LQ12864.C(331): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near '='
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(325): error C141: syntax error near '='
+LQ12864.C(326): error C141: syntax error near '='
+LQ12864.C(330): error C141: syntax error near '='
+LQ12864.C(331): error C141: syntax error near '='
+LQ12864.C(332): error C141: syntax error near '='
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(60): error C141: syntax error near 'unsigned', expected ';'
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(60): error C141: syntax error near 'unsigned', expected ';'
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(330): warning C206: 'asm': missing function-prototype
+LQ12864.C(330): error C267: 'asm': requires ANSI-style prototype
+LQ12864.C(549): error C202: 'DDRE': undefined identifier
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(549): error C202: 'DDRE': undefined identifier
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(745): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(745): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(688): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(745): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(752): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.C(388): error C141: syntax error near 'ms', expected ')'
+LQ12864.C(390): error C141: syntax error near 'a'
+LQ12864.C(390): error C202: 'a': undefined identifier
+LQ12864.C(391): error C202: 'ms': undefined identifier
+LQ12864.C(393): error C202: 'a': undefined identifier
+LQ12864.C(394): error C202: 'a': undefined identifier
+LQ12864.C(395): error C202: 'ms': undefined identifier
+LQ12864.C(693): error C202: 'word': undefined identifier
+LQ12864.C(693): error C141: syntax error near 'adder'
+LQ12864.C(698): error C202: 'adder': undefined identifier
+LQ12864.C(705): error C202: 'adder': undefined identifier
+LQ12864.C(713): error C202: 'adder': undefined identifier
+LQ12864.C(718): error C202: 'adder': undefined identifier
+LQ12864.C(719): error C202: 'adder': undefined identifier
+LQ12864.C(724): error C202: 'adder': undefined identifier
+LQ12864.C(725): error C202: 'adder': undefined identifier
+LQ12864.c(752): warning C316: unterminated conditionals
+compiling LQ12864main.c...
+LQ12864main.c(96): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(752): warning C316: unterminated conditionals
+LQ12864.C(752): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(96): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(745): warning C316: unterminated conditionals
+LQ12864.C(745): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(97): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(746): warning C316: unterminated conditionals
+LQ12864.C(746): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(746): warning C316: unterminated conditionals
+LQ12864.C(746): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+LQ12864.C(731): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+LQ12864.C(731): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+LQ12864.C(731): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+LQ12864.C(731): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+LQ12864.C(731): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+LQ12864.C(731): error C249: 'DATA': SEGMENT TOO LARGE
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+Target not created
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(731): warning C316: unterminated conditionals
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ADJUST?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETSTARTCOLUMN?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCOLUMNADDRESS?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETPAGEADDRESS?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETSTARTPAGE?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SET_NOP?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_PUTPIXEL?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_RECTANGLE?LQ12864
+Program Size: data=9.0 xdata=491 code=4446
+"LQ-STC&52-OLED" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(688): warning C316: unterminated conditionals
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ADJUST?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETSTARTCOLUMN?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCOLUMNADDRESS?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETPAGEADDRESS?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETSTARTPAGE?LQ12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SET_NOP?LQ12864
+Program Size: data=9.0 xdata=486 code=4242
+"LQ-STC&52-OLED" - 0 Error(s), 8 Warning(s).
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(655): warning C316: unterminated conditionals
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+linking...
+Program Size: data=9.0 xdata=486 code=4168
+"LQ-STC&52-OLED" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling LQ12864.c...
+LQ12864.c(655): warning C316: unterminated conditionals
+compiling LQ12864main.c...
+LQ12864main.c(98): warning C316: unterminated conditionals
+linking...
+Program Size: data=9.0 xdata=486 code=4168
+creating hex file from "LQ-STC&52-OLED"...
+OBJECT TO HEX FILE CONVERTER OH51 V2.6
+COPYRIGHT KEIL ELEKTRONIK GmbH 1991 - 2001
+*** ERROR: CAN'T OPEN FILE 'LQ-STC&52-OLED'
+"LQ-STC&52-OLED" - 0 Error(s), 2 Warning(s).

@@ -1,0 +1,669 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.10.1.52143/W32 for ARM     07/Jan/2012  00:36:19 #
+# Copyright 1999-2010 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  F:\Kinetis\IARK60X256\01_LQ_light\src\Sources\C\Componen #
+#                    t_C\uart.c                                               #
+#    Command line =  F:\Kinetis\IARK60X256\01_LQ_light\src\Sources\C\Componen #
+#                    t_C\uart.c -D IAR -D TWR_K60N512 -lCN                    #
+#                    F:\Kinetis\IARK60X256\01_LQ_light\bin\Ram\List\ -lB      #
+#                    F:\Kinetis\IARK60X256\01_LQ_light\bin\Ram\List\ -o       #
+#                    F:\Kinetis\IARK60X256\01_LQ_light\bin\Ram\Obj\ --no_cse  #
+#                    --no_unroll --no_inline --no_code_motion --no_tbaa       #
+#                    --no_clustering --no_scheduling --debug --endian=little  #
+#                    --cpu=Cortex-M4 -e --fpu=None --dlib_config "C:\Program  #
+#                    Files\IAR Systems\Embedded Workbench                     #
+#                    6.0\arm\INC\c\DLib_Config_Normal.h" -I                   #
+#                    F:\Kinetis\IARK60X256\01_LQ_light\src\Sources\H\ -I      #
+#                    F:\Kinetis\IARK60X256\01_LQ_light\src\Sources\H\Componen #
+#                    t_H\ -I F:\Kinetis\IARK60X256\01_LQ_light\src\Sources\H\ #
+#                    Frame_H\ -Ol --use_c++_inline                            #
+#    List file    =  F:\Kinetis\IARK60X256\01_LQ_light\bin\Ram\List\uart.lst  #
+#    Object file  =  F:\Kinetis\IARK60X256\01_LQ_light\bin\Ram\Obj\uart.o     #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+F:\Kinetis\IARK60X256\01_LQ_light\src\Sources\C\Component_C\uart.c
+      1          //-------------------------------------------------------------------------*
+      2          // 文件名: uart.c                                                          *
+      3          // 说  明: uart构件源文件                                                  *
+      4          //-------------------------------------------------------------------------*
+      5          
+      6          #include "uart.h"
+      7          
+      8          //-------------------------------------------------------------------------*
+      9          //函数名: uart_init                                                        *
+     10          //功  能: 初始化uartx模块。                                                *
+     11          //参  数: uartch:串口号                                                    *
+     12          //        sysclk:系统总线时钟，以MHz为单位                                 *
+     13          //        baud:波特率，如9600，38400等，一般来说，速度越慢，通信越稳       *
+     14          //返  回: 无                                                               *
+     15          //说  明:                                                                  *
+     16          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+     17          void uart_init (UART_MemMapPtr uartch, uint32 sysclk, uint32 baud)
+     18          {
+   \                     uart_init:
+   \   00000000   30B4               PUSH     {R4,R5}
+     19          	register uint16 sbr, brfa;
+     20          	uint8 temp;
+     21          
+     22          	//使能引脚
+     23          	if (uartch == UART0_BASE_PTR)
+   \   00000002   ....               LDR.N    R3,??DataTable0  ;; 0x4006a000
+   \   00000004   9842               CMP      R0,R3
+   \   00000006   08D1               BNE.N    ??uart_init_0
+     24          	{
+     25          		//在PTD6上使能UART0_TXD功能
+     26          		PORTD_PCR6 = PORT_PCR_MUX(0x3);
+   \   00000008   ....               LDR.N    R3,??DataTable0_1  ;; 0x4004c018
+   \   0000000A   4FF44074           MOV      R4,#+768
+   \   0000000E   1C60               STR      R4,[R3, #+0]
+     27          		//在PTD7上使能UART0_RXD
+     28          		PORTD_PCR7 = PORT_PCR_MUX(0x3); 
+   \   00000010   ....               LDR.N    R3,??DataTable0_2  ;; 0x4004c01c
+   \   00000012   4FF44074           MOV      R4,#+768
+   \   00000016   1C60               STR      R4,[R3, #+0]
+   \   00000018   3AE0               B.N      ??uart_init_1
+     29          	}else if (uartch == UART1_BASE_PTR)
+   \                     ??uart_init_0:
+   \   0000001A   ....               LDR.N    R3,??DataTable0_3  ;; 0x4006b000
+   \   0000001C   9842               CMP      R0,R3
+   \   0000001E   08D1               BNE.N    ??uart_init_2
+     30          	{
+     31          		//在PTC4上使能UART1_TXD功能
+     32          		PORTC_PCR4 = PORT_PCR_MUX(0x3); 
+   \   00000020   ....               LDR.N    R3,??DataTable0_4  ;; 0x4004b010
+   \   00000022   4FF44074           MOV      R4,#+768
+   \   00000026   1C60               STR      R4,[R3, #+0]
+     33          		
+     34          		//在PTC3上使能UART1_RXD
+     35          		PORTC_PCR3 = PORT_PCR_MUX(0x3); 
+   \   00000028   ....               LDR.N    R3,??DataTable0_5  ;; 0x4004b00c
+   \   0000002A   4FF44074           MOV      R4,#+768
+   \   0000002E   1C60               STR      R4,[R3, #+0]
+   \   00000030   2EE0               B.N      ??uart_init_1
+     36          	}else if (uartch == UART2_BASE_PTR)
+   \                     ??uart_init_2:
+   \   00000032   ....               LDR.N    R3,??DataTable0_6  ;; 0x4006c000
+   \   00000034   9842               CMP      R0,R3
+   \   00000036   08D1               BNE.N    ??uart_init_3
+     37          	{
+     38          		//在PTD3上使能UART2_TXD功能
+     39          		PORTD_PCR3 = PORT_PCR_MUX(0x3); 
+   \   00000038   ....               LDR.N    R3,??DataTable0_7  ;; 0x4004c00c
+   \   0000003A   4FF44074           MOV      R4,#+768
+   \   0000003E   1C60               STR      R4,[R3, #+0]
+     40          		//在PTD2上使能UART2_RXD
+     41          		PORTD_PCR2 = PORT_PCR_MUX(0x3); 
+   \   00000040   ....               LDR.N    R3,??DataTable0_8  ;; 0x4004c008
+   \   00000042   4FF44074           MOV      R4,#+768
+   \   00000046   1C60               STR      R4,[R3, #+0]
+   \   00000048   22E0               B.N      ??uart_init_1
+     42          	}else if (uartch == UART3_BASE_PTR)
+   \                     ??uart_init_3:
+   \   0000004A   ....               LDR.N    R3,??DataTable0_9  ;; 0x4006d000
+   \   0000004C   9842               CMP      R0,R3
+   \   0000004E   08D1               BNE.N    ??uart_init_4
+     43          	{
+     44          		//在PTC17上使能UART3_TXD功能
+     45          		PORTC_PCR17 = PORT_PCR_MUX(0x3); 
+   \   00000050   ....               LDR.N    R3,??DataTable0_10  ;; 0x4004b044
+   \   00000052   4FF44074           MOV      R4,#+768
+   \   00000056   1C60               STR      R4,[R3, #+0]
+     46          		//在PTC16上使能UART3_RXD
+     47          		PORTC_PCR16 = PORT_PCR_MUX(0x3); 
+   \   00000058   ....               LDR.N    R3,??DataTable0_11  ;; 0x4004b040
+   \   0000005A   4FF44074           MOV      R4,#+768
+   \   0000005E   1C60               STR      R4,[R3, #+0]
+   \   00000060   16E0               B.N      ??uart_init_1
+     48          	}else if (uartch == UART4_BASE_PTR)
+   \                     ??uart_init_4:
+   \   00000062   ....               LDR.N    R3,??DataTable0_12  ;; 0x400ea000
+   \   00000064   9842               CMP      R0,R3
+   \   00000066   08D1               BNE.N    ??uart_init_5
+     49          	{
+     50          		//在PTE24上使能UART4_TXD功能
+     51          		PORTE_PCR24 = PORT_PCR_MUX(0x3); 
+   \   00000068   ....               LDR.N    R3,??DataTable0_13  ;; 0x4004d060
+   \   0000006A   4FF44074           MOV      R4,#+768
+   \   0000006E   1C60               STR      R4,[R3, #+0]
+     52          		//在PTE25上使能UART4_RXD
+     53          		PORTE_PCR25 = PORT_PCR_MUX(0x3); 
+   \   00000070   ....               LDR.N    R3,??DataTable0_14  ;; 0x4004d064
+   \   00000072   4FF44074           MOV      R4,#+768
+   \   00000076   1C60               STR      R4,[R3, #+0]
+   \   00000078   0AE0               B.N      ??uart_init_1
+     54          	}else if (uartch == UART5_BASE_PTR)
+   \                     ??uart_init_5:
+   \   0000007A   ....               LDR.N    R3,??DataTable0_15  ;; 0x400eb000
+   \   0000007C   9842               CMP      R0,R3
+   \   0000007E   07D1               BNE.N    ??uart_init_1
+     55          	{
+     56          		//在PTE8上使能UART5_TXD功能
+     57          		PORTE_PCR8 = PORT_PCR_MUX(0x3); 
+   \   00000080   ....               LDR.N    R3,??DataTable0_16  ;; 0x4004d020
+   \   00000082   4FF44074           MOV      R4,#+768
+   \   00000086   1C60               STR      R4,[R3, #+0]
+     58          		//在PTE9上使能UART5_RXD
+     59          		PORTE_PCR9 = PORT_PCR_MUX(0x3); 
+   \   00000088   ....               LDR.N    R3,??DataTable0_17  ;; 0x4004d024
+   \   0000008A   4FF44074           MOV      R4,#+768
+   \   0000008E   1C60               STR      R4,[R3, #+0]
+     60          	}
+     61          	 
+     62          	//使能串口时钟    
+     63          	if(uartch == UART0_BASE_PTR)
+   \                     ??uart_init_1:
+   \   00000090   ....               LDR.N    R3,??DataTable0  ;; 0x4006a000
+   \   00000092   9842               CMP      R0,R3
+   \   00000094   06D1               BNE.N    ??uart_init_6
+     64          		SIM_SCGC4 |= SIM_SCGC4_UART0_MASK;
+   \   00000096   ....               LDR.N    R3,??DataTable0_18  ;; 0x40048034
+   \   00000098   1B68               LDR      R3,[R3, #+0]
+   \   0000009A   53F48063           ORRS     R3,R3,#0x400
+   \   0000009E   ....               LDR.N    R4,??DataTable0_18  ;; 0x40048034
+   \   000000A0   2360               STR      R3,[R4, #+0]
+   \   000000A2   2DE0               B.N      ??uart_init_7
+     65          	else
+     66          		if (uartch == UART1_BASE_PTR)
+   \                     ??uart_init_6:
+   \   000000A4   ....               LDR.N    R3,??DataTable0_3  ;; 0x4006b000
+   \   000000A6   9842               CMP      R0,R3
+   \   000000A8   06D1               BNE.N    ??uart_init_8
+     67          			SIM_SCGC4 |= SIM_SCGC4_UART1_MASK;
+   \   000000AA   ....               LDR.N    R3,??DataTable0_18  ;; 0x40048034
+   \   000000AC   1B68               LDR      R3,[R3, #+0]
+   \   000000AE   53F40063           ORRS     R3,R3,#0x800
+   \   000000B2   ....               LDR.N    R4,??DataTable0_18  ;; 0x40048034
+   \   000000B4   2360               STR      R3,[R4, #+0]
+   \   000000B6   23E0               B.N      ??uart_init_7
+     68          		else
+     69          			if (uartch == UART2_BASE_PTR)
+   \                     ??uart_init_8:
+   \   000000B8   ....               LDR.N    R3,??DataTable0_6  ;; 0x4006c000
+   \   000000BA   9842               CMP      R0,R3
+   \   000000BC   06D1               BNE.N    ??uart_init_9
+     70          				SIM_SCGC4 |= SIM_SCGC4_UART2_MASK;
+   \   000000BE   ....               LDR.N    R3,??DataTable0_18  ;; 0x40048034
+   \   000000C0   1B68               LDR      R3,[R3, #+0]
+   \   000000C2   53F48053           ORRS     R3,R3,#0x1000
+   \   000000C6   ....               LDR.N    R4,??DataTable0_18  ;; 0x40048034
+   \   000000C8   2360               STR      R3,[R4, #+0]
+   \   000000CA   19E0               B.N      ??uart_init_7
+     71          			else
+     72          				if(uartch == UART3_BASE_PTR)
+   \                     ??uart_init_9:
+   \   000000CC   ....               LDR.N    R3,??DataTable0_9  ;; 0x4006d000
+   \   000000CE   9842               CMP      R0,R3
+   \   000000D0   06D1               BNE.N    ??uart_init_10
+     73          					SIM_SCGC4 |= SIM_SCGC4_UART3_MASK;
+   \   000000D2   ....               LDR.N    R3,??DataTable0_18  ;; 0x40048034
+   \   000000D4   1B68               LDR      R3,[R3, #+0]
+   \   000000D6   53F40053           ORRS     R3,R3,#0x2000
+   \   000000DA   ....               LDR.N    R4,??DataTable0_18  ;; 0x40048034
+   \   000000DC   2360               STR      R3,[R4, #+0]
+   \   000000DE   0FE0               B.N      ??uart_init_7
+     74          				else
+     75          					if(uartch == UART4_BASE_PTR)
+   \                     ??uart_init_10:
+   \   000000E0   ....               LDR.N    R3,??DataTable0_12  ;; 0x400ea000
+   \   000000E2   9842               CMP      R0,R3
+   \   000000E4   06D1               BNE.N    ??uart_init_11
+     76          						SIM_SCGC1 |= SIM_SCGC1_UART4_MASK;
+   \   000000E6   ....               LDR.N    R3,??DataTable0_19  ;; 0x40048028
+   \   000000E8   1B68               LDR      R3,[R3, #+0]
+   \   000000EA   53F48063           ORRS     R3,R3,#0x400
+   \   000000EE   ....               LDR.N    R4,??DataTable0_19  ;; 0x40048028
+   \   000000F0   2360               STR      R3,[R4, #+0]
+   \   000000F2   05E0               B.N      ??uart_init_7
+     77          					else
+     78          						SIM_SCGC1 |= SIM_SCGC1_UART5_MASK;
+   \                     ??uart_init_11:
+   \   000000F4   ....               LDR.N    R3,??DataTable0_19  ;; 0x40048028
+   \   000000F6   1B68               LDR      R3,[R3, #+0]
+   \   000000F8   53F40063           ORRS     R3,R3,#0x800
+   \   000000FC   ....               LDR.N    R4,??DataTable0_19  ;; 0x40048028
+   \   000000FE   2360               STR      R3,[R4, #+0]
+     79          								
+     80          	//禁止发送接受
+     81          	UART_C2_REG(uartch) &= ~(UART_C2_TE_MASK
+     82          				| UART_C2_RE_MASK );
+   \                     ??uart_init_7:
+   \   00000100   C378               LDRB     R3,[R0, #+3]
+   \   00000102   13F0F303           ANDS     R3,R3,#0xF3
+   \   00000106   C370               STRB     R3,[R0, #+3]
+     83          	
+     84          	//配置成8位无校验模式
+     85          	UART_C1_REG(uartch) = 0;
+   \   00000108   0023               MOVS     R3,#+0
+   \   0000010A   8370               STRB     R3,[R0, #+2]
+     86          	
+     87          	//计算波特率，串口0、1使用内核时钟，其它串口使用外设时钟，系统时钟为
+     88          	//外设时钟的2倍
+     89          	if ((uartch == UART0_BASE_PTR) | (uartch == UART1_BASE_PTR))//
+   \   0000010C   ....               LDR.N    R3,??DataTable0  ;; 0x4006a000
+   \   0000010E   9842               CMP      R0,R3
+   \   00000110   08D0               BEQ.N    ??uart_init_12
+   \   00000112   0023               MOVS     R3,#+0
+   \   00000114   ....               LDR.N    R4,??DataTable0_3  ;; 0x4006b000
+   \   00000116   A042               CMP      R0,R4
+   \   00000118   04D0               BEQ.N    ??uart_init_12
+   \   0000011A   53F00003           ORRS     R3,R3,#0x0
+   \   0000011E   DBB2               UXTB     R3,R3            ;; ZeroExt  R3,R3,#+24,#+24
+   \   00000120   002B               CMP      R3,#+0
+   \   00000122   00D0               BEQ.N    ??uart_init_13
+     90          		sysclk+=sysclk;
+   \                     ??uart_init_12:
+   \   00000124   4918               ADDS     R1,R1,R1
+     91          	
+     92          	sbr = (uint16)((sysclk*1000)/(baud * 16));
+   \                     ??uart_init_13:
+   \   00000126   4FF47A73           MOV      R3,#+1000
+   \   0000012A   03FB01F3           MUL      R3,R3,R1
+   \   0000012E   1401               LSLS     R4,R2,#+4
+   \   00000130   B3FBF4F3           UDIV     R3,R3,R4
+     93          	temp = UART_BDH_REG(uartch) & ~(UART_BDH_SBR(0x1F));
+   \   00000134   0478               LDRB     R4,[R0, #+0]
+   \   00000136   14F0E004           ANDS     R4,R4,#0xE0
+     94          	UART_BDH_REG(uartch) = temp |  UART_BDH_SBR(((sbr & 0x1F00) >> 8));
+   \   0000013A   9BB2               UXTH     R3,R3            ;; ZeroExt  R3,R3,#+16,#+16
+   \   0000013C   1D0A               LSRS     R5,R3,#+8
+   \   0000013E   15F01F05           ANDS     R5,R5,#0x1F
+   \   00000142   2C43               ORRS     R4,R5,R4
+   \   00000144   0470               STRB     R4,[R0, #+0]
+     95          	UART_BDL_REG(uartch) = (uint8)(sbr & UART_BDL_SBR_MASK);
+   \   00000146   4370               STRB     R3,[R0, #+1]
+     96          	brfa = (((sysclk*32000)/(baud * 16)) - (sbr * 32));
+   \   00000148   4FF4FA44           MOV      R4,#+32000
+   \   0000014C   6143               MULS     R1,R4,R1
+   \   0000014E   1201               LSLS     R2,R2,#+4
+   \   00000150   B1FBF2F1           UDIV     R1,R1,R2
+   \   00000154   9BB2               UXTH     R3,R3            ;; ZeroExt  R3,R3,#+16,#+16
+   \   00000156   B1EB4311           SUBS     R1,R1,R3, LSL #+5
+     97          	temp = UART_C4_REG(uartch) & ~(UART_C4_BRFA(0x1F));
+   \   0000015A   827A               LDRB     R2,[R0, #+10]
+   \   0000015C   12F0E004           ANDS     R4,R2,#0xE0
+     98          	UART_C4_REG(uartch) = temp |  UART_C4_BRFA(brfa);    
+   \   00000160   11F01F01           ANDS     R1,R1,#0x1F
+   \   00000164   2143               ORRS     R1,R1,R4
+   \   00000166   8172               STRB     R1,[R0, #+10]
+     99          	
+    100          	//使能发送接受
+    101          	UART_C2_REG(uartch) |= (UART_C2_TE_MASK
+    102          				| UART_C2_RE_MASK );
+   \   00000168   C178               LDRB     R1,[R0, #+3]
+   \   0000016A   51F00C01           ORRS     R1,R1,#0xC
+   \   0000016E   C170               STRB     R1,[R0, #+3]
+    103          }
+   \   00000170   30BC               POP      {R4,R5}
+   \   00000172   7047               BX       LR               ;; return
+    104          
+    105          //-------------------------------------------------------------------------*
+    106          //函数名: uart_re1                                                         *
+    107          //功  能: 串行接受1个字节                                                  *
+    108          //参  数: uartch: 串口号                                                   *
+    109          //         ch:    接收到的字节                                             *
+    110          //返  回: 成功:1;失败:0                                                    *
+    111          //说  明:                                                                  *
+    112          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+    113          uint8 uart_re1 (UART_MemMapPtr uartch,uint8 *ch)
+    114          {
+    115              uint32 k;
+    116              
+    117              for (k = 0; k < 0xfbbb; k++)//有时间限制
+   \                     uart_re1:
+   \   00000000   0022               MOVS     R2,#+0
+   \   00000002   00E0               B.N      ??uart_re1_0
+   \                     ??uart_re1_1:
+   \   00000004   521C               ADDS     R2,R2,#+1
+   \                     ??uart_re1_0:
+   \   00000006   4FF6BB33           MOVW     R3,#+64443
+   \   0000000A   9A42               CMP      R2,R3
+   \   0000000C   06D2               BCS.N    ??uart_re1_2
+    118          		if((UART_S1_REG(uartch) & UART_S1_RDRF_MASK)!= 0)//判断接收缓冲区是否满
+   \   0000000E   0379               LDRB     R3,[R0, #+4]
+   \   00000010   9B06               LSLS     R3,R3,#+26
+   \   00000012   F7D5               BPL.N    ??uart_re1_1
+    119          		{
+    120          			*ch = UART_D_REG(uartch);
+   \   00000014   C079               LDRB     R0,[R0, #+7]
+   \   00000016   0870               STRB     R0,[R1, #+0]
+    121          			return 1; 			//接受成功
+   \   00000018   0120               MOVS     R0,#+1
+   \   0000001A   06E0               B.N      ??uart_re1_3
+    122          		} 
+    123          	if(k>=0xfbbb) 
+   \                     ??uart_re1_2:
+   \   0000001C   4FF6BB30           MOVW     R0,#+64443
+   \   00000020   8242               CMP      R2,R0
+   \   00000022   01D3               BCC.N    ??uart_re1_4
+    124          	{
+    125          		return 0;			//接受失败
+   \   00000024   0020               MOVS     R0,#+0
+   \   00000026   00E0               B.N      ??uart_re1_3
+    126          	} 
+    127              return 0;
+   \                     ??uart_re1_4:
+   \   00000028   0020               MOVS     R0,#+0
+   \                     ??uart_re1_3:
+   \   0000002A   7047               BX       LR               ;; return
+    128          }
+    129          
+    130          //-------------------------------------------------------------------------*
+    131          //函数名: uart_send1                                                       *
+    132          //功  能: 串行发送1个字节                                                  *
+    133          //参  数: uartch: 串口号                                                   *
+    134          //         ch:    要发送的字节                                             *
+    135          //返  回: 无                                                               *
+    136          //说  明:                                                                  *
+    137          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+    138          void uart_send1 (UART_MemMapPtr uartch, uint8 ch)
+    139          {
+    140              //等待发送缓冲区空
+    141              while(!(UART_S1_REG(uartch) & UART_S1_TDRE_MASK));
+   \                     uart_send1:
+   \                     ??uart_send1_0:
+   \   00000000   0279               LDRB     R2,[R0, #+4]
+   \   00000002   1206               LSLS     R2,R2,#+24
+   \   00000004   FCD5               BPL.N    ??uart_send1_0
+    142              //发送数据
+    143              UART_D_REG(uartch) = (uint8)ch;
+   \   00000006   C171               STRB     R1,[R0, #+7]
+    144           }
+   \   00000008   7047               BX       LR               ;; return
+    145          
+    146          //-------------------------------------------------------------------------*
+    147          //函数名: uart_reN                                                         *
+    148          //功  能: 串行 接收n个字节                                                 *
+    149          //参  数: uartch: 串口号                                                   *
+    150          //        buff: 接收缓冲区                                                 *
+    151          //		  len:接收长度                                             *
+    152          //返  回: 1:成功;0:失败                                                    *
+    153          //说  明:                                                                  *
+    154          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+    155          uint8 uart_reN (UART_MemMapPtr uartch ,uint8* buff,uint16 len)
+    156          {
+   \                     uart_reN:
+   \   00000000   F8B5               PUSH     {R3-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+   \   00000004   0D00               MOVS     R5,R1
+   \   00000006   1600               MOVS     R6,R2
+    157              uint16 m=0; 
+   \   00000008   0027               MOVS     R7,#+0
+   \   0000000A   00E0               B.N      ??uart_reN_0
+    158              while (m < len)
+    159              { 	          
+    160            	    if(0==uart_re1(uartch,&buff[m]))
+    161            	    	return 0;  //接收失败
+    162            	    else m++;
+   \                     ??uart_reN_1:
+   \   0000000C   7F1C               ADDS     R7,R7,#+1
+   \                     ??uart_reN_0:
+   \   0000000E   BFB2               UXTH     R7,R7            ;; ZeroExt  R7,R7,#+16,#+16
+   \   00000010   B6B2               UXTH     R6,R6            ;; ZeroExt  R6,R6,#+16,#+16
+   \   00000012   B742               CMP      R7,R6
+   \   00000014   08D2               BCS.N    ??uart_reN_2
+   \   00000016   BFB2               UXTH     R7,R7            ;; ZeroExt  R7,R7,#+16,#+16
+   \   00000018   7919               ADDS     R1,R7,R5
+   \   0000001A   2000               MOVS     R0,R4
+   \   0000001C   ........           BL       uart_re1
+   \   00000020   0028               CMP      R0,#+0
+   \   00000022   F3D1               BNE.N    ??uart_reN_1
+   \   00000024   0020               MOVS     R0,#+0
+   \   00000026   00E0               B.N      ??uart_reN_3
+    163              } 
+    164              
+    165              return 1;          //接收成功
+   \                     ??uart_reN_2:
+   \   00000028   0120               MOVS     R0,#+1
+   \                     ??uart_reN_3:
+   \   0000002A   F2BD               POP      {R1,R4-R7,PC}    ;; return
+    166              
+    167          }
+    168          
+    169          //-------------------------------------------------------------------------*
+    170          //函数名: uart_sendN                                                       *
+    171          //功  能: 串行 接收n个字节                                                 *
+    172          //参  数: uartch: 串口号                                                   *
+    173          //        buff: 发送缓冲区                                                 *
+    174          //		  len:发送长度                                             *
+    175          //返  回: 无                                                               *
+    176          //说  明:                                                                  *
+    177          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+    178          void uart_sendN (UART_MemMapPtr uartch ,uint8* buff,uint16 len)
+    179          {
+   \                     uart_sendN:
+   \   00000000   F8B5               PUSH     {R3-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+   \   00000004   0D00               MOVS     R5,R1
+   \   00000006   1600               MOVS     R6,R2
+    180              int i;
+    181          	for(i=0;i<len;i++)
+   \   00000008   0027               MOVS     R7,#+0
+   \   0000000A   04E0               B.N      ??uart_sendN_0
+    182              {
+    183          		uart_send1(uartch,buff[i]);
+   \                     ??uart_sendN_1:
+   \   0000000C   795D               LDRB     R1,[R7, R5]
+   \   0000000E   2000               MOVS     R0,R4
+   \   00000010   ........           BL       uart_send1
+    184              }
+   \   00000014   7F1C               ADDS     R7,R7,#+1
+   \                     ??uart_sendN_0:
+   \   00000016   B6B2               UXTH     R6,R6            ;; ZeroExt  R6,R6,#+16,#+16
+   \   00000018   B742               CMP      R7,R6
+   \   0000001A   F7DB               BLT.N    ??uart_sendN_1
+    185          }
+   \   0000001C   F1BD               POP      {R0,R4-R7,PC}    ;; return
+    186          
+    187          //-------------------------------------------------------------------------*
+    188          //函数名: enableuartreint                                                  *
+    189          //功  能: 开串口接收中断                                                   *
+    190          //参  数: uartch: 串口号                                                   *
+    191          //        irqno: 对应irq号                                                 *
+    192          //返  回: 无                                                               *
+    193          //说  明:                                                                  *
+    194          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+    195          void enableuartreint(UART_MemMapPtr uartch,uint8 irqno)
+    196          {
+   \                     enableuartreint:
+   \   00000000   80B5               PUSH     {R7,LR}
+    197          	UART_C2_REG(uartch)|=UART_C2_RIE_MASK;   //开放UART接收中断
+   \   00000002   C278               LDRB     R2,[R0, #+3]
+   \   00000004   52F02002           ORRS     R2,R2,#0x20
+   \   00000008   C270               STRB     R2,[R0, #+3]
+    198          	enable_irq(irqno);			 //开接收引脚的IRQ中断
+   \   0000000A   C9B2               UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   0000000C   0800               MOVS     R0,R1
+   \   0000000E   ........           BL       enable_irq
+    199          }
+   \   00000012   01BD               POP      {R0,PC}          ;; return
+    200          
+    201          //-------------------------------------------------------------------------*
+    202          //函数名: disableuartreint                                                 *
+    203          //功  能: 关串口接收中断                                                   *
+    204          //参  数: uartch: 串口号                                                   *
+    205          //        irqno: 对应irq号                                                 *
+    206          //返  回: 无                                                               *
+    207          //说  明:                                                                  *
+    208          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+    209          void disableuartreint(UART_MemMapPtr uartch,uint8 irqno)
+    210          {
+   \                     disableuartreint:
+   \   00000000   80B5               PUSH     {R7,LR}
+    211          	UART_C2_REG(uartch)&=~UART_C2_RIE_MASK;   //禁止UART接收中断
+   \   00000002   C278               LDRB     R2,[R0, #+3]
+   \   00000004   12F0DF02           ANDS     R2,R2,#0xDF
+   \   00000008   C270               STRB     R2,[R0, #+3]
+    212          	disable_irq(irqno);			  //关接收引脚的IRQ中断
+   \   0000000A   C9B2               UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   0000000C   0800               MOVS     R0,R1
+   \   0000000E   ........           BL       disable_irq
+    213          }
+   \   00000012   01BD               POP      {R0,PC}          ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0:
+   \   00000000   00A00640           DC32     0x4006a000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_1:
+   \   00000000   18C00440           DC32     0x4004c018
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_2:
+   \   00000000   1CC00440           DC32     0x4004c01c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_3:
+   \   00000000   00B00640           DC32     0x4006b000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_4:
+   \   00000000   10B00440           DC32     0x4004b010
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_5:
+   \   00000000   0CB00440           DC32     0x4004b00c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_6:
+   \   00000000   00C00640           DC32     0x4006c000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_7:
+   \   00000000   0CC00440           DC32     0x4004c00c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_8:
+   \   00000000   08C00440           DC32     0x4004c008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_9:
+   \   00000000   00D00640           DC32     0x4006d000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_10:
+   \   00000000   44B00440           DC32     0x4004b044
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_11:
+   \   00000000   40B00440           DC32     0x4004b040
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_12:
+   \   00000000   00A00E40           DC32     0x400ea000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_13:
+   \   00000000   60D00440           DC32     0x4004d060
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_14:
+   \   00000000   64D00440           DC32     0x4004d064
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_15:
+   \   00000000   00B00E40           DC32     0x400eb000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_16:
+   \   00000000   20D00440           DC32     0x4004d020
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_17:
+   \   00000000   24D00440           DC32     0x4004d024
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_18:
+   \   00000000   34800440           DC32     0x40048034
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0_19:
+   \   00000000   28800440           DC32     0x40048028
+    214          
+    215          
+    216          
+    217          
+    218          
+    219          
+    220          
+    221          
+    222          
+    223          
+    224          
+    225          
+    226          
+    227          
+    228          
+
+   Maximum stack usage in bytes:
+
+     Function         .cstack
+     --------         -------
+     disableuartreint      8
+     enableuartreint       8
+     uart_init             8
+     uart_re1              0
+     uart_reN             24
+     uart_send1            0
+     uart_sendN           24
+
+
+   Section sizes:
+
+     Function/Label   Bytes
+     --------------   -----
+     uart_init         372
+     uart_re1           44
+     uart_send1         10
+     uart_reN           44
+     uart_sendN         30
+     enableuartreint    20
+     disableuartreint   20
+     ??DataTable0        4
+     ??DataTable0_1      4
+     ??DataTable0_2      4
+     ??DataTable0_3      4
+     ??DataTable0_4      4
+     ??DataTable0_5      4
+     ??DataTable0_6      4
+     ??DataTable0_7      4
+     ??DataTable0_8      4
+     ??DataTable0_9      4
+     ??DataTable0_10     4
+     ??DataTable0_11     4
+     ??DataTable0_12     4
+     ??DataTable0_13     4
+     ??DataTable0_14     4
+     ??DataTable0_15     4
+     ??DataTable0_16     4
+     ??DataTable0_17     4
+     ??DataTable0_18     4
+     ??DataTable0_19     4
+
+ 
+ 620 bytes in section .text
+ 
+ 620 bytes of CODE memory
+
+Errors: none
+Warnings: none

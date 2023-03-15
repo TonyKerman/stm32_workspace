@@ -1,0 +1,246 @@
+###############################################################################
+#                                                                             #
+# IAR ELF Linker V6.10.1.52143/W32 for ARM              24/Feb/2012  22:10:00 #
+# Copyright 2007-2010 IAR Systems AB.                                         #
+#                                                                             #
+#    Output file  =  E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Exe\LQ_OLED_K60.ou #
+#                    t                                                        #
+#    Map file     =  E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\List\LQ_OLED_K60.m #
+#                    ap                                                       #
+#    Command line =  E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\LQ12864.o      #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\common.o       #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\crt0.o         #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\gpio.o         #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\isr.o          #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\light.o        #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\main.o         #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\start.o        #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\sysinit.o      #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\uart.o         #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\vectors.o      #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj\wdog.o -o      #
+#                    E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Exe\LQ_OLED_K60.ou #
+#                    t --map E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\List\LQ_OL #
+#                    ED_K60.map --config E:\kinetis_IAR\13_LQ_OLED_K60\src\Pr #
+#                    oject_Settings\Link\Ram.icf --semihosting --entry        #
+#                    __iar_program_start                                      #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x1fff0000 { ro section .intvec };
+"A2":  place at 0x1fff0410 { ro section .noinit };
+"P1":  place in [from 0x1fff0000 to 0x20010000] { ro, block CodeRelocate };
+"P2":  place in [from 0x1fff0000 to 0x20010000] {
+          rw, block CodeRelocateRam, block CSTACK, block HEAP };
+
+  Section              Kind        Address    Size  Object
+  -------              ----        -------    ----  ------
+"A1":                                        0x410
+  .intvec              const    0x1fff0000   0x410  vectors.o [1]
+                              - 0x1fff0410   0x410
+
+"A2":                                         0x3c
+  .noinit              ro code  0x1fff0410    0x3c  crt0.o [1]
+                              - 0x1fff044c    0x3c
+
+"P1":                                       0x1a08
+  .text                ro code  0x1fff044c  0x115c  LQ12864.o [1]
+  .data_init                    0x1fff15a8   0x300  <Block>
+    Initializer bytes  ro data  0x1fff15a8   0x300  <for .data-1>
+  .text                ro code  0x1fff18a8   0x1ac  sysinit.o [1]
+  .text                ro code  0x1fff1a54   0x170  main.o [1]
+  .text                ro code  0x1fff1bc4     0xc  light.o [1]
+  .text                ro code  0x1fff1bd0    0x94  gpio.o [1]
+  .text                ro code  0x1fff1c64    0xb0  start.o [1]
+  .text                ro code  0x1fff1d14    0x38  wdog.o [1]
+  .text                ro code  0x1fff1d4c     0xc  common.o [1]
+  CodeRelocate                  0x1fff1d58    0x4c  <Block>
+    Initializer bytes  ro data  0x1fff1d58    0x4c  <for CodeRelocateRam-1>
+  .text                ro code  0x1fff1da4    0x2c  data_init3.o [4]
+  .text                ro code  0x1fff1dd0    0x22  zero_init3.o [4]
+  .text                ro code  0x1fff1df2     0x2  vectors.o [1]
+  .iar.init_table      const    0x1fff1df4    0x10  - Linker created -
+  .text                ro code  0x1fff1e04    0x16  cmain.o [4]
+  .text                ro code  0x1fff1e1a     0x4  low_level_init.o [3]
+  .text                ro code  0x1fff1e1e     0x8  exit.o [3]
+  .text                ro code  0x1fff1e28     0xa  cexit.o [4]
+  .text                ro code  0x1fff1e34    0x14  exit.o [5]
+  .text                ro code  0x1fff1e48     0xc  cstartup_M.o [4]
+                              - 0x1fff1e54  0x1a08
+
+"P2", part 1 of 2:                           0x34c
+  .data                         0x1fff1e54   0x300  <Block>
+    .data-1                     0x1fff1e54   0x300  <Init block>
+      .data            inited   0x1fff1e54   0x300  LQ12864.o [1]
+  CodeRelocateRam               0x1fff2154    0x4c  <Block>
+    CodeRelocateRam-1           0x1fff2154    0x4c  <Init block>
+      .textrw          inited   0x1fff2154    0x4c  sysinit.o [1]
+                              - 0x1fff21a0   0x34c
+
+"P2", part 2 of 2:                             0xc
+  .bss                          0x1fff21a0     0xc  <Block>
+    .bss               zero     0x1fff21a0     0x4  sysinit.o [1]
+    .bss               zero     0x1fff21a4     0x4  sysinit.o [1]
+    .bss               zero     0x1fff21a8     0x4  sysinit.o [1]
+                              - 0x1fff21ac     0xc
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0xc:
+          0x1fff21a0   0xc
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module            ro code  rw code  ro data  rw data
+    ------            -------  -------  -------  -------
+E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj: [1]
+    LQ12864.o           4 444               768      768
+    common.o               12
+    crt0.o                 60
+    gpio.o                148
+    light.o                12
+    main.o                368
+    start.o               176
+    sysinit.o             428       76       76       12
+    vectors.o               2             1 040
+    wdog.o                 56
+    ----------------------------------------------------
+    Total:              5 706       76    1 884      780
+
+command line: [2]
+    ----------------------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    exit.o                  8
+    low_level_init.o        4
+    ----------------------------------------------------
+    Total:                 12
+
+rt7M_tl.a: [4]
+    cexit.o                10
+    cmain.o                22
+    cstartup_M.o           12
+    data_init3.o           44
+    zero_init3.o           34
+    ----------------------------------------------------
+    Total:                122
+
+shb_l.a: [5]
+    exit.o                 20
+    ----------------------------------------------------
+    Total:                 20
+
+    Gaps                    4
+    Linker created                           16
+--------------------------------------------------------
+    Grand Total:        5 864       76    1 900      780
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.bss$$Base              0x1fff21a0          --   Gb  - Linker created -
+.bss$$Limit             0x1fff21ac          --   Gb  - Linker created -
+.data$$Base             0x1fff1e54          --   Gb  - Linker created -
+.data$$Limit            0x1fff2154          --   Gb  - Linker created -
+.data_init$$Base        0x1fff15a8          --   Gb  - Linker created -
+.data_init$$Limit       0x1fff18a8          --   Gb  - Linker created -
+?main                   0x1fff1e05         Code  Gb  cmain.o [4]
+CodeRelocate$$Base      0x1fff1d58          --   Gb  - Linker created -
+CodeRelocate$$Limit     0x1fff1da4          --   Gb  - Linker created -
+CodeRelocateRam$$Base   0x1fff2154          --   Gb  - Linker created -
+CodeRelocateRam$$Limit  0x1fff21a0          --   Gb  - Linker created -
+Dly_ms                  0x1fff1a55   0x20  Code  Gb  main.o [1]
+Draw_BMP                0x1fff0a0f   0x7a  Code  Gb  LQ12864.o [1]
+F14x16                  0x1fff0cfc  0x2bc  Data  Gb  LQ12864.o [1]
+F14x16_Idx              0x1fff0cc8   0x34  Data  Gb  LQ12864.o [1]
+F6x8                    0x1fff0aa0  0x228  Data  Gb  LQ12864.o [1]
+F8X16                   0x1fff0fb8  0x5f0  Data  Gb  LQ12864.o [1]
+LCD_CLS                 0x1fff05af   0x38  Code  Gb  LQ12864.o [1]
+LCD_DLY_ms              0x1fff05e7   0x1a  Code  Gb  LQ12864.o [1]
+LCD_Fill                0x1fff0573   0x3c  Code  Gb  LQ12864.o [1]
+LCD_Init                0x1fff0601  0x130  Code  Gb  LQ12864.o [1]
+LCD_P14x16Str           0x1fff0853  0x152  Code  Gb  LQ12864.o [1]
+LCD_P6x8Str             0x1fff0731   0x7a  Code  Gb  LQ12864.o [1]
+LCD_P8x16Str            0x1fff07ab   0xa8  Code  Gb  LQ12864.o [1]
+LCD_Print               0x1fff09a5   0x6a  Code  Gb  LQ12864.o [1]
+LCD_Set_Pos             0x1fff0547   0x2c  Code  Gb  LQ12864.o [1]
+LCD_WrCmd               0x1fff04cd   0x7a  Code  Gb  LQ12864.o [1]
+LCD_WrDat               0x1fff044d   0x7e  Code  Gb  LQ12864.o [1]
+Region$$Table$$Base     0x1fff1df4          --   Gb  - Linker created -
+Region$$Table$$Limit    0x1fff1e04          --   Gb  - Linker created -
+__BOOT_STACK_ADDRESS {Abs}
+                        0x2000fff8          --   Gb  command line/config [2]
+__VECTOR_RAM {Abs}      0x1fff0000          --   Gb  command line/config [2]
+__VECTOR_TABLE {Abs}    0x1fff0000          --   Gb  command line/config [2]
+__cmain                 0x1fff1e05         Code  Gb  cmain.o [4]
+__exit                  0x1fff1e35   0x14  Code  Gb  exit.o [5]
+__iar_data_init3        0x1fff1da5   0x2c  Code  Gb  data_init3.o [4]
+__iar_program_start     0x1fff1e49         Code  Gb  cstartup_M.o [4]
+__iar_zero_init3        0x1fff1dd1   0x22  Code  Gb  zero_init3.o [4]
+__low_level_init        0x1fff1e1b    0x4  Code  Gb  low_level_init.o [3]
+__startup               0x1fff0411         Code  Gb  crt0.o [1]
+__vector_table          0x1fff0000  0x410  Data  Gb  vectors.o [1]
+_call_main              0x1fff1e11         Code  Gb  cmain.o [4]
+_exit                   0x1fff1e29         Code  Gb  cexit.o [4]
+_main                   0x1fff1e17         Code  Gb  cmain.o [4]
+common_startup          0x1fff1c79   0x74  Code  Gb  start.o [1]
+core_clk_khz            0x1fff21a0    0x4  Data  Gb  sysinit.o [1]
+core_clk_mhz            0x1fff21a4    0x4  Data  Gb  sysinit.o [1]
+default_isr             0x1fff1df3    0x2  Code  Gb  vectors.o [1]
+exit                    0x1fff1e1f    0x8  Code  Gb  exit.o [3]
+fb_clk_init             0x1fff1907   0x16  Code  Gb  sysinit.o [1]
+gpio_init               0x1fff1bd1   0x7a  Code  Gb  gpio.o [1]
+light_init              0x1fff1bc5    0xc  Code  Gb  light.o [1]
+longqiu96x64            0x1fff1e54  0x300  Data  Gb  LQ12864.o [1]
+main                    0x1fff1a75   0xfc  Code  Gb  main.o [1]
+periph_clk_khz          0x1fff21a8    0x4  Data  Gb  sysinit.o [1]
+pll_init                0x1fff191d   0xf6  Code  Gb  sysinit.o [1]
+set_sys_dividers        0x1fff2155   0x4c  Code  Gb  sysinit.o [1]
+start                   0x1fff1c65   0x14  Code  Gb  start.o [1]
+sysinit                 0x1fff18a9   0x48  Code  Gb  sysinit.o [1]
+trace_clk_init          0x1fff18f1   0x16  Code  Gb  sysinit.o [1]
+wdog_disable            0x1fff1d15   0x16  Code  Gb  wdog.o [1]
+wdog_unlock             0x1fff1d2d   0x16  Code  Gb  wdog.o [1]
+write_vtor              0x1fff1d4d    0x6  Code  Gb  common.o [1]
+
+
+[1] = E:\kinetis_IAR\13_LQ_OLED_K60\bin\Ram\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = rt7M_tl.a
+[5] = shb_l.a
+
+  5 864 bytes of readonly  code memory
+     76 bytes of readwrite code memory
+  1 900 bytes of readonly  data memory
+    780 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

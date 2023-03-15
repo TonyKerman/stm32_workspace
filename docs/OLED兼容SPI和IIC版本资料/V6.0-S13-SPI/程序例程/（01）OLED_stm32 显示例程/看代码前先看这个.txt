@@ -1,0 +1,27 @@
+1、该代码已经经过实测验证OK
+2、单片机采有stm32f103zevt
+3、晶振为8M，总线时钟为24M(/* PLLCLK = 8MHz / 2 * 6 = 24 MHz */),若你的环境与该代码不一样，请自行修改spi通信部分延时
+4、管脚定义：
+//-----------------OLED端口定义----------------  					   
+
+#define LCD_SCL_CLR()	GPIO_ResetBits(GPIOB,GPIO_Pin_1)
+#define LCD_SCL_SET()	GPIO_SetBits(GPIOB,GPIO_Pin_1)
+
+#define LCD_SDA_CLR()	GPIO_ResetBits(GPIOB,GPIO_Pin_2)
+#define LCD_SDA_SET()	GPIO_SetBits(GPIOB,GPIO_Pin_2)
+
+#define LCD_RST_CLR()	GPIO_ResetBits(GPIOB,GPIO_Pin_3)
+#define LCD_RST_SET()	GPIO_SetBits(GPIOB,GPIO_Pin_3)
+
+#define LCD_DC_CLR()	GPIO_ResetBits(GPIOB,GPIO_Pin_4)
+#define LCD_DC_SET()	GPIO_SetBits(GPIOB,GPIO_Pin_4)
+
+CS管脚请接地
+
+5、电路连接：
+VCC接3.3V，IO口直接单片机，不需要上拉电阻或串联电阻
+
+6、程序如果没有调通，液晶是无显示的，也就是黑屏，请耐心调试，有疑问可以跟我们联系，谢谢
+
+我们的邮箱：779100562@qq.com
+邮件里请说明问题及销售单号，以便我们及时根据您的订单进行有针对性的指导服务，谢谢

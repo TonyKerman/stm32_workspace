@@ -1,0 +1,110 @@
+C51 COMPILER V9.00   LQ12864MAIN                                                           05/10/2015 16:33:40 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE LQ12864MAIN
+OBJECT MODULE PLACED IN LQ12864main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE LQ12864main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /********************************************
+   2          OLED屏测试程序-STC&89C52 
+   3          
+   4          ------------------------------------     
+   5           
+   6          使用说明：
+   7          OLED电源使用3.3V。   
+   8          ----------------
+   9          G    电源地
+  10          3.3V 接3.3V电源
+  11          SCL   P1.0  
+  12          SDA      P1.1
+  13          RST  P1.2 
+  14          DC   P1.3
+  15          ============================================
+  16          OLED电源使用5V。   
+  17          ----------------
+  18          G    电源地
+  19          3.3V 接5V电源，电源跟模块之间串接100欧姆电阻，并加3.3V钳位二极管
+  20          SCL   P1.0 单片机跟模块之间串接2k-3.3k电阻 
+  21          SDA      P1.1 单片机跟模块之间串接2k-3.3k电阻 
+  22          RST  P1.2 单片机跟模块之间串接2k-3.3k电阻 
+  23          DC   P1.3 单片机跟模块之间串接2k-3.3k电阻    
+  24          ============================================     
+  25          如果用户使用的是5V单片机，请看用户手册，切勿烧毁模块！  
+  26          ============================================*/  
+  27          #include <stdio.h>
+  28          #include <string.h>    
+  29          #include "LQ12864.h"   
+  30          
+  31          void delay(int ms)
+  32          {
+  33   1         int ii,jj;
+  34   1         if (ms<1) ms=1;
+  35   1         for(ii=0;ii<ms;ii++)
+  36   1           for(jj=0;jj<500;jj++);  
+  37   1             
+  38   1      } 
+  39          //============================MAIN()===========================
+  40          /*********************主函数************************************/
+  41          void main(void) 
+  42          {
+  43   1        unsigned char i=0;    
+  44   1          
+  45   1        LCD_Init();   
+  46   1        for(;;) 
+  47   1        {
+  48   2            LCD_Fill(0xff); 
+  49   2            delay(1000); 
+  50   2            LCD_Fill(0x00);
+  51   2            delay(1000);      
+  52   2            LCD_P14x16Ch(36,0,0); //龙
+  53   2                LCD_P14x16Ch(50,0,1); //丘
+  54   2                LCD_P14x16Ch(64,0,2); //智
+  55   2                LCD_P14x16Ch(78,0,3); //能     
+C51 COMPILER V9.00   LQ12864MAIN                                                           05/10/2015 16:33:40 PAGE 2   
+
+  56   2            LCD_P8x16Str(48,4,"OLED");
+  57   2            LCD_P6x8Str(16,6,"chiusir@yahoo.cn"); 
+  58   2            LCD_P6x8Str(34,7,"2011-09-03");    
+  59   2            delay(2000);       
+  60   2            LCD_CLS();
+  61   2            
+  62   2            delay(2000);
+  63   2              
+  64   2           /*
+  65   2           for(i=0;i<32;i+=2)
+  66   2           {
+  67   2              LCD_CLS();
+  68   2              Draw_BMP(i,0,i+96,7,longqiu96x64);
+  69   2              delay(300);        
+  70   2              LED4=~ LED4;
+  71   2           }
+  72   2           for(i=32;i>1;i-=2)
+  73   2           {
+  74   2              LCD_CLS();
+  75   2              Draw_BMP(i,0,i+96,7,longqiu96x64);
+  76   2              delay(300);
+  77   2              LED1=~ LED1;
+  78   2           }
+  79   2           */            
+  80   2        }
+  81   1        /* please make sure that you never leave main */
+  82   1      }
+  83          
+  84          //
+*** WARNING C316 IN LINE 84 OF LQ12864main.c: unterminated conditionals
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    176    ----
+   CONSTANT SIZE    =     33    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

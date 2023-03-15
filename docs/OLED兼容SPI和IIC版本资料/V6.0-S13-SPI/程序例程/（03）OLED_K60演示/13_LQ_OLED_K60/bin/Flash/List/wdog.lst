@@ -1,0 +1,137 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.10.1.52143/W32 for ARM     21/Apr/2011  11:23:56 #
+# Copyright 1999-2010 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\0 #
+#                    1_light\src\Sources\C\Component_C\wdog.c                 #
+#    Command line =  "D:\Projects\08 K60\k60\K60                              #
+#                    完整\程序\K60_IAR(20110418)\01_light\src\Sources\C\Compo #
+#                    nent_C\wdog.c" -D IAR -D TWR_K60N512 -lCN                #
+#                    "D:\Projects\08 K60\k60\K60                              #
+#                    完整\程序\K60_IAR(20110418)\01_light\bin\Flash\List\"    #
+#                    -lB "D:\Projects\08 K60\k60\K60                          #
+#                    完整\程序\K60_IAR(20110418)\01_light\bin\Flash\List\"    #
+#                    -o "D:\Projects\08 K60\k60\K60                           #
+#                    完整\程序\K60_IAR(20110418)\01_light\bin\Flash\Obj\"     #
+#                    --no_cse --no_unroll --no_inline --no_code_motion        #
+#                    --no_tbaa --no_clustering --no_scheduling --debug        #
+#                    --endian=little --cpu=Cortex-M4 -e --fpu=None            #
+#                    --dlib_config "D:\Program Files\IAR Systems\Embedded     #
+#                    Workbench 6.0\arm\INC\c\DLib_Config_Normal.h" -I         #
+#                    "D:\Projects\08 K60\k60\K60                              #
+#                    完整\程序\K60_IAR(20110418)\01_light\src\Sources\H\" -I  #
+#                    "D:\Projects\08 K60\k60\K60                              #
+#                    完整\程序\K60_IAR(20110418)\01_light\src\Sources\H\Compo #
+#                    nent_H\" -I "D:\Projects\08 K60\k60\K60                  #
+#                    完整\程序\K60_IAR(20110418)\01_light\src\Sources\H\Frame #
+#                    _H\" -Ol --use_c++_inline                                #
+#    List file    =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\0 #
+#                    1_light\bin\Flash\List\wdog.lst                          #
+#    Object file  =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\0 #
+#                    1_light\bin\Flash\Obj\wdog.o                             #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\src\Sources\C\Component_C\wdog.c
+      1          //-------------------------------------------------------------------------*
+      2          // 文件名: wdog.c                                                          *
+      3          // 说  明: 看门狗驱动程序文件                                              *
+      4          //-------------------------------------------------------------------------*
+      5          
+      6          #include "wdog.h"	//包含wdog.h头文件
+      7                 
+      8          //-------------------------------------------------------------------------*
+      9          //函数名: wdog_disable                                                     *
+     10          //功  能: 关闭看门狗模块                                                   * 
+     11          //参  数: 无			  					   *	
+     12          //返  回: 无                                                               *
+     13          //说  明: 无                                                               *
+     14          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 2, keep-with-next
+     15          void wdog_disable(void)
+     16          {
+   \                     wdog_disable:
+   \   00000000   80B5               PUSH     {R7,LR}
+     17              //给看门狗模块解锁，以便写寄存器
+     18              wdog_unlock();
+   \   00000002   ........           BL       wdog_unlock
+     19              //关闭看门狗
+     20              WDOG_STCTRLH &= ~WDOG_STCTRLH_WDOGEN_MASK;
+   \   00000006   ....               LDR.N    R0,??DataTable1  ;; 0x40052000
+   \   00000008   0088               LDRH     R0,[R0, #+0]
+   \   0000000A   4FF6FE71           MOVW     R1,#+65534
+   \   0000000E   0840               ANDS     R0,R1,R0
+   \   00000010   ....               LDR.N    R1,??DataTable1  ;; 0x40052000
+   \   00000012   0880               STRH     R0,[R1, #+0]
+     21          }
+   \   00000014   01BD               POP      {R0,PC}          ;; return
+     22          
+     23          //-------------------------------------------------------------------------*
+     24          //函数名: wdog_unlock                                                      *
+     25          //功  能: 看门狗解锁                                                       * 
+     26          //参  数: 无							           *	
+     27          //返  回: 无                                                               *
+     28          //说  明: 无                                                               *
+     29          //-------------------------------------------------------------------------*
+
+   \                                 In section .text, align 4, keep-with-next
+     30          void wdog_unlock(void)
+     31          {
+     32              /* 注意: 不要单步调试此程序!!! ，否则会引起CPU复位*/
+     33              //关总中断
+     34              DisableInterrupts;		
+   \                     wdog_unlock:
+   \   00000000   72B6               CPSID i         
+     35              //写解锁寄存器
+     36              WDOG_UNLOCK = 0xC520;	
+   \   00000002   ....               LDR.N    R0,??DataTable1_1  ;; 0x4005200e
+   \   00000004   4CF22051           MOVW     R1,#+50464
+   \   00000008   0180               STRH     R1,[R0, #+0]
+     37              //完成解锁
+     38              WDOG_UNLOCK = 0xD928;	
+   \   0000000A   ....               LDR.N    R0,??DataTable1_1  ;; 0x4005200e
+   \   0000000C   4DF62811           MOVW     R1,#+55592
+   \   00000010   0180               STRH     R1,[R0, #+0]
+     39              //开总中断
+     40              EnableInterrupts;		
+   \   00000012   62B6               CPSIE i         
+     41          }
+   \   00000014   7047               BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   00200540           DC32     0x40052000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \   00000000   0E200540           DC32     0x4005200e
+
+   Maximum stack usage in bytes:
+
+     Function     .cstack
+     --------     -------
+     wdog_disable      8
+     wdog_unlock       0
+
+
+   Section sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     wdog_disable     22
+     wdog_unlock      22
+     ??DataTable1      4
+     ??DataTable1_1    4
+
+ 
+ 52 bytes in section .text
+ 
+ 52 bytes of CODE memory
+
+Errors: none
+Warnings: none

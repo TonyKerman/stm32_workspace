@@ -1,0 +1,544 @@
+Crash report for MEM_FREE (.20120328.002702A)
+
+Codewarrior encountered an abnormal termination
+
+IDE Version: 5.9.0 Build 5293
+
+OS Version: Microsoft Windows XP Professional Service Pack 3 (5.1.2600)
+
+Product info:
+CodeWarrior Development Studio for ColdFire Architectures Version 7.2, Build 91218.
+
+Please send this crash report to <support@freescale.com>, along
+with a brief description of the operations leading up to the crash.
+
+Stack trace:
+	0x006d6e10 (MEM_FREE:0x006d6e10) (EBP:0x0012e4d0)
+	0x006d7081 (MEM_FREE:0x006d7081) (EBP:0x0012e648)
+	0x1002a949 (MEM_FREE:0x1002a949) (EBP:0x0012e650)
+	0x100289dc (MEM_FREE:0x100289dc) (EBP:0x0012ea74)
+	0x008cd081 (MEM_FREE:0x008cd081) (EBP:0x0012ea90)
+	0x008cd2d2 (MEM_FREE:0x008cd2d2) (EBP:0x0012eab8)
+	0x004036f7 (MEM_FREE:0x004036f7) (EBP:0x0012eaec)
+	0x004037cd (MEM_FREE:0x004037cd) (EBP:0x0012eb00)
+	0x00403df7 (MEM_FREE:0x00403df7) (EBP:0x0012eb28)
+	0x0040211b (MEM_FREE:0x0040211b) (EBP:0x0012f0a4)
+	0x0040b1ff (MEM_FREE:0x0040b1ff) (EBP:0x0012f25c)
+	0x006ca008 (MEM_FREE:0x006ca008) (EBP:0x0012febc)
+	0x008d100a (MEM_FREE:0x008d100a) (EBP:0x0012fedc)
+	0x5521ef48 (IDE_MFC60cw.dll:0x5521ef48) (EBP:0x0012fef0)
+	0x00955ed4 (MEM_FREE:0x00955ed4) (EBP:0x0012ff08)
+	0x0092e4c6 (MEM_FREE:0x0092e4c6) (EBP:0x0012ffc0)
+	0x7c817067 (kernel32.dll:0x7c817067) (EBP:0x0012fff0)
+
+Module list:
+	C:\WINDOWS\system32\kernel32.dll (load: 0x7c800000, preferred: 0x7c800000)
+		version 5.1.2600.5512
+	C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\bin\IDE_MFC60cw.dll (load: 0x551c0000, preferred: 0x551c0000)
+		version 6.0.8665.0
+
+Register Dump:
+	EAX:0xfffffffe EDX:0x00000081 ECX:0x0012e200 EBX:0x06147fb0
+	ESI:0x0624b130 EDI:0x0012e4cc EBP:0x0012e4d0 ESP:0x0012e1d4
+	EIP:0x006d6e10 EFLAGS:0x00000246
+	CS:0x001b SS:0x0023 DS:0x0023 ES:0x0023
+	FS:0x003b GS:0x0000
+
+Stack Dump:
+0012E1C0: 00000028 0012E680 0012E3AC 006D669E 0012E1BC 0012E4D0 006D6DD0 0012E200 
+0012E1E0: 00000000 00000001 00B45B2F 0012E1F4 0012E614 00000041 00000013 0604E440 
+0012E200: 0001003F 00000000 00000000 00000000 00000000 00000000 00000000 FFFF027F 
+0012E220: FFFF4000 FFFFFFFF 5ADC2985 0000001B 0012CAB0 FFFF0023 00700070 00700070 
+0012E240: 00F0FFFF 00F000F0 FFFF00F0 002D006E 00000001 00EBFFFF 00020060 FFFF0000 
+0012E260: 8F679CF4 0F0767F9 0000FFFF 00000000 3FFF8000 00000000 80000000 00003FFF 
+0012E280: 00000000 3FFF8000 00000000 00000000 0000003B 00000023 00000023 0012E4CC 
+0012E2A0: 0624B130 06147FB0 00000081 0012E200 FFFFFFFE 0012E4D0 006D6E10 0000001B 
+0012E2C0: 00000246 0012E1D4 00000023 4000027F 00000000 5ADC2985 0000001B 0012CAB0 
+0012E2E0: 00000023 00001F80 0000FFFF 00700070 00700070 0000FFFF 00000000 00F000F0 
+0012E300: 00F000F0 0000FFFF 00000000 002D006E 00000001 0000FFFF 00000000 006000EB 
+0012E320: 00000002 0000FFFF 00000000 8F679CF4 0F0767F9 0000FFFF 00000000 00000000 
+0012E340: 80000000 00003FFF 00000000 00000000 80000000 00003FFF 00000000 00000000 
+0012E360: 80000000 00003FFF 00000000 BF805530 00000000 BC400520 00000000 BF80558E 
+0012E380: 00000001 E20CB478 BF908CFB B2481934 01040052 BC68A648 00000000 00000000 
+0012E3A0: 00000001 00000000 00000004 B24819A0 00000000 BC68A648 B2481934 B2481934 
+0012E3C0: B2481940 00000000 BF82351A B2481990 E20CB478 01040052 00000001 B2481964 
+0012E3E0: BF823575 01040052 B2481990 00010000 B24819B4 821EE000 8054617E 00000000 
+0012E400: 34306847 00000000 00000000 BF80558E 00000000 E20CB478 BF908CFB B24819C4 
+0012E420: 01040052 BC686B18 00000000 00000000 00000001 00000001 00000001 B2481A30 
+0012E440: 00000000 BC686B18 0000001B 000002B8 B24819D4 BF802A9C 00000001 FFDFF120 
+0012E460: 34306847 34306847 00000000 0043005C 00720075 00650072 0074006E 00650056 
+0012E480: 00730072 006F0069 005C006E 0000976F 00E6D2E0 00E6D2E0 77F443D0 0000FFFF 
+0012E4A0: 00E6D32C 00000004 00000002 00E6DE20 7D5994F8 77F443DD 7D5994F8 00000004 
+0012E4C0: 00000000 00E6D32C 00000000 00AE3BA0 0012E648 006D7081 0012E614 00B45B2F 
+0012E4E0: C0000005 4320726F 00000000 4320726F 65646F43 72726177 20726F69 6F636E65 
+0012E500: 65746E75 20646572 61206E61 726F6E62 206C616D 6D726574 74616E69 0A6E6F69 
+0012E520: 00303000 003A0043 0057005C 004E0049 004F0044 00530057 0073005C 00730079 
+0012E540: 00650074 0033006D 005C0032 00610066 006C0075 00720074 00700065 0064002E 
+0012E560: 006C006C 20740000 72206562 29646165 77D1000A 0000001C 77D3E577 00000001 
+0012E580: 00000014 00000001 00000000 00000000 00000010 00000000 00000000 0012E694 
+0012E5A0: 02B38D58 00000000 0012E574 00000001 04D46CD0 0000024C 77D18830 FFFFFFFF 
+0012E5C0: 77D1882A 77D2A013 0012E5E4 77D2C228 0007024E 0012E608 00140000 7C930202 
+0012E5E0: 00000004 00140748 00140000 00000201 00000000 00000000 00000000 00000060 
+0012E600: 061C58E0 00000081 00000024 06127878 00000401 00000000 00000000 00000000 
+0012E620: 00000081 00000030 06127878 00929FE2 0012E4E0 0012FFB0 0012FFB0 00929FE2 
+0012E640: 00B9EF00 00000000 0012E650 1002A949 0012EA74 100289DC C0000005 0012E680 
+0012E660: 0012E694 7C930308 FFFFFFFF 0012EAB8 7C955EEC 7C94AB1A 006D7170 00000000 
+0012E680: 0012E780 0012E79C 00000000 00000000 00000000 0012E6B8 7C9232A8 0012E780 
+0012E6A0: 0012FFB0 0012E79C 0012E754 0012FF4C 7C9232BC 0012FFB0 0012E768 7C92327A 
+0012E6C0: 0012E780 0012FFB0 0012E79C 0012E754 00929FE2 00000001 0012E780 0012FFB0 
+0012E6E0: 7C94A9EF 0012E780 0012FFB0 0012E79C 0012E754 00929FE2 00AE3BA0 0012E780 
+0012E700: 0624B130 00000000 00000000 FFFFFFFF 0012E6DC 0012E704 0012E9B8 77D4048F 
+0012E720: 77D18830 FFFFFFFF 77D1882A 00000000 00000000 77D2C201 00000001 0012E758 
+0012E740: 5ADDC2B1 00000000 00000000 00000000 01B90297 00000000 77D18BD9 00130000 
+0012E760: 00112000 0012E7A0 0012EA74 7C92E46A 00000000 0012E79C 0012E780 0012E79C 
+0012E780: C0000005 00000002 00000000 4320726F 00000002 00000000 4320726F 0001003F 
+0012E7A0: 00000000 00000000 00000000 00000000 00000000 00000000 FFFF027F FFFF4000 
+0012E7C0: FFFFFFFF 10013E42 00000000 0012D61C FFFF0000 00700070 00700070 00F0FFFF 
+0012E7E0: 00F000F0 FFFF00F0 002D006E 00000001 00EBFFFF 00020060 FFFF0000 8F679CF4 
+0012E800: 0F0767F9 0000FFFF 00000000 3FFF8000 00000000 80000000 00003FFF 00000000 
+0012E820: 00000000 00000000 00000000 0000003B 00000023 00000023 00AE3BA0 0624B130 
+0012E840: 06147FB0 061471B8 061471B8 0012EA80 0012EA74 4320726F 0000001B 00010206 
+0012E860: 0012EA68 00000023 4000027F 00000000 10013E42 00000000 0012D61C 00000000 
+0012E880: 00001F80 0000FFFF 00700070 00700070 0000FFFF 00000000 00F000F0 00F000F0 
+0012E8A0: 0000FFFF 00000000 002D006E 00000001 0000FFFF 00000000 006000EB 00000002 
+0012E8C0: 0000FFFF 00000000 8F679CF4 0F0767F9 0000FFFF 00000000 00000000 80000000 
+0012E8E0: 00003FFF 00000000 00000000 80000000 00003FFF 00000000 00000000 00000000 
+0012E900: 00000000 00000000 BF8EE744 00000000 B2482000 B2481D64 00000000 0012FF4C 
+0012E920: 7FFDE000 B2481DD8 B248182C 805980ED B248189C 80598155 B2481890 00080220 
+0012E940: 0146D700 0012FF4C 7FFDE000 82041020 00000030 0012FF4C 00000000 0012EA7C 
+0012E960: 0012EA3C 00000000 B2481DD8 B24817E0 B2481898 B24818C0 80536E50 804D9FF8 
+0012E980: FFFFFFFF B2481890 00080220 B24818D0 B24818D0 BF800AFB 82041020 BF824F9F 
+0012E9A0: BC66D700 00000000 B2482000 B2481D64 00000000 0012FF4C 7FFDE000 B2481DD8 
+
+0012F7E0: 00199C68 0012F7D4 0073005C 0012FA18 7C92E900 7C930208 FFFFFFFF 7C930202 
+0012F800: 7C93017B 7C9301BB 00000012 00000009 00000000 00000000 00000000 00000000 
+0012F820: 00000000 001404A0 00000000 00000000 0000040C 00000000 00000000 00000000 
+0012F840: 00000000 00000000 00000000 00140178 00000000 00000000 7C932CAE 001C4CE0 
+0012F860: 00140640 7C932D58 00000000 00000000 001C3F98 0012FB1C 00002002 00140178 
+0012F880: 505C3A43 72676F72 46206D61 73656C69 6572465C 61637365 435C656C 5765646F 
+0012F8A0: 69727261 6620726F 4320726F 46646C6F 20657269 322E3756 6E69625C 0000005C 
+0012F8C0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F8E0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F900: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F920: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F940: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F960: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F980: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F9A0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F9C0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012F9E0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012FA00: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012FA20: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012FA40: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012FA60: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+0012FA80: 00000000 495F574D 505F4544 4D5F4C43 435F4753 52505F3A 4152474F 4946204D 
+0012FAA0: 5F53454C 45455246 4C414353 4F435F45 41574544 4F495252 4F462052 4F432052 
+0012FAC0: 4946444C 56204552 5F322E37 5F4E4942 2E454449 00455845 0012FDF4 77F1C131 
+0012FAE0: 0012FCEC 0012FB04 00000004 00000000 00000001 001C39DC 77F1C13C 001C3B4C 
+0012FB00: 008F7680 00000020 0000001A 00000006 00000000 00000006 00000010 00000020 
+0012FB20: 00000190 00000000 00000060 00000060 0302FF01 17000000 77DA8088 00000040 
+0012FB40: 00000400 00000400 00000200 00000003 082E0000 00000016 00000000 00100001 
+0012FB60: 00000000 08006C61 00000000 000055B9 0012FB94 7C9318A0 00140000 0019A238 
+0012FB80: 00140000 0019A238 495F574D 435F4544 5F52424C 5F545645 505F3A43 52474F52 
+0012FBA0: 46204D41 53454C49 4552465F 41435345 435F454C 5745444F 49525241 4620524F 
+0012FBC0: 4320524F 46444C4F 20455249 322E3756 4E49425F 4544495F 4558452E 00B82100 
+0012FBE0: 00000000 7FFDF000 0043005C 0053004C 7FFDF000 0000000C 00000001 575C3A43 
+0012FC00: 4F444E49 735C5357 65747379 5C32336D 61766461 32336970 6C6C642E 7C934500 
+0012FC20: 000205E8 7C92F63C 7C92F641 00140000 7C92D950 00000000 001446D8 0012FC4C 
+0012FC40: 00000000 7C930098 001446D0 0012FD18 7C930021 00140E98 7C93003D 0019A240 
+0012FC60: 00000000 00000000 00000001 00000000 00140640 00000001 7E6D0000 7E6D00F0 
+0012FC80: 0012FC70 00140178 0012FCA8 505C3A43 72676F72 46206D61 73656C69 6572465C 
+0012FCA0: 61637365 435C656C 5765646F 69727261 6620726F 4320726F 46646C6F 20657269 
+0012FCC0: 322E3756 6E69625C 4544495C 6578652E 0019A200 00140000 00140640 0012FD28 
+0012FCE0: 00140178 0012FD28 7C93A684 00140000 001C3000 00140000 0019A238 00000000 
+0012FD00: 00000BC0 001C3000 00000000 00140598 00000000 00000000 00000000 000001B9 
+0012FD20: 00000000 00000178 0012FDF8 7C93099A 7C930961 00140608 7C93003D 00000001 
+0012FD40: 001C3BC0 00000000 00000000 00000288 0019A238 00000000 00000194 505F3A43 
+0012FD60: 52474F52 46204D41 53454C49 4552465F 41435345 435F454C 5745444F 49525241 
+0012FD80: 4620524F 4320524F 46444C4F 20455249 322E3756 4E49425F 4544495F 4558452E 
+0012FDA0: 0012FE00 0092E610 08007664 00000000 0019A238 00D55E92 00000000 00000000 
+0012FDC0: 00140000 00029988 0019A240 77EFBD80 00000000 00000000 01010003 00005331 
+0012FDE0: 0012FD3C 00000000 0012FF4C 7C92E900 7C930040 FFFFFFFF 7C93003D 77EFBD26 
+0012FE00: 00140000 77EFBD94 77EFBD2F CD1607DB 00B8214E 00000000 001C3BC0 CD1607DB 
+0012FE20: 00029980 00029980 0012FE58 77F093EC 27010857 00000000 0019A240 008F7680 
+0012FE40: 00000000 00000003 00000000 00B8214E 00B8214E 00D55DB4 0012FE78 77F1FE6F 
+0012FE60: 001A6C18 00000000 00144F40 00B44356 5566D078 00000001 00000008 001CAB18 
+0012FE80: 00000004 43960000 D07800B4 00005566 00000000 00000000 00040000 00000000 
+0012FEA0: 0000012F 00000320 0100023A 00DA6C9B 00B8214E 001423F7 00D55DB4 0012FEDC 
+0012FEC0: 008D100A 00400000 00000000 001423F7 00000001 00B8214E 00D55DB4 0012FEF0 
+0012FEE0: 5521EF48 80000001 00E6D374 7FFDF000 0012FF08 00955ED4 00400000 00000000 
+0012FF00: 001423F7 00000001 0012FFC0 0092E4C6 00400000 00000000 001423F7 00000001 
+0012FF20: 00000001 00000000 00000098 806178E9 00000001 00000006 B28EEC80 8061799E 
+0012FF40: E1B62328 00000000 00000000 0012FFB0 00955E40 FFFFFFFF FFFFFFFF 0012FFC0 
+0012FF60: 00000044 00154DF8 00154E08 00154E20 00000000 00000000 00000000 00000000 
+0012FF80: 00000000 00000000 00000000 00000C01 00000001 00000000 00000000 00010001 
+0012FFA0: 00000000 B28EED04 0012FF60 0012FFE0 0012FFE0 00929FE2 00B9EF0C 00000000 
+0012FFC0: 0012FFF0 7C817067 80000001 00E6D374 7FFDF000 80545C7D 0012FFC8 82041020 
+0012FFE0: FFFFFFFF 7C839AC0 7C817070 00000000 00000000 00000000 0092E400 00000000 
+
+Components:
+|                          Name|             Version|        File|     Product|              Mod Date| File Size
+------------------------------------------------------------------------------------------------------------------------------------------------------
+|                  ASINTPPC.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:01 |    643072| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\ASINTPPC.dll
+|                    CmdIDE.exe|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:12 |     42496| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\CmdIDE.exe
+|                       IDE.exe|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:10 |  10760192| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\IDE.exe
+|              IDENewDialog.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:01 |    206584| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\IDENewDialog.dll
+|               IDE_MFC60cw.dll|         6.00.8665.0|  6.0.8665.0|     6.0.4.0|     2009-11-5, 23:55 |   1662976| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\IDE_MFC60cw.dll
+|         IDE_MSL_DLL90_x86.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |    303104| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\IDE_MSL_DLL90_x86.dll
+|         InstallHelperKeys.exe|     No Version Info|     0.0.0.0|     0.0.0.0|     2005-3-22, 18:01 |     78336| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\InstallHelperKeys.exe
+|                    lmgr11.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2008-5-28, 16:05 |   1490944| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\lmgr11.dll
+|                    lmgr8c.dll|     No Version Info|     0.0.0.0|     0.0.0.0|      2005-5-2, 18:09 |    851968| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\lmgr8c.dll
+|                 MWCore5_0.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:56 |    245760| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\MWCore5_0.dll
+|                MWRADUtils.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:01 |    266240| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\MWRADUtils.dll
+|                  Mwregsvr.exe|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:03 |     36864| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Mwregsvr.exe
+|            MWRegSvrWinApp.exe|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:03 |     36864| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\MWRegSvrWinApp.exe
+|                 PluginLib.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |    122880| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\PluginLib.dll
+|                PluginLib2.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |    122880| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\PluginLib2.dll
+|                PluginLib3.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |    122880| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\PluginLib3.dll
+|                PluginLib4.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |     86016| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\PluginLib4.dll
+|                PluginLib5.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |     86016| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\PluginLib5.dll
+|                PluginLib6.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:54 |     86016| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\PluginLib6.dll
+|            ColdFireWizard.dll|             5.2.214|   5.2.0.214|   5.2.0.214|    2009-11-12, 11:47 |    982528| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\ColdFireWizard.dll
+|             CommandWindow.dll|          5.9.0.5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:14 |   1167360| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\CommandWindow.dll
+|         CPPCodeCompletion.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:12 |    827392| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\CPPCodeCompletion.dll
+|             DebugDatabase.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:17 |    331776| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\DebugDatabase.dll
+|          DebugRegisterMgr.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:17 |    118784| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\DebugRegisterMgr.dll
+|           FlashProgrammer.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:16 |   5874668| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\FlashProgrammer.dll
+|       HardwareDiagnostics.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:16 |   2192384| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\HardwareDiagnostics.dll
+|           LoadSaveFill_CF.dll|             5.8.0.0|     5.8.0.0|     5.8.0.0|    2009-11-12, 11:45 |    178688| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\LoadSaveFill_CF.dll
+|                  LogPoint.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:14 |     57344| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\LogPoint.dll
+|          MakefileExporter.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:11 |    262144| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\MakefileExporter.dll
+|                MWActivate.dll|          5.9.0.5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:12 |    585728| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\MWActivate.dll
+|           ObjectInspector.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:11 |    339968| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\ObjectInspector.dll
+|                 PackAndGo.dll|           1,0,0,214|   1.0.0.214|   1.0.0.214|    2009-11-12, 11:46 |    352256| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\PackAndGo.dll
+|                PausePoint.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:14 |    102400| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\PausePoint.dll
+|                   pe_init.exe|     No Version Info|     0.0.0.0|     0.0.0.0|      2009-9-3, 10:09 |     94208| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\pe_init.exe
+|                 PE_Plugin.dll|         4.27.1.5077| 4.27.1.5077| 4.27.1.5077|     2009-8-24, 16:48 |   7778304| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\PE_Plugin.dll
+|      SaveRestoreRegisters.dll|             5.7.0.0|     5.7.0.0|     5.7.0.0|    2009-11-12, 11:45 |    184320| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\SaveRestoreRegisters.dll
+|               ScriptPoint.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:14 |    126976| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\ScriptPoint.dll
+|                 SkipPoint.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:15 |     53248| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\SkipPoint.dll
+|                SoundPoint.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:15 |     57344| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\SoundPoint.dll
+|               TipOfTheDay.dll|           1,0,0,214|   1.0.0.214|   1.0.0.214|    2009-11-12, 11:46 |     65536| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\TipOfTheDay.dll
+|         VariableFormatter.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:15 |     53248| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\COM\VariableFormatter.dll
+|               asm_mcf_elf.dll|        7.0 build 50|    5.0.0.50|    5.0.0.50|    2009-11-12, 18:21 |    297472| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Compiler\asm_mcf_elf.dll
+|               ELFImporter.dll|      1.0 Build 0005|     1.0.0.5|     1.0.0.5|    2009-11-12, 18:21 |     39936| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Compiler\ELFImporter.dll
+|              MCFCCompiler.dll|        7.0 build 50|    6.0.0.50|    6.0.0.50|    2009-11-12, 18:19 |   2839864| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Compiler\MCFCCompiler.dll
+|            PCLintCompiler.dll|                 1.5|     1.5.0.5|     1.5.0.5|      2003-9-4, 16:58 |     81920| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Compiler\PCLintCompiler.dll
+|                CFDebugger.DLL|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:44 |    832000| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\CFDebugger.DLL
+|            DisassemblerCF.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:42 |     94208| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\DisassemblerCF.dll
+|       Dwarf2Symbolics_2_5.DLL|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:13 |    290816| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\Dwarf2Symbolics_2_5.DLL
+|            DwarfSymbolics.DLL|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:12 |    245760| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\DwarfSymbolics.DLL
+|         CFAbatronProtocol.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:44 |    206848| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\protocols\CFAbatronProtocol.dll
+|             CFCCSProtocol.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:44 |    317988| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\protocols\CFCCSProtocol.dll
+|             CFGDIProtocol.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |    139776| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\protocols\CFGDIProtocol.dll
+|           PEMicroProtocol.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:44 |    153088| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\protocols\PEMicroProtocol.dll
+|             StabSymbolics.DLL|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:12 |    159744| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Debugger\StabSymbolics.DLL
+|     BatchRunnerPostLinker.dll|       2.0.0 Build 8|     2.0.0.8|     2.0.0.8|    2009-11-12, 11:47 |     45056| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Linker\BatchRunnerPostLinker.dll
+|      BatchRunnerPreLinker.DLL|       1.0.0 Build 6|     1.0.0.6|     1.0.0.6|    2009-11-12, 11:47 |     46592| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Linker\BatchRunnerPreLinker.DLL
+|       ExternalBuildLinker.dll|          5.9.0.5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:20 |     81920| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Linker\ExternalBuildLinker.dll
+|                 MCFLinker.dll|        7.0 build 50|    6.0.0.50|    6.0.0.50|    2009-11-12, 18:19 |    367616| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Linker\MCFLinker.dll
+|              PCLintLinker.dll|                 1.5|     1.5.0.5|     1.5.0.5|      2003-9-4, 16:58 |     86016| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Linker\PCLintLinker.dll
+|                  GDIRconn.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     55340| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\GDIRconn.dll
+|              PAssemblerCF.dll|          5, 0, 0, 1|     5.0.0.1|     5.0.0.1|    2009-11-12, 18:21 |    203448| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PAssemblerCF.dll
+|                PBackEndCF.dll|        7.0 build 50|    6.0.0.50|    6.0.0.50|    2009-11-12, 18:21 |     78848| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PBackEndCF.dll
+|    PBatchRunnerPostLinker.dll|       2.0.0 Build 6|     2.0.0.6|     2.0.0.6|    2009-11-12, 11:47 |     46080| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PBatchRunnerPostLinker.dll
+|     PBatchRunnerPreLinker.dll|       1.0.0 Build 5|     1.0.0.5|     1.0.0.5|    2009-11-12, 11:47 |     31232| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PBatchRunnerPreLinker.dll
+|        PCFGlobalOptimizer.dll|            7.0.0.50|    3.0.3.50|    3.0.3.50|    2009-11-12, 18:21 |     33792| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PCFGlobalOptimizer.dll
+|                 PCFTarget.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     86528| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PCFTarget.dll
+|             PCLintOptions.dll|                 1.5|     1.5.0.5|     1.5.0.5|      2003-9-4, 16:58 |     41984| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PCLintOptions.dll
+|            PCLintSettings.dll|                 1.5|     1.5.0.5|     1.5.0.5|      2003-9-4, 16:58 |     83968| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PCLintSettings.dll
+|            PDebugCFExcept.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     33792| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PDebugCFExcept.dll
+|         PDebugCFInterrupt.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |      9728| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PDebugCFInterrupt.dll
+|             PDebugCFReset.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     53248| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PDebugCFReset.dll
+|      PDebuggerPICSettings.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     51712| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PDebuggerPICSettings.dll
+|           PDebugx86Except.dll|     5.9 Build 5293 |     5.8.0.0|     5.8.0.0|      2009-11-6, 0:21 |     65536| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PDebugx86Except.dll
+|          PDisassemblerELF.dll|       1.2.0 Build 4|     1.2.0.4|     1.2.0.4|    2009-11-12, 18:21 |     46592| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PDisassemblerELF.dll
+|            PExternalBuild.dll|             1.0.1.0|     1.0.1.0|     1.0.1.0|      2009-11-6, 0:20 |     65536| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PExternalBuild.dll
+|                PFrontEndC.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 18:21 |     69632| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PFrontEndC.dll
+|                      PLib.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 18:21 |    230436| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PLib.dll
+|                 PLinkerCF.dll|        7.0 build 50|    6.0.0.50|    6.0.0.50|    2009-11-12, 18:21 |     50688| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PLinkerCF.dll
+|                    pMWCVS.dll|          1.3.0.5293|  1.3.0.5293|  1.3.0.5293|      2009-11-6, 0:21 |     65536| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\pMWCVS.dll
+|             pmwSourceSafe.dll|         5.5.1.40704| 5.5.1.40704| 5.5.1.40704|      2004-4-8, 13:37 |     29696| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\pmwSourceSafe.dll
+|      PnESerialCycMaxRconn.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     52032| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PnESerialCycMaxRconn.dll
+|       PnETCPIPCycMaxRconn.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     50264| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PnETCPIPCycMaxRconn.dll
+|         PnEUSBCycMaxRconn.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     28160| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PnEUSBCycMaxRconn.dll
+|               PnEUSBRconn.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     28160| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PnEUSBRconn.dll
+|            PPreprocessorC.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 18:21 |     73728| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PPreprocessorC.dll
+|                PProjectCF.dll|        7.0 build 50|    6.0.0.50|    6.0.0.50|    2009-11-12, 18:21 |     30720| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PProjectCF.dll
+|                 PRConnCCS.dll|        1.0.0.2 b002|     1.0.0.2|     1.0.0.2|    2009-11-12, 11:45 |     86016| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PRConnCCS.dll
+|      PRConnEthernetTapBDM.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     54784| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PRConnEthernetTapBDM.dll
+|         PRConnPELightning.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     27648| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PRConnPELightning.dll
+|                 PRConnPnE.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     28160| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PRConnPnE.dll
+|                 PRConnTCP.dll|     5.9 Build 5293 |     5.8.0.0|     5.8.0.0|      2009-11-6, 0:16 |     36864| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PRConnTCP.dll
+|           PRConnUSBTapBDM.dll|           7.2.0.214|   7.2.0.214|   7.2.0.214|    2009-11-12, 11:45 |     55296| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PRConnUSBTapBDM.dll
+|               PSerialComm.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 11:45 |     30048| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PSerialComm.dll
+|      PSourceFolderMapping.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 11:45 |     53248| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PSourceFolderMapping.dll
+|                PTcpIpComm.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 11:45 |     23232| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PTcpIpComm.dll
+|                 PWarningC.dll|5.9 Engineering Build |     5.8.0.0|     5.8.0.0|    2009-11-12, 18:21 |     69632| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Preference_Panel\PWarningC.dll
+|                  bdiifc32.dll|               V1.44|     1.0.4.4|     1.0.4.4|     2007-8-16, 14:47 |    118784| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\Abatron\bdiifc32.dll
+|     osbdm-jm60_gdi_cfv234.dll|         1, 0, 12, 1|    1.0.12.1|    1.0.12.1|      2009-7-6, 16:05 |     52736| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\OSBDM\osbdm-jm60_gdi_cfv234.dll
+|                  unit_cfz.dll|            3.25.0.0|    3.25.0.0|    3.25.0.0|     2007-7-23, 18:23 |   1621168| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\pemicro\unit_cfz.dll
+|             OpenSourceBDM.dll|                    |     1.0.0.1|     1.0.0.1|     2010-5-16, 16:26 |    473972| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\OpenSourceBDM.dll
+|                     tbdml.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-16, 16:27 |    466473| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\tbdml.dll
+|                     tblcf.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-16, 16:26 |    461822| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\tblcf.dll
+|                 tblcf_gdi.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2006-8-19, 19:00 |     47104| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\tblcf_gdi.dll
+|                     usbdm.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-16, 16:27 |    457166| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\usbdm.dll
+|            USBDM_GDI_CFV1.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-14, 23:35 |   1425624| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\USBDM_GDI_CFV1.dll
+|            USBDM_GDI_CFVx.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-15, 16:47 |   1353931| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\USBDM_GDI_CFVx.dll
+|           USBDM_GDI_HCS08.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-14, 19:00 |   1425312| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\USBDM_GDI_HCS08.dll
+|            USBDM_GDI_RS08.dll|                    |     3.2.0.0|     3.2.0.0|     2010-5-14, 18:27 |   1424830| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM32\USBDM_GDI_RS08.dll
+|            libgcc_s_dw2-1.dll|     No Version Info|     0.0.0.0|     0.0.0.0|       2011-1-8, 8:35 |     46592| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\libgcc_s_dw2-1.dll
+|               libstdc++-6.dll|     No Version Info|     0.0.0.0|     0.0.0.0|       2011-1-8, 8:35 |    369678| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\libstdc++-6.dll
+|                libusb-1.0.dll|         1.0.8.10346| 1.0.8.10346| 1.0.8.10346|      2011-11-3, 0:57 |    104242| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\libusb-1.0.dll
+|           libxerces-c-3-1.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2011-10-12, 0:33 |   1315854| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\libxerces-c-3-1.dll
+|usbdm-cfvx-gdi-legacy-debug.dll|               4.7.0|     4.7.0.0|     4.7.0.0|     2011-10-12, 1:14 |   1324544| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\usbdm-cfvx-gdi-legacy-debug.dll
+|     usbdm-cfvx-gdi-legacy.dll|               4.7.0|     4.7.0.0|     4.7.0.0|     2011-10-12, 1:12 |   1328128| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\usbdm-cfvx-gdi-legacy.dll
+|             usbdm-debug.4.dll|               4.7.0|     4.7.0.0|     4.7.0.0|     2011-10-12, 1:33 |    558649| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\usbdm-debug.4.dll
+|                   usbdm.4.dll|               4.7.0|     4.7.0.0|     4.7.0.0|     2011-10-12, 1:33 |    332800| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM47\usbdm.4.dll
+|            libgcc_s_dw2-1.dll|     No Version Info|     0.0.0.0|     0.0.0.0|       2011-1-8, 8:35 |     46592| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\libgcc_s_dw2-1.dll
+|               libstdc++-6.dll|     No Version Info|     0.0.0.0|     0.0.0.0|       2011-1-8, 8:35 |    369678| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\libstdc++-6.dll
+|                libusb-1.0.dll|         1.0.8.10341| 1.0.8.10346| 1.0.8.10346|     2011-7-20, 22:07 |     51200| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\libusb-1.0.dll
+|           libxerces-c-3-1.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2011-10-12, 0:33 |   1315854| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\libxerces-c-3-1.dll
+|usbdm-cfvx-gdi-legacy-debug.dll|               4.9.3|     4.9.2.0|     4.9.2.0|     2012-3-14, 19:11 |   5780480| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\usbdm-cfvx-gdi-legacy-debug.dll
+|     usbdm-cfvx-gdi-legacy.dll|               4.9.3|     4.7.0.0|     4.7.0.0|     2012-3-14, 19:09 |   5773312| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\usbdm-cfvx-gdi-legacy.dll
+|             usbdm-debug.4.dll|               4.9.3|     4.9.3.0|     4.9.3.0|     2012-3-17, 20:35 |     34816| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\usbdm-debug.4.dll
+|                   usbdm.4.dll|               4.9.3|     4.7.0.0|     4.7.0.0|     2012-3-17, 20:35 |     27648| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ColdFire\USBDM49\usbdm.4.dll
+|           PP_TargetAccess.dll|          5.8.0.5293|  5.8.0.5293|  5.8.0.5293|      2009-11-6, 0:15 |     62976| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Common\Comm_IO\PP_TargetAccess.dll
+|            CPlusSourceGen.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:11 |    278528| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\CPlusSourceGen.dll
+|         BIN_File_IOEngine.dll|          5.8.0.5293|  5.8.0.5293|  5.8.0.5293|      2009-11-6, 0:15 |     26624| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Flash_Programmer\File_IO\BIN_File_IOEngine.dll
+|         ELF_File_IOEngine.dll|          5.8.0.5293|  5.8.0.5293|  5.8.0.5293|      2009-11-6, 0:15 |     22016| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Flash_Programmer\File_IO\ELF_File_IOEngine.dll
+|        SREC_File_IOEngine.dll|          5.8.0.5293|  5.8.0.5293|  5.8.0.5293|      2009-11-6, 0:15 |     35840| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Flash_Programmer\File_IO\SREC_File_IOEngine.dll
+|                 MWComBase.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:00 |     65536| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\MWComBase.dll
+|              MWComHelpers.DLL|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:57 |    471040| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\MWComHelpers.DLL
+|                MWRadModel.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:01 |    585728| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\MWRadModel.dll
+|          ObjectWireWizard.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:19 |    139264| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\ObjectWireWizard.dll
+|                    ccssim.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2005-12-1, 23:11 |    835352| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\ccssim.dll
+|                   ccssim2.exe|     No Version Info|     0.0.1.1|     0.0.1.1|     2004-10-20, 4:24 |    157000| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\ccssim2.exe
+|               elfioloader.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2004-10-20, 4:24 |    232872| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\elfioloader.dll
+|                   libcf2e.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2004-10-20, 4:24 |    233472| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\libcf2e.dll
+|                 libcf2iss.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2006-3-22, 15:41 |    188416| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\libcf2iss.dll
+|                   libcf4e.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2004-10-20, 4:24 |    237568| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\libcf4e.dll
+|                 libcf4iss.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2005-10-6, 18:07 |    499712| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\libcf4iss.dll
+|                    lmgr8c.dll|     No Version Info|     0.0.0.0|     0.0.0.0|    2004-11-17, 17:45 |    851968| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\lmgr8c.dll
+|                     tcl82.dll|               8.2.3|     8.2.2.3|     8.2.2.3|     2004-10-20, 4:24 |    467456| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\tcl82.dll
+|                      tk82.dll|               8.2.3|     8.2.2.3|     8.2.2.3|     2004-10-20, 4:24 |    836608| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\tk82.dll
+|                  winico03.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2004-10-20, 4:24 |     78848| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\Support\Sim\ccssim2\bin\winico03.dll
+|                     mwcvs.dll|     No Version Info|     0.0.0.0|     0.0.0.0|    2003-10-30, 10:08 |    237568| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\version_control\mwcvs.dll
+|              mwSourceSafe.dll|           1.0.3.716|   1.0.3.716|   1.0.3.716|      2004-4-8, 13:37 |    140540| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\version_control\mwSourceSafe.dll
+|              VCSClearCase.dll|          1.1.2.1999|  1.1.2.1999|  1.1.2.1999|     2004-8-16, 13:18 |     77824| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\Plugins\version_control\VCSClearCase.dll
+|            CPlusResources.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:10 |     24576| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\resource\CPlusResources.dll
+|    ExternalBuildResources.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:20 |      6144| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\resource\ExternalBuildResources.dll
+|     IDEAuxiliaryResources.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:57 |     45056| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\resource\IDEAuxiliaryResources.dll
+|              IDEResources.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|     2009-11-5, 23:57 |     53248| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\resource\IDEResources.dll
+|         MakefileResources.dll|    5.9.0 Build 5293|  5.9.0.5293|  5.9.0.5293|      2009-11-6, 0:10 |     12288| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\resource\MakefileResources.dll
+|                     SHW32.DLL|                    |     4.0.1.0|     4.0.1.0|      2000-2-11, 1:15 |    112688| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\SHW32.DLL
+|                    tcl84t.dll|              8.4.12|    8.4.2.12|    8.4.2.12|     2006-9-25, 21:22 |    590336| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\tcl84t.dll
+|            utf8conversion.dll|     No Version Info|     0.0.0.0|     0.0.0.0|     2008-5-22, 18:36 |    536576| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\utf8conversion.dll
+|              xerces-2_2_0.dll|             2, 2, 0|     2.2.0.0|     2.2.0.0|      2009-11-6, 0:03 |   2248704| C:\Program Files\Freescale\CodeWarrior for ColdFire V7.2\Bin\xerces-2_2_0.dll
+
++--------------------------------+
+| Black-box Recorder Information |
++--------------------------------+
+IDE start time: 23:55:10.346
+IDE crash time: 00:27:02.284
+IDE life time:  00:31:52
+
+Group : Keydowns
+	[00:22:55.409, tid=744] key = '/'
+	[00:22:55.237, tid=744] key = '/'
+	[00:21:48.081, tid=744] key = 'Y'
+	[00:21:47.768, tid=744] key = 'M'
+	[00:21:45.002, tid=744] key = 'Y'
+	[00:21:44.784, tid=744] key = 'M'
+	[00:21:10.299, tid=744] key = 'Y'
+	[00:21:10.002, tid=744] key = 'M'
+	[00:21:08.659, tid=744] key = 'm'
+	[00:20:39.674, tid=744] key = '_'
+
+Group : CompilerLinker
+	[00:26:38.049, tid=240] request = kChoiceCompile; sourcefile = 
+	[00:26:37.971, tid=240] request = kChoiceCompile; sourcefile = C:\LQ_VMwareXP\MCF52259\demo52259_OLED\sources\LQ12864.c
+	[00:26:37.893, tid=240] request = kChoiceCompile; sourcefile = C:\LQ_VMwareXP\MCF52259\demo52259_OLED\sources\main.c
+	[00:24:12.143, tid=240] request = kChoiceCompile; sourcefile = 
+	[00:24:12.065, tid=240] request = kChoiceCompile; sourcefile = C:\LQ_VMwareXP\MCF52259\demo52259_OLED\sources\LQ12864.c
+	[00:24:11.987, tid=240] request = kChoiceCompile; sourcefile = C:\LQ_VMwareXP\MCF52259\demo52259_OLED\sources\main.c
+	[00:23:15.112, tid=240] request = kChoiceCompile; sourcefile = 
+	[00:23:15.034, tid=240] request = kChoiceCompile; sourcefile = C:\LQ_VMwareXP\MCF52259\demo52259_OLED\sources\LQ12864.c
+	[00:23:14.971, tid=240] request = kChoiceCompile; sourcefile = C:\LQ_VMwareXP\MCF52259\demo52259_OLED\sources\main.c
+	[00:23:05.596, tid=240] request = kChoiceCompile; sourcefile = 
+
+Group : Context Menu
+
+Group : Menu
+	[00:26:50.393, tid=744] menu item: 50008
+	[00:24:17.909, tid=744] menu item: cmd_Close
+	[00:23:41.159, tid=744] menu item: cmd_Close
+	[00:23:11.268, tid=744] menu item: cmd_Close
+	[00:22:35.956, tid=744] menu item: cmd_Close
+	[00:22:01.362, tid=744] menu item: cmd_Close
+	[00:21:33.049, tid=744] menu item: cmd_Close
+	[00:21:05.049, tid=744] menu item: cmd_Close
+	[00:20:27.377, tid=744] menu item: cmd_Close
+	[00:20:13.534, tid=744] menu item: cmd_Close
+
+Group : Mouse Clicks
+	[00:26:54.252, tid=744] mouse click, left, point=(124, 12)
+	[00:26:52.784, tid=744] mouse click, left, point=(35, 27)
+	[00:26:43.612, tid=744] mouse click, left, point=(248, 11)
+	[00:26:42.643, tid=744] mouse click, left, point=(264, 10)
+	[00:26:37.581, tid=744] mouse click, left, point=(240, 16)
+	[00:26:35.331, tid=744] mouse click, left, point=(24, 247)
+	[00:26:34.331, tid=744] mouse click, left, point=(31, 251)
+	[00:26:32.393, tid=744] mouse click, left, point=(40, 380)
+	[00:26:29.346, tid=744] mouse click, left, point=(27, 107)
+	[00:26:26.096, tid=744] mouse click, left, point=(47, 111)
+
+Group : Pref Panel
+	[00:17:09.627, tid=744] reqSetupDebug, panel=C/C++ Warnings
+	[00:17:09.612, tid=744] reqSetupDebug, panel=Coldfire Target
+	[00:17:09.596, tid=744] reqValidate, panel=C/C++ Preprocessor
+	[00:17:09.596, tid=744] reqSetupDebug, panel=C/C++ Preprocessor
+	[00:17:09.565, tid=744] reqValidate, panel=ColdFire Linker
+	[00:17:09.565, tid=744] reqSetupDebug, panel=ColdFire Linker
+	[00:17:09.565, tid=744] reqSetupDebug, panel=Librarian
+	[00:17:09.549, tid=744] reqSetupDebug, panel=C/C++ Language
+	[00:17:09.534, tid=744] reqSetupDebug, panel=ELF Disassembler
+	[00:17:09.534, tid=744] reqSetupDebug, panel=CF Debugger Settings
+
+Group : Projects
+	[23:55:16.643, tid=744] opened C:\LQ_VMwareXP\MCF52259\demo52259_OLED\demo52259_OLED.mcp
+
+Group : Debug Launches
+	[00:09:00.971, tid=744] Launch, target=MCF52259_CONSOLE_INTERNAL_RAM.elf, machine name=USBDM, machine connection type=GDI Remote Connection
+
+Group : Dispatched Msgs
+	[00:26:57.424, tid=588] msgQuitThread
+	[00:26:43.893, tid=744] msgDispatcherQuitting
+	[00:26:43.893, tid=744] msgDispatcherQuitting
+	[00:26:43.893, tid=744] msgDispatcherQuitting
+	[00:26:43.877, tid=744] type_EndUpdateMessage
+	[00:26:43.877, tid=744] type_EndUpdateMessage
+	[00:26:43.877, tid=1032] msgQuitThread
+	[00:26:43.877, tid=1032] msgStartMake
+	[00:26:43.877, tid=744] msgFireBuildEnded, project=demo52259_OLED.mcp
+	[00:26:43.877, tid=744] msgBuildDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgBuildDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgBuildDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgTargetBuildDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgTargetBuildDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgTargetBuildDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgCatalogUpdated, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgCatalogUpdated, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgCatalogUpdated, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgRemovingTargetFilesFromTarget
+	[00:26:43.862, tid=744] msgRemovingTargetFilesFromTarget
+	[00:26:43.862, tid=744] msgTargetCompileDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgTargetCompileDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=744] msgTargetCompileDone, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=1032] msgDropInRequestSent
+	[00:26:43.862, tid=240] msgDropInBuildRequest, project=demo52259_OLED.mcp
+	[00:26:43.862, tid=1032] msgDropInRequestSent
+	[00:26:43.862, tid=240] msgDropInBuildRequest, project=demo52259_OLED.mcp
+	[00:26:43.846, tid=1032] msgDropInRequestSent
+	[00:26:43.846, tid=240] msgDropInBuildRequest, project=demo52259_OLED.mcp
+	[00:26:43.846, tid=744] msgTargetCompileStarted, project=demo52259_OLED.mcp
+	[00:26:43.846, tid=744] msgTargetCompileStarted, project=demo52259_OLED.mcp
+	[00:26:43.846, tid=744] msgTargetCompileStarted, project=demo52259_OLED.mcp
+	[00:26:43.846, tid=744] msgDecrementStatusLevel
+	[00:26:43.846, tid=744] msgDecrementStatusLevel
+	[00:26:43.846, tid=744] msgIncrementStatusLevel
+	[00:26:43.846, tid=744] msgIncrementStatusLevel
+	[00:26:43.831, tid=744] msgTargetBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] msgTargetBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] msgTargetBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] msgFireBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=1032] msgEmptyReply
+	[00:26:43.831, tid=744] msgFlushMessages
+	[00:26:43.831, tid=744] msgBuildComTargetList, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] msgBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] msgBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] msgBuildStarted, project=demo52259_OLED.mcp
+	[00:26:43.831, tid=744] type_BeginUpdateAndClearMessage
+	[00:26:43.815, tid=744] type_BeginUpdateAndClearMessage
+	[00:26:43.799, tid=744] msgFireQueryAboutToBuild, project=demo52259_OLED.mcp
+	[00:26:38.081, tid=744] msgDispatcherQuitting
+
+Group : Actions
+	[00:09:27.674, tid=744] EndSessionAction
+	[00:09:27.659, tid=744] ProcessDiedAction, process=MCF52259_CONSOLE_INTERNAL_RAM.elf
+	[00:09:19.049, tid=744] TextDocumentAction, action=syncInfoForProject
+	[00:09:19.049, tid=744] TextDocumentAction, action=syncInfoForProject, project=demo52259_OLED.mcp
+	[00:09:03.862, tid=744] RunAction, process=MCF52259_CONSOLE_INTERNAL_RAM.elf, thread=MCF52259_CONSOLE_INTERNAL_RAM.elf (Thread 0x0)
+	[00:05:12.831, tid=744] CloseFindDialogAction
+	[23:55:16.659, tid=744] EnableMenusAction
+	[23:55:16.659, tid=744] TextDocumentAction, action=syncInfoForProject
+	[23:55:16.659, tid=744] FireProjectDocumentOpenedAction, project=C:\LQ_VMwareXP\MCF52259\demo52259_OLED\demo52259_OLED.mcp
+	[23:55:16.659, tid=744] TextDocumentAction, action=syncInfoForProject
+	[23:55:16.659, tid=744] TextDocumentAction, action=syncInfoForProject, project=demo52259_OLED.mcp
+	[23:55:16.659, tid=744] SetSelectedProjectPanelAction, project=demo52259_OLED.mcp
+	[23:55:16.659, tid=744] FireProjectVisibleAction, project=demo52259_OLED.mcp, target ID=0
+	[23:55:16.659, tid=744] FireProjectOpenedAction, project=demo52259_OLED.mcp, target ID=0
+	[23:55:16.659, tid=744] SynchronizeStatusAction, project=demo52259_OLED.mcp
+	[23:55:16.659, tid=744] CacheSubprojectsAction, project=demo52259_OLED.mcp, target ID=3
+	[23:55:16.659, tid=744] EnableBrowserAction, project=demo52259_OLED.mcp
+	[23:55:16.659, tid=744] SynchronizeStatusAction, project=demo52259_OLED.mcp
+	[23:55:16.659, tid=744] CacheSubprojectsAction, project=demo52259_OLED.mcp, target ID=2
+	[23:55:16.659, tid=744] EnableBrowserAction, project=demo52259_OLED.mcp
+	[23:55:16.643, tid=744] SynchronizeStatusAction, project=demo52259_OLED.mcp
+	[23:55:16.643, tid=744] CacheSubprojectsAction, project=demo52259_OLED.mcp, target ID=1
+	[23:55:16.643, tid=744] EnableBrowserAction, project=demo52259_OLED.mcp
+	[23:55:10.721, tid=744] MarkWorkspaceCleanAction
+	[23:55:10.721, tid=744] RemoveRegisterDetailsAction
+
+*** Most Recent Activity Summary ***
+[00:26:57.424] | Dispatched Msgs | 588 | msgQuitThread
+[00:26:54.252] | Mouse Clicks    | 744 | mouse click, left, point=(124, 12)
+[00:26:52.784] | Mouse Clicks    | 744 | mouse click, left, point=(35, 27)
+[00:26:50.393] | Menu            | 744 | menu item: 50008
+[00:26:43.893] | Dispatched Msgs | 744 | msgDispatcherQuitting
+[00:26:43.893] | Dispatched Msgs | 744 | msgDispatcherQuitting
+[00:26:43.893] | Dispatched Msgs | 744 | msgDispatcherQuitting
+[00:26:43.877] | Dispatched Msgs | 744 | type_EndUpdateMessage
+[00:26:43.877] | Dispatched Msgs | 744 | type_EndUpdateMessage
+[00:26:43.877] | Dispatched Msgs | 1032 | msgQuitThread
+[00:26:43.877] | Dispatched Msgs | 1032 | msgStartMake
+[00:26:43.877] | Dispatched Msgs | 744 | msgFireBuildEnded, project=demo52259_OLED.mcp
+[00:26:43.877] | Dispatched Msgs | 744 | msgBuildDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgBuildDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgBuildDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgTargetBuildDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgTargetBuildDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgTargetBuildDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgCatalogUpdated, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgCatalogUpdated, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgCatalogUpdated, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgRemovingTargetFilesFromTarget
+[00:26:43.862] | Dispatched Msgs | 744 | msgRemovingTargetFilesFromTarget
+[00:26:43.862] | Dispatched Msgs | 744 | msgTargetCompileDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgTargetCompileDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 744 | msgTargetCompileDone, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 1032 | msgDropInRequestSent
+[00:26:43.862] | Dispatched Msgs | 240 | msgDropInBuildRequest, project=demo52259_OLED.mcp
+[00:26:43.862] | Dispatched Msgs | 1032 | msgDropInRequestSent
+[00:26:43.862] | Dispatched Msgs | 240 | msgDropInBuildRequest, project=demo52259_OLED.mcp
+[00:26:43.846] | Dispatched Msgs | 1032 | msgDropInRequestSent
+[00:26:43.846] | Dispatched Msgs | 240 | msgDropInBuildRequest, project=demo52259_OLED.mcp
+[00:26:43.846] | Dispatched Msgs | 744 | msgTargetCompileStarted, project=demo52259_OLED.mcp
+[00:26:43.846] | Dispatched Msgs | 744 | msgTargetCompileStarted, project=demo52259_OLED.mcp
+[00:26:43.846] | Dispatched Msgs | 744 | msgTargetCompileStarted, project=demo52259_OLED.mcp
+[00:26:43.846] | Dispatched Msgs | 744 | msgDecrementStatusLevel
+[00:26:43.846] | Dispatched Msgs | 744 | msgDecrementStatusLevel
+[00:26:43.846] | Dispatched Msgs | 744 | msgIncrementStatusLevel
+[00:26:43.846] | Dispatched Msgs | 744 | msgIncrementStatusLevel
+[00:26:43.831] | Dispatched Msgs | 744 | msgTargetBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | msgTargetBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | msgTargetBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | msgFireBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 1032 | msgEmptyReply
+[00:26:43.831] | Dispatched Msgs | 744 | msgFlushMessages
+[00:26:43.831] | Dispatched Msgs | 744 | msgBuildComTargetList, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | msgBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | msgBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | msgBuildStarted, project=demo52259_OLED.mcp
+[00:26:43.831] | Dispatched Msgs | 744 | type_BeginUpdateAndClearMessage
+

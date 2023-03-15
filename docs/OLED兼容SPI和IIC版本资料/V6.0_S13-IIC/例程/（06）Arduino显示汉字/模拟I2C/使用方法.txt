@@ -1,0 +1,5 @@
+1. CN_SSD1306和Adafruit_ssd1306syp是库文件，将这两个文件夹复制到x:\arduino-1.5.5\libraries目录下；
+
+2. 运行CN_SSD1306\example里的例程即可
+
+注意说明：CS脚需要接地

@@ -1,0 +1,48 @@
+[DebugChecksum]
+Checksum=-1702206283
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[FlashMemory]
+FlashEraseSelection=0 
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=540750145
+Graph=0
+Symbiont=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Disassemble mode]
+mode=0
+[Breakpoints]
+Count=0
+[Aliases]
+A0=_ "E:\45_Kinetis\03_软件设计\01 k60_led\src\cpu\crt0.s" "E:\45_Kinetis\03_软件设计\k60src\01 k60_led\src\cpu\crt0.s"
+A1=_ "E:\45_Kinetis\03_软件设计\02 k60_led\src\cpu\crt0.s" ""
+A2=_ "E:\45_Kinetis\03_软件设计\02 k60_led\src\cpu\start.c" ""
+Count=3
+SuppressDialog=0

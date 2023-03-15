@@ -1,0 +1,20 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\000\中景园电子0.96OLED显示屏_PIC系列_SPI_例程\0.96SPI-（51系列pic1\spi_pic.uvproj
+Project File Date:  07/10/2014
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling spi_pic.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FILL_PICTURE?SPI_PIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_50MS?SPI_PIC
+Program Size: data=11.0 xdata=0 code=1418
+creating hex file from "spi_pic"...
+"spi_pic" - 0 Error(s), 2 Warning(s).

@@ -1,0 +1,432 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\E≈Ã\GPS\9-10\STM32_5_FASTDOME\project\RVMDK\Project.uvproj
+Project File Date:  09/17/2015
+
+<h2>Output:</h2>
+Build target 'STM3210E-EVAL'
+compiling stm32f10x_it.c...
+compiling main.c...
+..\main.c(69): warning:  #223-D: function "DomeDraw_WindBuf" declared implicitly
+..\main.c(111): warning:  #223-D: function "All_Param_default_rst" declared implicitly
+..\main.c(124): warning:  #223-D: function "gps_command_proc" declared implicitly
+compiling Dlg_Main.c...
+..\usersrc\Dlg_Main.c(263): warning:  #940-D: missing return statement at end of non-void function "_MainWindProc"
+..\usersrc\Dlg_Main.c(321): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlArea"
+..\usersrc\Dlg_Main.c(393): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlHeight"
+..\usersrc\Dlg_Main.c(526): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlQueryRecord"
+..\usersrc\Dlg_Main.c(622): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlDeleteRecord"
+..\usersrc\Dlg_Main.c(654): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(661): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(668): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(704): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(719): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(733): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(747): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+compiling Dome_Draw.c...
+..\usersrc\Dome_Draw.c(87): warning:  #177-D: variable "startCtrlId" was declared but never referenced
+..\usersrc\Dome_Draw.c(88): warning:  #177-D: variable "iCtrlCurDispNum" was declared but never referenced
+..\usersrc\Dome_Draw.c(89): warning:  #177-D: variable "startSharedCtrlID" was declared but never referenced
+..\usersrc\Dome_Draw.c(90): warning:  #550-D: variable "j" was set but never used
+..\usersrc\Dome_Draw.c(90): warning:  #550-D: variable "w" was set but never used
+..\usersrc\Dome_Draw.c(90): warning:  #550-D: variable "h" was set but never used
+..\usersrc\Dome_Draw.c(90): warning:  #177-D: variable "oldx" was declared but never referenced
+..\usersrc\Dome_Draw.c(90): warning:  #177-D: variable "oldy" was declared but never referenced
+compiling Dome_Gui.c...
+..\usersrc\Dome_Gui.c(286): warning:  #223-D: function "printf" declared implicitly
+compiling Dome_Item.c...
+compiling OLED.c...
+compiling gpio.c...
+..\usersrc\gpio.c(61): warning:  #223-D: function "gps_usart_queue_timeout_tick" declared implicitly
+..\usersrc\gpio.c(62): warning:  #223-D: function "sim_usart_queue_timeout_tick" declared implicitly
+compiling key_input.c...
+..\usersrc\key_input.c(20): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(38): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(56): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(74): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(92): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(110): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(128): warning:  #223-D: function "Dly_ms" declared implicitly
+compiling usart.c...
+..\usersrc\usart.c(219): warning:  #940-D: missing return statement at end of non-void function "gps_usart_queue_receive"
+..\usersrc\usart.c(183): warning:  #177-D: variable "i" was declared but never referenced
+..\usersrc\usart.c(440): warning:  #177-D: variable "i" was declared but never referenced
+..\usersrc\usart.c(438): warning:  #177-D: function "sim_usart_queue_receive" was declared but never referenced
+compiling gps.c...
+..\usersrc\gps.c(129): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(135): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(142): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(149): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(170): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(177): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(190): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(199): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(212): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(220): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(230): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(246): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(253): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(265): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(270): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(275): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(280): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(298): warning:  #223-D: function "printf" declared implicitly
+compiling Distance_Area.c...
+..\usersrc\Distance_Area.c(159): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\Distance_Area.c(159): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(162): warning:  #223-D: function "Draw_Battery_Quantity" declared implicitly
+..\usersrc\Distance_Area.c(175): warning:  #223-D: function "memset" declared implicitly
+..\usersrc\Distance_Area.c(175): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\Distance_Area.c(177): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(179): warning:  #223-D: function "Draw_Battery_Quantity" declared implicitly
+..\usersrc\Distance_Area.c(182): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(206): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(211): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(217): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(221): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\Distance_Area.c(221): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\Distance_Area.c(221): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\Distance_Area.c(222): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(232): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+compiling std_function.c...
+compiling Dome_Param.c...
+compiling Dlg_SysInfo.c...
+..\usersrc\Dlg_SysInfo.c(191): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\usersrc\Dlg_SysInfo.c(192): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\Dlg_SysInfo.c(200): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+compiling GPS_track.c...
+..\usersrc\GPS_track.c(63): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(63): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(75): error:  #18: expected a ")"
+..\usersrc\GPS_track.c(75): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+..\usersrc\GPS_track.c(112): warning:  #223-D: function "strstr" declared implicitly
+..\usersrc\GPS_track.c(118): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(118): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(122): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(122): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(126): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(130): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(169): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(169): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(177): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(177): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(186): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(186): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(195): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(195): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(203): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(203): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(212): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(212): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(242): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(242): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(250): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(250): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(258): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(258): error:  #167: argument of type "uc8 *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(266): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(267): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(267): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+compiling stm32f10x_adc.c...
+compiling stm32f10x_bkp.c...
+compiling stm32f10x_can.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_dac.c...
+compiling stm32f10x_dbgmcu.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_exti.c...
+compiling stm32f10x_flash.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_i2c.c...
+compiling stm32f10x_iwdg.c...
+compiling stm32f10x_lib.c...
+compiling stm32f10x_nvic.c...
+compiling stm32f10x_pwr.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_rtc.c...
+compiling stm32f10x_sdio.c...
+compiling stm32f10x_spi.c...
+compiling stm32f10x_systick.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_wwdg.c...
+assembling stm32f10x_vector.s...
+assembling cortexm3_macro.s...
+Target not created
+Build target 'STM3210E-EVAL'
+compiling GPS_track.c...
+..\usersrc\GPS_track.c(56): error:  #144: a value of type "uc8 (*)[50]" cannot be used to initialize an entity of type "u8 *"
+..\usersrc\GPS_track.c(66): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(66): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(78): error:  #18: expected a ")"
+..\usersrc\GPS_track.c(78): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+..\usersrc\GPS_track.c(115): warning:  #223-D: function "strstr" declared implicitly
+..\usersrc\GPS_track.c(121): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(121): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(125): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(125): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(129): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(133): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(172): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(172): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(180): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(180): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(188): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(189): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(189): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(197): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(198): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(198): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(206): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(206): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(214): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(215): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(215): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(245): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(245): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(253): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(253): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(261): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(261): error:  #167: argument of type "u8" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(270): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(270): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+Target not created
+Build target 'STM3210E-EVAL'
+compiling GPS_track.c...
+..\usersrc\GPS_track.c(64): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(64): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(76): error:  #18: expected a ")"
+..\usersrc\GPS_track.c(76): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+..\usersrc\GPS_track.c(113): warning:  #223-D: function "strstr" declared implicitly
+..\usersrc\GPS_track.c(119): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(119): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(123): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(123): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(127): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(131): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(170): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(170): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(178): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(178): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(186): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(187): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(187): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(195): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(196): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(196): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(204): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(204): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(212): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(213): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(213): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(243): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(243): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(251): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(251): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(259): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(259): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(267): error:  #20: identifier "at_cmd" is undefined
+..\usersrc\GPS_track.c(268): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(268): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+Target not created
+Build target 'STM3210E-EVAL'
+compiling GPS_track.c...
+..\usersrc\GPS_track.c(64): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(76): error:  #18: expected a ")"
+..\usersrc\GPS_track.c(76): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+..\usersrc\GPS_track.c(113): warning:  #223-D: function "strstr" declared implicitly
+..\usersrc\GPS_track.c(119): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(123): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(127): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(131): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(170): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(178): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(187): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(187): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(196): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(196): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(204): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(213): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(213): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(243): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(251): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(259): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(267): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(268): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(268): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+Target not created
+Build target 'STM3210E-EVAL'
+compiling GPS_track.c...
+..\usersrc\GPS_track.c(64): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(101): warning:  #223-D: function "strstr" declared implicitly
+..\usersrc\GPS_track.c(107): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(111): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(115): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(119): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(158): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(166): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(175): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(175): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(184): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(184): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(192): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(201): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(201): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(231): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(239): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(247): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(255): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(256): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(256): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+linking...
+Program Size: Code=20880 RO-data=5376 RW-data=1616 ZI-data=36936  
+FromELF: creating hex file...
+User command #1: c:\Keil\ARM\BIN40\fromelf.exe --bin -o ./Obj/USERAPP.bin ./Obj/USERAPP.axf
+".\Obj\USERAPP.axf" - 0 Error(s), 21 Warning(s).
+Build target 'STM3210E-EVAL'
+compiling stm32f10x_it.c...
+compiling main.c...
+..\main.c(69): warning:  #223-D: function "DomeDraw_WindBuf" declared implicitly
+..\main.c(111): warning:  #223-D: function "All_Param_default_rst" declared implicitly
+..\main.c(124): warning:  #223-D: function "gps_command_proc" declared implicitly
+compiling Dlg_Main.c...
+..\usersrc\Dlg_Main.c(263): warning:  #940-D: missing return statement at end of non-void function "_MainWindProc"
+..\usersrc\Dlg_Main.c(321): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlArea"
+..\usersrc\Dlg_Main.c(393): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlHeight"
+..\usersrc\Dlg_Main.c(526): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlQueryRecord"
+..\usersrc\Dlg_Main.c(622): warning:  #940-D: missing return statement at end of non-void function "_MainCtrlDeleteRecord"
+..\usersrc\Dlg_Main.c(654): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(661): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(668): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(704): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(719): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(733): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Dlg_Main.c(747): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+compiling Dome_Draw.c...
+..\usersrc\Dome_Draw.c(87): warning:  #177-D: variable "startCtrlId" was declared but never referenced
+..\usersrc\Dome_Draw.c(88): warning:  #177-D: variable "iCtrlCurDispNum" was declared but never referenced
+..\usersrc\Dome_Draw.c(89): warning:  #177-D: variable "startSharedCtrlID" was declared but never referenced
+..\usersrc\Dome_Draw.c(90): warning:  #550-D: variable "j" was set but never used
+..\usersrc\Dome_Draw.c(90): warning:  #550-D: variable "w" was set but never used
+..\usersrc\Dome_Draw.c(90): warning:  #550-D: variable "h" was set but never used
+..\usersrc\Dome_Draw.c(90): warning:  #177-D: variable "oldx" was declared but never referenced
+..\usersrc\Dome_Draw.c(90): warning:  #177-D: variable "oldy" was declared but never referenced
+compiling Dome_Gui.c...
+..\usersrc\Dome_Gui.c(286): warning:  #223-D: function "printf" declared implicitly
+compiling Dome_Item.c...
+compiling OLED.c...
+compiling gpio.c...
+..\usersrc\gpio.c(61): warning:  #223-D: function "gps_usart_queue_timeout_tick" declared implicitly
+..\usersrc\gpio.c(62): warning:  #223-D: function "sim_usart_queue_timeout_tick" declared implicitly
+compiling key_input.c...
+..\usersrc\key_input.c(20): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(38): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(56): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(74): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(92): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(110): warning:  #223-D: function "Dly_ms" declared implicitly
+..\usersrc\key_input.c(128): warning:  #223-D: function "Dly_ms" declared implicitly
+compiling usart.c...
+..\usersrc\usart.c(219): warning:  #940-D: missing return statement at end of non-void function "gps_usart_queue_receive"
+..\usersrc\usart.c(183): warning:  #177-D: variable "i" was declared but never referenced
+..\usersrc\usart.c(440): warning:  #177-D: variable "i" was declared but never referenced
+..\usersrc\usart.c(438): warning:  #177-D: function "sim_usart_queue_receive" was declared but never referenced
+compiling gps.c...
+..\usersrc\gps.c(129): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(135): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(142): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(149): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(170): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(177): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(190): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(199): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(212): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(220): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(230): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(246): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(253): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(265): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(270): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(275): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(280): warning:  #223-D: function "printf" declared implicitly
+..\usersrc\gps.c(298): warning:  #223-D: function "printf" declared implicitly
+compiling Distance_Area.c...
+..\usersrc\Distance_Area.c(159): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\Distance_Area.c(159): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(162): warning:  #223-D: function "Draw_Battery_Quantity" declared implicitly
+..\usersrc\Distance_Area.c(175): warning:  #223-D: function "memset" declared implicitly
+..\usersrc\Distance_Area.c(175): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\Distance_Area.c(177): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(179): warning:  #223-D: function "Draw_Battery_Quantity" declared implicitly
+..\usersrc\Distance_Area.c(182): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(206): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(211): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(217): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(221): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\Distance_Area.c(221): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\Distance_Area.c(221): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\Distance_Area.c(222): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\Distance_Area.c(232): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+compiling std_function.c...
+compiling Dome_Param.c...
+compiling Dlg_SysInfo.c...
+..\usersrc\Dlg_SysInfo.c(191): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\usersrc\Dlg_SysInfo.c(192): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\Dlg_SysInfo.c(200): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+compiling GPS_track.c...
+..\usersrc\GPS_track.c(64): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(101): warning:  #223-D: function "strstr" declared implicitly
+..\usersrc\GPS_track.c(107): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(111): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(115): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(119): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\usersrc\GPS_track.c(158): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(166): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(175): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(175): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(184): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(184): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(192): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(201): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(201): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+..\usersrc\GPS_track.c(231): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(239): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(247): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(255): warning:  #181-D: argument is incompatible with corresponding format string conversion
+..\usersrc\GPS_track.c(256): warning:  #223-D: function "strlen" declared implicitly
+..\usersrc\GPS_track.c(256): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+compiling stm32f10x_adc.c...
+compiling stm32f10x_bkp.c...
+compiling stm32f10x_can.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_dac.c...
+compiling stm32f10x_dbgmcu.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_exti.c...
+compiling stm32f10x_flash.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_i2c.c...
+compiling stm32f10x_iwdg.c...
+compiling stm32f10x_lib.c...
+compiling stm32f10x_nvic.c...
+compiling stm32f10x_pwr.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_rtc.c...
+compiling stm32f10x_sdio.c...
+compiling stm32f10x_spi.c...
+compiling stm32f10x_systick.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_wwdg.c...
+assembling stm32f10x_vector.s...
+assembling cortexm3_macro.s...
+linking...
+Program Size: Code=20880 RO-data=5376 RW-data=1616 ZI-data=36936  
+FromELF: creating hex file...
+User command #1: c:\Keil\ARM\BIN40\fromelf.exe --bin -o ./Obj/USERAPP.bin ./Obj/USERAPP.axf
+".\Obj\USERAPP.axf" - 0 Error(s), 95 Warning(s).

@@ -1,0 +1,715 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.10.1.52143/W32 for ARM     16/Apr/2011  16:44:06 #
+# Copyright 1999-2010 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  E:\Project\15_K60\03_Software\02_My                      #
+#                    program\K60_IAR\01_light\src\drivers\mcg\mcg.c           #
+#    Command line =  "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\mcg\mcg.c" -D IAR   #
+#                    -D TWR_K60N512 -lCN "E:\Project\15_K60\03_Software\02_My #
+#                     program\K60_IAR\01_light\bin\Flash\List\" -lB           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\bin\Flash\List\" -o             #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\bin\Flash\Obj\" --no_cse        #
+#                    --no_unroll --no_inline --no_code_motion --no_tbaa       #
+#                    --no_clustering --no_scheduling --debug --endian=little  #
+#                    --cpu=Cortex-M4 -e --fpu=None --dlib_config              #
+#                    D:\iar\arm\INC\c\DLib_Config_Normal.h -I                 #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\common\" -I                 #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\cpu\" -I                    #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\cpu\headers\" -I            #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\" -I                #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\uart\" -I           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\gpio\" -I           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\mcg\" -I            #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\wdog\" -I           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\projects\" -I               #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\" -Ol --use_c++_inline      #
+#    List file    =  E:\Project\15_K60\03_Software\02_My                      #
+#                    program\K60_IAR\01_light\bin\Flash\List\mcg.lst          #
+#    Object file  =  E:\Project\15_K60\03_Software\02_My                      #
+#                    program\K60_IAR\01_light\bin\Flash\Obj\mcg.o             #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\Project\15_K60\03_Software\02_My program\K60_IAR\01_light\src\drivers\mcg\mcg.c
+      1          /*
+      2           * File:    mcg.c
+      3           * Purpose: Driver for enabling the PLL in 1 of 4 options
+      4           *
+      5           * Notes:
+      6           * Assumes the MCG mode is in the default FEI mode out of reset
+      7           * One of 4 clocking oprions can be selected.
+      8           * One of 16 crystal values can be used
+      9           */
+     10          
+     11          #include "common.h"
+     12          #include "mcg.h"
+     13          
+     14          extern int core_clk_khz;
+     15          extern int core_clk_mhz;
+     16          extern int periph_clk_khz;
+     17          
+
+   \                                 In section .text, align 2, keep-with-next
+     18          unsigned char pll_init(unsigned char clk_option, unsigned char crystal_val)
+     19          {
+   \                     pll_init:
+   \   00000000   80B5               PUSH     {R7,LR}
+   \   00000002   0A00               MOVS     R2,R1
+     20            unsigned char pll_freq;
+     21          
+     22            if (clk_option > 3) {return 0;} //return 0 if one of the available options is not selected
+   \   00000004   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0428               CMP      R0,#+4
+   \   00000008   01D3               BCC.N    ??pll_init_0
+   \   0000000A   0020               MOVS     R0,#+0
+   \   0000000C   72E0               B.N      ??pll_init_1
+     23            if (crystal_val > 15) {return 1;} // return 1 if one of the available crystal options is not available
+   \                     ??pll_init_0:
+   \   0000000E   D2B2               UXTB     R2,R2            ;; ZeroExt  R2,R2,#+24,#+24
+   \   00000010   102A               CMP      R2,#+16
+   \   00000012   01D3               BCC.N    ??pll_init_2
+   \   00000014   0120               MOVS     R0,#+1
+   \   00000016   6DE0               B.N      ??pll_init_1
+     24          //This assumes that the MCG is in default FEI mode out of reset.
+     25          
+     26          // First move to FBE mode
+     27          #if (defined(K60_CLK) || defined(ASB817))
+     28               MCG_C2 = 0;
+   \                     ??pll_init_2:
+   \   00000018   ....               LDR.N    R2,??DataTable3  ;; 0x40064001
+   \   0000001A   0023               MOVS     R3,#+0
+   \   0000001C   1370               STRB     R3,[R2, #+0]
+     29          #else
+     30          // Enable external oscillator, RANGE=2, HGO=1, EREFS=1, LP=0, IRCS=0
+     31              MCG_C2 = MCG_C2_RANGE(2) | MCG_C2_HGO_MASK | MCG_C2_EREFS_MASK;
+     32          #endif
+     33          
+     34          // after initialization of oscillator release latched state of oscillator and GPIO
+     35              SIM_SCGC4 |= SIM_SCGC4_LLWU_MASK;
+   \   0000001E   ....               LDR.N    R2,??DataTable3_1  ;; 0x40048034
+   \   00000020   1268               LDR      R2,[R2, #+0]
+   \   00000022   52F08052           ORRS     R2,R2,#0x10000000
+   \   00000026   ....               LDR.N    R3,??DataTable3_1  ;; 0x40048034
+   \   00000028   1A60               STR      R2,[R3, #+0]
+     36              LLWU_CS |= LLWU_CS_ACKISO_MASK;
+   \   0000002A   ....               LDR.N    R2,??DataTable3_2  ;; 0x4007c008
+   \   0000002C   1278               LDRB     R2,[R2, #+0]
+   \   0000002E   52F08002           ORRS     R2,R2,#0x80
+   \   00000032   ....               LDR.N    R3,??DataTable3_2  ;; 0x4007c008
+   \   00000034   1A70               STRB     R2,[R3, #+0]
+     37            
+     38          // Select external oscilator and Reference Divider and clear IREFS to start ext osc
+     39          // CLKS=2, FRDIV=3, IREFS=0, IRCLKEN=0, IREFSTEN=0
+     40            MCG_C1 = MCG_C1_CLKS(2) | MCG_C1_FRDIV(3);
+   \   00000036   ....               LDR.N    R2,??DataTable3_3  ;; 0x40064000
+   \   00000038   9823               MOVS     R3,#+152
+   \   0000003A   1370               STRB     R3,[R2, #+0]
+     41          
+     42            /* if we aren't using an osc input we don't need to wait for the osc to init */
+     43          #if (!defined(K60_CLK) && !defined(ASB817))
+     44              while (!(MCG_S & MCG_S_OSCINIT_MASK)){};  // wait for oscillator to initialize
+     45          #endif
+     46          
+     47            while (MCG_S & MCG_S_IREFST_MASK){}; // wait for Reference clock Status bit to clear
+   \                     ??pll_init_3:
+   \   0000003C   ....               LDR.N    R2,??DataTable3_4  ;; 0x40064006
+   \   0000003E   1278               LDRB     R2,[R2, #+0]
+   \   00000040   D206               LSLS     R2,R2,#+27
+   \   00000042   FBD4               BMI.N    ??pll_init_3
+     48          
+     49            while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2){}; // Wait for clock status bits to show clock source is ext ref clk
+   \                     ??pll_init_4:
+   \   00000044   ....               LDR.N    R2,??DataTable3_4  ;; 0x40064006
+   \   00000046   1278               LDRB     R2,[R2, #+0]
+   \   00000048   C2F38102           UBFX     R2,R2,#+2,#+2
+   \   0000004C   D2B2               UXTB     R2,R2            ;; ZeroExt  R2,R2,#+24,#+24
+   \   0000004E   022A               CMP      R2,#+2
+   \   00000050   F8D1               BNE.N    ??pll_init_4
+     50          
+     51          // Now in FBE
+     52          
+     53          #if (defined(K60_CLK))
+     54             MCG_C5 = MCG_C5_PRDIV(0x18);
+   \   00000052   ....               LDR.N    R2,??DataTable3_5  ;; 0x40064004
+   \   00000054   1823               MOVS     R3,#+24
+   \   00000056   1370               STRB     R3,[R2, #+0]
+     55          #else
+     56          // Configure PLL Ref Divider, PLLCLKEN=0, PLLSTEN=0, PRDIV=5
+     57          // The crystal frequency is used to select the PRDIV value. Only even frequency crystals are supported
+     58          // that will produce a 2MHz reference clock to the PLL.
+     59            MCG_C5 = MCG_C5_PRDIV(crystal_val); // Set PLL ref divider to match the crystal used
+     60          #endif
+     61          
+     62            // Ensure MCG_C6 is at the reset default of 0. LOLIE disabled, PLL disabled, clk monitor disabled, PLL VCO divider is clear
+     63            MCG_C6 = 0x0;
+   \   00000058   ....               LDR.N    R2,??DataTable3_6  ;; 0x40064005
+   \   0000005A   0023               MOVS     R3,#+0
+   \   0000005C   1370               STRB     R3,[R2, #+0]
+     64          // Select the PLL VCO divider and system clock dividers depending on clocking option
+     65            switch (clk_option) {
+   \   0000005E   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000060   0028               CMP      R0,#+0
+   \   00000062   05D0               BEQ.N    ??pll_init_5
+   \   00000064   0228               CMP      R0,#+2
+   \   00000066   19D0               BEQ.N    ??pll_init_6
+   \   00000068   0DD3               BCC.N    ??pll_init_7
+   \   0000006A   0328               CMP      R0,#+3
+   \   0000006C   21D0               BEQ.N    ??pll_init_8
+   \   0000006E   2AE0               B.N      ??pll_init_9
+     66              case 0:
+     67                // Set system options dividers
+     68                //MCG=PLL, core = MCG, bus = MCG, FlexBus = MCG, Flash clock= MCG/2
+     69                set_sys_dividers(0,0,0,1);
+   \                     ??pll_init_5:
+   \   00000070   0123               MOVS     R3,#+1
+   \   00000072   0022               MOVS     R2,#+0
+   \   00000074   0021               MOVS     R1,#+0
+   \   00000076   0020               MOVS     R0,#+0
+   \   00000078   ........           BL       set_sys_dividers
+     70                // Set the VCO divider and enable the PLL for 50MHz, LOLIE=0, PLLS=1, CME=0, VDIV=1
+     71                MCG_C6 = MCG_C6_PLLS_MASK | MCG_C6_VDIV(1); //VDIV = 1 (x25)
+   \   0000007C   ....               LDR.N    R0,??DataTable3_6  ;; 0x40064005
+   \   0000007E   4121               MOVS     R1,#+65
+   \   00000080   0170               STRB     R1,[R0, #+0]
+     72                pll_freq = 50;
+   \   00000082   3221               MOVS     R1,#+50
+     73                break;
+   \   00000084   1FE0               B.N      ??pll_init_9
+     74             case 1:
+     75                // Set system options dividers
+     76                //MCG=PLL, core = MCG, bus = MCG/2, FlexBus = MCG/2, Flash clock= MCG/4
+     77               set_sys_dividers(0,1,1,3);
+   \                     ??pll_init_7:
+   \   00000086   0323               MOVS     R3,#+3
+   \   00000088   0122               MOVS     R2,#+1
+   \   0000008A   0121               MOVS     R1,#+1
+   \   0000008C   0020               MOVS     R0,#+0
+   \   0000008E   ........           BL       set_sys_dividers
+     78                // Set the VCO divider and enable the PLL for 100MHz, LOLIE=0, PLLS=1, CME=0, VDIV=26
+     79                MCG_C6 = MCG_C6_PLLS_MASK | MCG_C6_VDIV(26); //VDIV = 26 (x50)
+   \   00000092   ....               LDR.N    R0,??DataTable3_6  ;; 0x40064005
+   \   00000094   5A21               MOVS     R1,#+90
+   \   00000096   0170               STRB     R1,[R0, #+0]
+     80                pll_freq = 100;
+   \   00000098   6421               MOVS     R1,#+100
+     81                break;
+   \   0000009A   14E0               B.N      ??pll_init_9
+     82              case 2:
+     83                // Set system options dividers
+     84                //MCG=PLL, core = MCG, bus = MCG/2, FlexBus = MCG/2, Flash clock= MCG/4
+     85                set_sys_dividers(0,1,1,3);
+   \                     ??pll_init_6:
+   \   0000009C   0323               MOVS     R3,#+3
+   \   0000009E   0122               MOVS     R2,#+1
+   \   000000A0   0121               MOVS     R1,#+1
+   \   000000A2   0020               MOVS     R0,#+0
+   \   000000A4   ........           BL       set_sys_dividers
+     86                // Set the VCO divider and enable the PLL for 96MHz, LOLIE=0, PLLS=1, CME=0, VDIV=24
+     87                MCG_C6 = MCG_C6_PLLS_MASK | MCG_C6_VDIV(24); //VDIV = 24 (x48)
+   \   000000A8   ....               LDR.N    R0,??DataTable3_6  ;; 0x40064005
+   \   000000AA   5821               MOVS     R1,#+88
+   \   000000AC   0170               STRB     R1,[R0, #+0]
+     88                pll_freq = 96;
+   \   000000AE   6021               MOVS     R1,#+96
+     89                break;
+   \   000000B0   09E0               B.N      ??pll_init_9
+     90             case 3:
+     91                // Set system options dividers
+     92                //MCG=PLL, core = MCG, bus = MCG, FlexBus = MCG, Flash clock= MCG/2
+     93                set_sys_dividers(0,0,0,1);
+   \                     ??pll_init_8:
+   \   000000B2   0123               MOVS     R3,#+1
+   \   000000B4   0022               MOVS     R2,#+0
+   \   000000B6   0021               MOVS     R1,#+0
+   \   000000B8   0020               MOVS     R0,#+0
+   \   000000BA   ........           BL       set_sys_dividers
+     94                // Set the VCO divider and enable the PLL for 48MHz, LOLIE=0, PLLS=1, CME=0, VDIV=0
+     95                MCG_C6 = MCG_C6_PLLS_MASK; //VDIV = 0 (x24)
+   \   000000BE   ....               LDR.N    R0,??DataTable3_6  ;; 0x40064005
+   \   000000C0   4021               MOVS     R1,#+64
+   \   000000C2   0170               STRB     R1,[R0, #+0]
+     96                pll_freq = 48;
+   \   000000C4   3021               MOVS     R1,#+48
+     97                break;
+     98            }
+     99            while (!(MCG_S & MCG_S_PLLST_MASK)){}; // wait for PLL status bit to set
+   \                     ??pll_init_9:
+   \   000000C6   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   000000C8   0078               LDRB     R0,[R0, #+0]
+   \   000000CA   8006               LSLS     R0,R0,#+26
+   \   000000CC   FBD5               BPL.N    ??pll_init_9
+    100          
+    101            while (!(MCG_S & MCG_S_LOCK_MASK)){}; // Wait for LOCK bit to set
+   \                     ??pll_init_10:
+   \   000000CE   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   000000D0   0078               LDRB     R0,[R0, #+0]
+   \   000000D2   4006               LSLS     R0,R0,#+25
+   \   000000D4   FBD5               BPL.N    ??pll_init_10
+    102          
+    103          // Now running PBE Mode
+    104          
+    105          // Transition into PEE by setting CLKS to 0
+    106          // CLKS=0, FRDIV=3, IREFS=0, IRCLKEN=0, IREFSTEN=0
+    107            MCG_C1 &= ~MCG_C1_CLKS_MASK;
+   \   000000D6   ....               LDR.N    R0,??DataTable3_3  ;; 0x40064000
+   \   000000D8   0078               LDRB     R0,[R0, #+0]
+   \   000000DA   10F03F00           ANDS     R0,R0,#0x3F
+   \   000000DE   ....               LDR.N    R2,??DataTable3_3  ;; 0x40064000
+   \   000000E0   1070               STRB     R0,[R2, #+0]
+    108          
+    109          // Wait for clock status bits to update
+    110            while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x3){};
+   \                     ??pll_init_11:
+   \   000000E2   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   000000E4   0078               LDRB     R0,[R0, #+0]
+   \   000000E6   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   000000EA   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   000000EC   0328               CMP      R0,#+3
+   \   000000EE   F8D1               BNE.N    ??pll_init_11
+    111          
+    112          // Now running PEE Mode
+    113          
+    114          return pll_freq;
+   \   000000F0   0800               MOVS     R0,R1
+   \   000000F2   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \                     ??pll_init_1:
+   \   000000F4   02BD               POP      {R1,PC}          ;; return
+    115          } //pll_init
+    116          
+
+   \                                 In section .textrw, align 4, keep-with-next
+    117          __ramfunc void set_sys_dividers(uint32 outdiv1, uint32 outdiv2, uint32 outdiv3, uint32 outdiv4)
+    118          {
+   \                     set_sys_dividers:
+   \   00000000   70B4               PUSH     {R4-R6}
+    119           /*
+    120            * This routine must be placed in RAM. It is a workaround for errata e2448.
+    121            * Flash prefetch must be disabled when the flash clock divider is changed.
+    122            * This cannot be performed while executing out of flash.
+    123            * There must be a short delay after the clock dividers are changed before prefetch
+    124            * can be re-enabled.
+    125            */
+    126            uint32 temp_reg;
+    127            uint8 i;
+    128            
+    129            temp_reg = FMC_PFAPR; // store present value of FMC_PFAPR
+   \   00000002   104C               LDR.N    R4,??set_sys_dividers_0  ;; 0x4001f000
+   \   00000004   2468               LDR      R4,[R4, #+0]
+    130            
+    131            // set M0PFD through M7PFD to 1 to disable prefetch
+    132            FMC_PFAPR |= FMC_PFAPR_M7PFD_MASK | FMC_PFAPR_M6PFD_MASK | FMC_PFAPR_M5PFD_MASK
+    133                       | FMC_PFAPR_M4PFD_MASK | FMC_PFAPR_M3PFD_MASK | FMC_PFAPR_M2PFD_MASK
+    134                       | FMC_PFAPR_M1PFD_MASK | FMC_PFAPR_M0PFD_MASK;
+   \   00000006   0F4D               LDR.N    R5,??set_sys_dividers_0  ;; 0x4001f000
+   \   00000008   2D68               LDR      R5,[R5, #+0]
+   \   0000000A   55F47F05           ORRS     R5,R5,#0xFF0000
+   \   0000000E   0D4E               LDR.N    R6,??set_sys_dividers_0  ;; 0x4001f000
+   \   00000010   3560               STR      R5,[R6, #+0]
+    135            
+    136            // set clock dividers to desired value  
+    137            SIM_CLKDIV1 = SIM_CLKDIV1_OUTDIV1(outdiv1) | SIM_CLKDIV1_OUTDIV2(outdiv2) 
+    138                        | SIM_CLKDIV1_OUTDIV3(outdiv3) | SIM_CLKDIV1_OUTDIV4(outdiv4);
+   \   00000012   0906               LSLS     R1,R1,#+24
+   \   00000014   11F07061           ANDS     R1,R1,#0xF000000
+   \   00000018   51EA0070           ORRS     R0,R1,R0, LSL #+28
+   \   0000001C   1105               LSLS     R1,R2,#+20
+   \   0000001E   11F47001           ANDS     R1,R1,#0xF00000
+   \   00000022   0843               ORRS     R0,R1,R0
+   \   00000024   1904               LSLS     R1,R3,#+16
+   \   00000026   11F47021           ANDS     R1,R1,#0xF0000
+   \   0000002A   0843               ORRS     R0,R1,R0
+   \   0000002C   0649               LDR.N    R1,??set_sys_dividers_0+0x4  ;; 0x40048044
+   \   0000002E   0860               STR      R0,[R1, #+0]
+    139          
+    140            // wait for dividers to change
+    141            for (i = 0 ; i < outdiv4 ; i++)
+   \   00000030   0020               MOVS     R0,#+0
+   \   00000032   00E0               B.N      ??set_sys_dividers_1
+   \                     ??set_sys_dividers_2:
+   \   00000034   401C               ADDS     R0,R0,#+1
+   \                     ??set_sys_dividers_1:
+   \   00000036   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000038   9842               CMP      R0,R3
+   \   0000003A   FBD3               BCC.N    ??set_sys_dividers_2
+    142            {}
+    143            
+    144            FMC_PFAPR = temp_reg; // re-store original value of FMC_PFAPR
+   \   0000003C   0148               LDR.N    R0,??set_sys_dividers_0  ;; 0x4001f000
+   \   0000003E   0460               STR      R4,[R0, #+0]
+    145            
+    146            return;
+   \   00000040   70BC               POP      {R4-R6}
+   \   00000042   7047               BX       LR               ;; return
+   \                     ??set_sys_dividers_0:
+   \   00000044   00F00140           DC32     0x4001f000
+   \   00000048   44800440           DC32     0x40048044
+    147          } // set_sys_dividers
+    148          
+    149          
+    150          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    151          void mcg_pee_2_blpi(void)
+    152          {
+    153              uint8 temp_reg;
+    154              // Transition from PEE to BLPI: PEE -> PBE -> FBE -> FBI -> BLPI
+    155            
+    156              // Step 1: PEE -> PBE
+    157              MCG_C1 |= MCG_C1_CLKS(2);  // System clock from external reference OSC, not PLL.
+   \                     mcg_pee_2_blpi:
+   \   00000000   ....               LDR.N    R0,??DataTable3_3  ;; 0x40064000
+   \   00000002   0078               LDRB     R0,[R0, #+0]
+   \   00000004   50F08000           ORRS     R0,R0,#0x80
+   \   00000008   ....               LDR.N    R1,??DataTable3_3  ;; 0x40064000
+   \   0000000A   0870               STRB     R0,[R1, #+0]
+    158              while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2){};  // Wait for clock status to update.
+   \                     ??mcg_pee_2_blpi_0:
+   \   0000000C   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   0000000E   0078               LDRB     R0,[R0, #+0]
+   \   00000010   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   00000014   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000016   0228               CMP      R0,#+2
+   \   00000018   F8D1               BNE.N    ??mcg_pee_2_blpi_0
+    159              
+    160              // Step 2: PBE -> FBE
+    161              MCG_C6 &= ~MCG_C6_PLLS_MASK;  // Clear PLLS to select FLL, still running system from ext OSC.
+   \   0000001A   ....               LDR.N    R0,??DataTable3_6  ;; 0x40064005
+   \   0000001C   0078               LDRB     R0,[R0, #+0]
+   \   0000001E   10F0BF00           ANDS     R0,R0,#0xBF
+   \   00000022   ....               LDR.N    R1,??DataTable3_6  ;; 0x40064005
+   \   00000024   0870               STRB     R0,[R1, #+0]
+    162              while (MCG_S & MCG_S_PLLST_MASK){};  // Wait for PLL status flag to reflect FLL selected.
+   \                     ??mcg_pee_2_blpi_1:
+   \   00000026   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000028   0078               LDRB     R0,[R0, #+0]
+   \   0000002A   8006               LSLS     R0,R0,#+26
+   \   0000002C   FBD4               BMI.N    ??mcg_pee_2_blpi_1
+    163              
+    164              // Step 3: FBE -> FBI
+    165              MCG_C2 &= ~MCG_C2_LP_MASK;  // FLL remains active in bypassed modes.
+   \   0000002E   ....               LDR.N    R0,??DataTable3  ;; 0x40064001
+   \   00000030   0078               LDRB     R0,[R0, #+0]
+   \   00000032   10F0FD00           ANDS     R0,R0,#0xFD
+   \   00000036   ....               LDR.N    R1,??DataTable3  ;; 0x40064001
+   \   00000038   0870               STRB     R0,[R1, #+0]
+    166              MCG_C2 |= MCG_C2_IRCS_MASK;  // Select fast (1MHz) internal reference
+   \   0000003A   ....               LDR.N    R0,??DataTable3  ;; 0x40064001
+   \   0000003C   0078               LDRB     R0,[R0, #+0]
+   \   0000003E   50F00100           ORRS     R0,R0,#0x1
+   \   00000042   ....               LDR.N    R1,??DataTable3  ;; 0x40064001
+   \   00000044   0870               STRB     R0,[R1, #+0]
+    167              temp_reg = MCG_C1;
+   \   00000046   ....               LDR.N    R0,??DataTable3_3  ;; 0x40064000
+   \   00000048   0078               LDRB     R0,[R0, #+0]
+    168              temp_reg &= ~(MCG_C1_CLKS_MASK | MCG_C1_IREFS_MASK);
+   \   0000004A   10F03B00           ANDS     R0,R0,#0x3B
+    169              temp_reg |= (MCG_C1_CLKS(1) | MCG_C1_IREFS_MASK);  // Select internal reference (fast IREF clock @ 1MHz) as MCG clock source.
+   \   0000004E   50F04400           ORRS     R0,R0,#0x44
+    170              MCG_C1 = temp_reg;
+   \   00000052   ....               LDR.N    R1,??DataTable3_3  ;; 0x40064000
+   \   00000054   0870               STRB     R0,[R1, #+0]
+    171            
+    172              while (MCG_S & MCG_S_IREFST_MASK){};  // Wait for Reference Status bit to update.
+   \                     ??mcg_pee_2_blpi_2:
+   \   00000056   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000058   0078               LDRB     R0,[R0, #+0]
+   \   0000005A   C006               LSLS     R0,R0,#+27
+   \   0000005C   FBD4               BMI.N    ??mcg_pee_2_blpi_2
+    173              while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x1){};  // Wait for clock status bits to update
+   \                     ??mcg_pee_2_blpi_3:
+   \   0000005E   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000060   0078               LDRB     R0,[R0, #+0]
+   \   00000062   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   00000066   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000068   0128               CMP      R0,#+1
+   \   0000006A   F8D1               BNE.N    ??mcg_pee_2_blpi_3
+    174              
+    175              // Step 4: FBI -> BLPI
+    176              MCG_C1 |= MCG_C1_IREFSTEN_MASK;  // Keep internal reference clock running in STOP modes.
+   \   0000006C   ....               LDR.N    R0,??DataTable3_3  ;; 0x40064000
+   \   0000006E   0078               LDRB     R0,[R0, #+0]
+   \   00000070   50F00100           ORRS     R0,R0,#0x1
+   \   00000074   ....               LDR.N    R1,??DataTable3_3  ;; 0x40064000
+   \   00000076   0870               STRB     R0,[R1, #+0]
+    177              MCG_C2 |= MCG_C2_LP_MASK;  // FLL remains disabled in bypassed modes.
+   \   00000078   ....               LDR.N    R0,??DataTable3  ;; 0x40064001
+   \   0000007A   0078               LDRB     R0,[R0, #+0]
+   \   0000007C   50F00200           ORRS     R0,R0,#0x2
+   \   00000080   ....               LDR.N    R1,??DataTable3  ;; 0x40064001
+   \   00000082   0870               STRB     R0,[R1, #+0]
+    178              while (!(MCG_S & MCG_S_IREFST_MASK)){};  // Wait for Reference Status bit to update.
+   \                     ??mcg_pee_2_blpi_4:
+   \   00000084   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000086   0078               LDRB     R0,[R0, #+0]
+   \   00000088   C006               LSLS     R0,R0,#+27
+   \   0000008A   FBD5               BPL.N    ??mcg_pee_2_blpi_4
+    179              while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x1){};  // Wait for clock status bits to update.
+   \                     ??mcg_pee_2_blpi_5:
+   \   0000008C   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   0000008E   0078               LDRB     R0,[R0, #+0]
+   \   00000090   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   00000094   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000096   0128               CMP      R0,#+1
+   \   00000098   F8D1               BNE.N    ??mcg_pee_2_blpi_5
+    180            
+    181          } // end MCG PEE to BLPI
+   \   0000009A   7047               BX       LR               ;; return
+    182          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    183          void mcg_blpi_2_pee(void)
+    184          {
+   \                     mcg_blpi_2_pee:
+   \   00000000   80B5               PUSH     {R7,LR}
+    185              uint8 temp_reg;
+    186              // Transition from BLPI to PEE: BLPI -> FBI -> FEI -> FBE -> PBE -> PEE
+    187            
+    188              // Step 1: BLPI -> FBI
+    189              MCG_C2 &= ~MCG_C2_LP_MASK;  // FLL remains active in bypassed modes.
+   \   00000002   ....               LDR.N    R0,??DataTable3  ;; 0x40064001
+   \   00000004   0078               LDRB     R0,[R0, #+0]
+   \   00000006   10F0FD00           ANDS     R0,R0,#0xFD
+   \   0000000A   ....               LDR.N    R1,??DataTable3  ;; 0x40064001
+   \   0000000C   0870               STRB     R0,[R1, #+0]
+    190              while (!(MCG_S & MCG_S_IREFST_MASK)){};  // Wait for Reference Status bit to update.
+   \                     ??mcg_blpi_2_pee_0:
+   \   0000000E   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000010   0078               LDRB     R0,[R0, #+0]
+   \   00000012   C006               LSLS     R0,R0,#+27
+   \   00000014   FBD5               BPL.N    ??mcg_blpi_2_pee_0
+    191              while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x1){};  // Wait for clock status bits to update
+   \                     ??mcg_blpi_2_pee_1:
+   \   00000016   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000018   0078               LDRB     R0,[R0, #+0]
+   \   0000001A   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   0000001E   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000020   0128               CMP      R0,#+1
+   \   00000022   F8D1               BNE.N    ??mcg_blpi_2_pee_1
+    192              
+    193              // Step 2: FBI -> FEI
+    194              MCG_C2 &= ~MCG_C2_LP_MASK;  // FLL remains active in bypassed modes.
+   \   00000024   ....               LDR.N    R0,??DataTable3  ;; 0x40064001
+   \   00000026   0078               LDRB     R0,[R0, #+0]
+   \   00000028   10F0FD00           ANDS     R0,R0,#0xFD
+   \   0000002C   ....               LDR.N    R1,??DataTable3  ;; 0x40064001
+   \   0000002E   0870               STRB     R0,[R1, #+0]
+    195              temp_reg = MCG_C2;  // assign temporary variable of MCG_C2 contents
+   \   00000030   ....               LDR.N    R0,??DataTable3  ;; 0x40064001
+   \   00000032   0078               LDRB     R0,[R0, #+0]
+    196              temp_reg &= ~MCG_C2_RANGE_MASK;  // set RANGE field location to zero
+   \   00000034   10F0CF00           ANDS     R0,R0,#0xCF
+    197              temp_reg |= (0x2 << 0x4);  // OR in new values
+   \   00000038   50F02000           ORRS     R0,R0,#0x20
+    198              MCG_C2 = temp_reg;  // store new value in MCG_C2
+   \   0000003C   ....               LDR.N    R1,??DataTable3  ;; 0x40064001
+   \   0000003E   0870               STRB     R0,[R1, #+0]
+    199              MCG_C4 = 0x0E;  // Low-range DCO output (~10MHz bus).  FCTRIM=%0111.
+   \   00000040   ....               LDR.N    R0,??DataTable3_7  ;; 0x40064003
+   \   00000042   0E21               MOVS     R1,#+14
+   \   00000044   0170               STRB     R1,[R0, #+0]
+    200              MCG_C1 = 0x04;  // Select internal clock as MCG source, FRDIV=%000, internal reference selected.
+   \   00000046   ....               LDR.N    R0,??DataTable3_3  ;; 0x40064000
+   \   00000048   0421               MOVS     R1,#+4
+   \   0000004A   0170               STRB     R1,[R0, #+0]
+    201           
+    202              while (!(MCG_S & MCG_S_IREFST_MASK)){};   // Wait for Reference Status bit to update 
+   \                     ??mcg_blpi_2_pee_2:
+   \   0000004C   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   0000004E   0078               LDRB     R0,[R0, #+0]
+   \   00000050   C006               LSLS     R0,R0,#+27
+   \   00000052   FBD5               BPL.N    ??mcg_blpi_2_pee_2
+    203              while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x0){}; // Wait for clock status bits to update
+   \                     ??mcg_blpi_2_pee_3:
+   \   00000054   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   00000056   0078               LDRB     R0,[R0, #+0]
+   \   00000058   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   0000005C   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   0000005E   0028               CMP      R0,#+0
+   \   00000060   F8D1               BNE.N    ??mcg_blpi_2_pee_3
+    204              
+    205              // Handle FEI to PEE transitions using standard clock initialization routine.
+    206              core_clk_mhz = pll_init(CORE_CLK_MHZ, REF_CLK); 
+   \   00000062   0321               MOVS     R1,#+3
+   \   00000064   0220               MOVS     R0,#+2
+   \   00000066   ........           BL       pll_init
+   \   0000006A   ....               LDR.N    R1,??DataTable3_8
+   \   0000006C   0860               STR      R0,[R1, #+0]
+    207          
+    208              /* Use the value obtained from the pll_init function to define variables
+    209              * for the core clock in kHz and also the peripheral clock. These
+    210              * variables can be used by other functions that need awareness of the
+    211              * system frequency.
+    212              */
+    213              core_clk_khz = core_clk_mhz * 1000;
+   \   0000006E   ....               LDR.N    R0,??DataTable3_8
+   \   00000070   0068               LDR      R0,[R0, #+0]
+   \   00000072   4FF47A71           MOV      R1,#+1000
+   \   00000076   4843               MULS     R0,R1,R0
+   \   00000078   ....               LDR.N    R1,??DataTable3_9
+   \   0000007A   0860               STR      R0,[R1, #+0]
+    214              periph_clk_khz = core_clk_khz / (((SIM_CLKDIV1 & SIM_CLKDIV1_OUTDIV2_MASK) >> 24)+ 1);        
+   \   0000007C   ....               LDR.N    R0,??DataTable3_9
+   \   0000007E   0068               LDR      R0,[R0, #+0]
+   \   00000080   ....               LDR.N    R1,??DataTable3_10  ;; 0x40048044
+   \   00000082   0968               LDR      R1,[R1, #+0]
+   \   00000084   C1F30361           UBFX     R1,R1,#+24,#+4
+   \   00000088   491C               ADDS     R1,R1,#+1
+   \   0000008A   B0FBF1F0           UDIV     R0,R0,R1
+   \   0000008E   ....               LDR.N    R1,??DataTable3_11
+   \   00000090   0860               STR      R0,[R1, #+0]
+    215          } // end MCG BLPI to PEE
+   \   00000092   01BD               POP      {R0,PC}          ;; return
+    216          /********************************************************************/
+    217          
+
+   \                                 In section .text, align 2, keep-with-next
+    218          void mcg_pbe_2_pee(void)
+    219          {  
+    220            MCG_C1 &= ~MCG_C1_CLKS_MASK; // select PLL as MCG_OUT
+   \                     mcg_pbe_2_pee:
+   \   00000000   ....               LDR.N    R0,??DataTable3_3  ;; 0x40064000
+   \   00000002   0078               LDRB     R0,[R0, #+0]
+   \   00000004   10F03F00           ANDS     R0,R0,#0x3F
+   \   00000008   ....               LDR.N    R1,??DataTable3_3  ;; 0x40064000
+   \   0000000A   0870               STRB     R0,[R1, #+0]
+    221            // Wait for clock status bits to update 
+    222            while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x3){}; 
+   \                     ??mcg_pbe_2_pee_0:
+   \   0000000C   ....               LDR.N    R0,??DataTable3_4  ;; 0x40064006
+   \   0000000E   0078               LDRB     R0,[R0, #+0]
+   \   00000010   C0F38100           UBFX     R0,R0,#+2,#+2
+   \   00000014   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000016   0328               CMP      R0,#+3
+   \   00000018   F8D1               BNE.N    ??mcg_pbe_2_pee_0
+    223          
+    224            switch (CORE_CLK_MHZ) {
+    225              case PLL50:
+    226                core_clk_khz = 50000;
+    227                break;
+    228              case PLL100:
+    229                core_clk_khz = 100000;
+    230                break;
+    231              case PLL96:
+    232                core_clk_khz = 96000;
+   \   0000001A   ....               LDR.N    R0,??DataTable3_9
+   \   0000001C   ....               LDR.N    R1,??DataTable3_12  ;; 0x17700
+   \   0000001E   0160               STR      R1,[R0, #+0]
+    233                break;  
+    234              case PLL48:
+    235                core_clk_khz = 48000;
+    236                break;  
+    237            }
+    238          }
+   \   00000020   7047               BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   01400640           DC32     0x40064001
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_1:
+   \   00000000   34800440           DC32     0x40048034
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_2:
+   \   00000000   08C00740           DC32     0x4007c008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_3:
+   \   00000000   00400640           DC32     0x40064000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_4:
+   \   00000000   06400640           DC32     0x40064006
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_5:
+   \   00000000   04400640           DC32     0x40064004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_6:
+   \   00000000   05400640           DC32     0x40064005
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_7:
+   \   00000000   03400640           DC32     0x40064003
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_8:
+   \   00000000   ........           DC32     core_clk_mhz
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_9:
+   \   00000000   ........           DC32     core_clk_khz
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_10:
+   \   00000000   44800440           DC32     0x40048044
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_11:
+   \   00000000   ........           DC32     periph_clk_khz
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_12:
+   \   00000000   00770100           DC32     0x17700
+
+   Maximum stack usage in bytes:
+
+     Function         .cstack
+     --------         -------
+     mcg_blpi_2_pee        8
+     mcg_pbe_2_pee         0
+     mcg_pee_2_blpi        0
+     pll_init              8
+     set_sys_dividers     12
+
+
+   Section sizes:
+
+     Function/Label   Bytes
+     --------------   -----
+     pll_init          246
+     set_sys_dividers   76
+     mcg_pee_2_blpi    156
+     mcg_blpi_2_pee    148
+     mcg_pbe_2_pee      34
+     ??DataTable3        4
+     ??DataTable3_1      4
+     ??DataTable3_2      4
+     ??DataTable3_3      4
+     ??DataTable3_4      4
+     ??DataTable3_5      4
+     ??DataTable3_6      4
+     ??DataTable3_7      4
+     ??DataTable3_8      4
+     ??DataTable3_9      4
+     ??DataTable3_10     4
+     ??DataTable3_11     4
+     ??DataTable3_12     4
+
+ 
+ 636 bytes in section .text
+  76 bytes in section .textrw
+ 
+ 712 bytes of CODE memory
+
+Errors: none
+Warnings: none

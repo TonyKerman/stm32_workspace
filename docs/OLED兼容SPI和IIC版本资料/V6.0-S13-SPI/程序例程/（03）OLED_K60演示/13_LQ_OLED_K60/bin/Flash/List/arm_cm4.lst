@@ -1,0 +1,573 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.10.1.52143/W32 for ARM     16/Apr/2011  16:44:05 #
+# Copyright 1999-2010 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  E:\Project\15_K60\03_Software\02_My                      #
+#                    program\K60_IAR\01_light\src\cpu\arm_cm4.c               #
+#    Command line =  "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\cpu\arm_cm4.c" -D IAR -D    #
+#                    TWR_K60N512 -lCN "E:\Project\15_K60\03_Software\02_My    #
+#                    program\K60_IAR\01_light\bin\Flash\List\" -lB            #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\bin\Flash\List\" -o             #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\bin\Flash\Obj\" --no_cse        #
+#                    --no_unroll --no_inline --no_code_motion --no_tbaa       #
+#                    --no_clustering --no_scheduling --debug --endian=little  #
+#                    --cpu=Cortex-M4 -e --fpu=None --dlib_config              #
+#                    D:\iar\arm\INC\c\DLib_Config_Normal.h -I                 #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\common\" -I                 #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\cpu\" -I                    #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\cpu\headers\" -I            #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\" -I                #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\uart\" -I           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\gpio\" -I           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\mcg\" -I            #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\drivers\wdog\" -I           #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\projects\" -I               #
+#                    "E:\Project\15_K60\03_Software\02_My                     #
+#                    program\K60_IAR\01_light\src\" -Ol --use_c++_inline      #
+#    List file    =  E:\Project\15_K60\03_Software\02_My                      #
+#                    program\K60_IAR\01_light\bin\Flash\List\arm_cm4.lst      #
+#    Object file  =  E:\Project\15_K60\03_Software\02_My                      #
+#                    program\K60_IAR\01_light\bin\Flash\Obj\arm_cm4.o         #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\Project\15_K60\03_Software\02_My program\K60_IAR\01_light\src\cpu\arm_cm4.c
+      1          /*
+      2           * File:		arm_cm4.c
+      3           * Purpose:		Generic high-level routines for ARM Cortex M4 processors
+      4           *
+      5           * Notes:
+      6           */
+      7          
+      8          #include "common.h"
+      9          
+     10          /***********************************************************************/
+     11          /*
+     12           * Configures the ARM system control register for STOP (deep sleep) mode
+     13           * and then executes the WFI instruction to enter the mode.
+     14           *
+     15           * Parameters:
+     16           * none
+     17           *
+     18           * Note: Might want to change this later to allow for passing in a parameter
+     19           *       to optionally set the sleep on exit bit.
+     20           */
+     21          
+
+   \                                 In section .text, align 4, keep-with-next
+     22          void stop (void)
+     23          {
+     24          	/* Set the SLEEPDEEP bit to enable deep sleep mode (STOP) */
+     25          	SCB_SCR |= SCB_SCR_SLEEPDEEP_MASK;	
+   \                     stop:
+   \   00000000   ....               LDR.N    R0,??DataTable9  ;; 0xe000ed10
+   \   00000002   0068               LDR      R0,[R0, #+0]
+   \   00000004   50F00400           ORRS     R0,R0,#0x4
+   \   00000008   ....               LDR.N    R1,??DataTable9  ;; 0xe000ed10
+   \   0000000A   0860               STR      R0,[R1, #+0]
+     26          
+     27          	/* WFI instruction will start entry into STOP mode */
+     28          	asm("WFI");
+   \   0000000C   30BF               WFI              
+     29          }
+   \   0000000E   7047               BX       LR               ;; return
+     30          /***********************************************************************/
+     31          /*
+     32           * Configures the ARM system control register for WAIT (sleep) mode
+     33           * and then executes the WFI instruction to enter the mode.
+     34           *
+     35           * Parameters:
+     36           * none
+     37           *
+     38           * Note: Might want to change this later to allow for passing in a parameter
+     39           *       to optionally set the sleep on exit bit.
+     40           */
+     41          
+
+   \                                 In section .text, align 4, keep-with-next
+     42          void wait (void)
+     43          {
+     44          	/* Clear the SLEEPDEEP bit to make sure we go into WAIT (sleep) mode instead
+     45          	 * of deep sleep.
+     46          	 */
+     47          	SCB_SCR &= ~SCB_SCR_SLEEPDEEP_MASK;	
+   \                     wait:
+   \   00000000   ....               LDR.N    R0,??DataTable9  ;; 0xe000ed10
+   \   00000002   0068               LDR      R0,[R0, #+0]
+   \   00000004   30F00400           BICS     R0,R0,#0x4
+   \   00000008   ....               LDR.N    R1,??DataTable9  ;; 0xe000ed10
+   \   0000000A   0860               STR      R0,[R1, #+0]
+     48          
+     49          	/* WFI instruction will start entry into WAIT mode */
+     50          	asm("WFI");
+   \   0000000C   30BF               WFI              
+     51          }
+   \   0000000E   7047               BX       LR               ;; return
+     52          /***********************************************************************/
+     53          /*
+     54           * Change the value of the vector table offset register to the specified value.
+     55           *
+     56           * Parameters:
+     57           * vtor     new value to write to the VTOR
+     58           */
+     59          
+
+   \                                 In section .text, align 2, keep-with-next
+     60          void write_vtor (int vtor)
+     61          {
+     62                  /* Write the VTOR with the new value */
+     63                  SCB_VTOR = vtor;	
+   \                     write_vtor:
+   \   00000000   ....               LDR.N    R1,??DataTable9_1  ;; 0xe000ed08
+   \   00000002   0860               STR      R0,[R1, #+0]
+     64          }
+   \   00000004   7047               BX       LR               ;; return
+     65          /***********************************************************************/
+     66          /*
+     67           * Initialize the NVIC to enable the specified IRQ.
+     68           * 
+     69           * NOTE: The function only initializes the NVIC to enable a single IRQ. 
+     70           * Interrupts will also need to be enabled in the ARM core. This can be 
+     71           * done using the EnableInterrupts macro.
+     72           *
+     73           * Parameters:
+     74           * irq    irq number to be enabled (the irq number NOT the vector number)
+     75           */
+     76          
+
+   \                                 In section .text, align 2, keep-with-next
+     77          void enable_irq (int irq)
+     78          {
+   \                     enable_irq:
+   \   00000000   10B5               PUSH     {R4,LR}
+   \   00000002   0400               MOVS     R4,R0
+     79              int div;
+     80              
+     81              /* Make sure that the IRQ is an allowable number. Right now up to 91 is 
+     82               * used.
+     83               */
+     84              if (irq > 91)
+   \   00000004   5C2C               CMP      R4,#+92
+   \   00000006   03DB               BLT.N    ??enable_irq_0
+     85                  printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+   \   00000008   ........           ADR.W    R0,`?<Constant "\\nERR! Invalid IRQ val...">`
+   \   0000000C   ........           BL       printf
+     86              
+     87              /* Determine which of the NVICISERs corresponds to the irq */
+     88              div = irq/32;
+   \                     ??enable_irq_0:
+   \   00000010   2020               MOVS     R0,#+32
+   \   00000012   94FBF0F0           SDIV     R0,R4,R0
+     89              
+     90              switch (div)
+   \   00000016   0028               CMP      R0,#+0
+   \   00000018   03D0               BEQ.N    ??enable_irq_1
+   \   0000001A   0228               CMP      R0,#+2
+   \   0000001C   33D0               BEQ.N    ??enable_irq_2
+   \   0000001E   19D3               BCC.N    ??enable_irq_3
+   \   00000020   49E0               B.N      ??enable_irq_4
+     91              {
+     92              	case 0x0:
+     93                        NVICICPR0 |= 1 << (irq%32);
+   \                     ??enable_irq_1:
+   \   00000022   ....               LDR.N    R0,??DataTable9_2  ;; 0xe000e280
+   \   00000024   0068               LDR      R0,[R0, #+0]
+   \   00000026   0121               MOVS     R1,#+1
+   \   00000028   2022               MOVS     R2,#+32
+   \   0000002A   94FBF2F3           SDIV     R3,R4,R2
+   \   0000002E   03FB1243           MLS      R3,R3,R2,R4
+   \   00000032   9940               LSLS     R1,R1,R3
+   \   00000034   0843               ORRS     R0,R1,R0
+   \   00000036   ....               LDR.N    R1,??DataTable9_2  ;; 0xe000e280
+   \   00000038   0860               STR      R0,[R1, #+0]
+     94                        NVICISER0 |= 1 << (irq%32);
+   \   0000003A   ....               LDR.N    R0,??DataTable9_3  ;; 0xe000e100
+   \   0000003C   0068               LDR      R0,[R0, #+0]
+   \   0000003E   0121               MOVS     R1,#+1
+   \   00000040   2022               MOVS     R2,#+32
+   \   00000042   94FBF2F3           SDIV     R3,R4,R2
+   \   00000046   03FB1243           MLS      R3,R3,R2,R4
+   \   0000004A   9940               LSLS     R1,R1,R3
+   \   0000004C   0843               ORRS     R0,R1,R0
+   \   0000004E   ....               LDR.N    R1,??DataTable9_3  ;; 0xe000e100
+   \   00000050   0860               STR      R0,[R1, #+0]
+     95                        break;
+   \   00000052   30E0               B.N      ??enable_irq_4
+     96              	case 0x1:
+     97                        NVICICPR1 |= 1 << (irq%32);
+   \                     ??enable_irq_3:
+   \   00000054   ....               LDR.N    R0,??DataTable9_4  ;; 0xe000e284
+   \   00000056   0068               LDR      R0,[R0, #+0]
+   \   00000058   0121               MOVS     R1,#+1
+   \   0000005A   2022               MOVS     R2,#+32
+   \   0000005C   94FBF2F3           SDIV     R3,R4,R2
+   \   00000060   03FB1243           MLS      R3,R3,R2,R4
+   \   00000064   9940               LSLS     R1,R1,R3
+   \   00000066   0843               ORRS     R0,R1,R0
+   \   00000068   ....               LDR.N    R1,??DataTable9_4  ;; 0xe000e284
+   \   0000006A   0860               STR      R0,[R1, #+0]
+     98                        NVICISER1 |= 1 << (irq%32);
+   \   0000006C   ....               LDR.N    R0,??DataTable9_5  ;; 0xe000e104
+   \   0000006E   0068               LDR      R0,[R0, #+0]
+   \   00000070   0121               MOVS     R1,#+1
+   \   00000072   2022               MOVS     R2,#+32
+   \   00000074   94FBF2F3           SDIV     R3,R4,R2
+   \   00000078   03FB1243           MLS      R3,R3,R2,R4
+   \   0000007C   9940               LSLS     R1,R1,R3
+   \   0000007E   0843               ORRS     R0,R1,R0
+   \   00000080   ....               LDR.N    R1,??DataTable9_5  ;; 0xe000e104
+   \   00000082   0860               STR      R0,[R1, #+0]
+     99                        break;
+   \   00000084   17E0               B.N      ??enable_irq_4
+    100              	case 0x2:
+    101                        NVICICPR2 |= 1 << (irq%32);
+   \                     ??enable_irq_2:
+   \   00000086   ....               LDR.N    R0,??DataTable9_6  ;; 0xe000e288
+   \   00000088   0068               LDR      R0,[R0, #+0]
+   \   0000008A   0121               MOVS     R1,#+1
+   \   0000008C   2022               MOVS     R2,#+32
+   \   0000008E   94FBF2F3           SDIV     R3,R4,R2
+   \   00000092   03FB1243           MLS      R3,R3,R2,R4
+   \   00000096   9940               LSLS     R1,R1,R3
+   \   00000098   0843               ORRS     R0,R1,R0
+   \   0000009A   ....               LDR.N    R1,??DataTable9_6  ;; 0xe000e288
+   \   0000009C   0860               STR      R0,[R1, #+0]
+    102                        NVICISER2 |= 1 << (irq%32);
+   \   0000009E   ....               LDR.N    R0,??DataTable9_7  ;; 0xe000e108
+   \   000000A0   0068               LDR      R0,[R0, #+0]
+   \   000000A2   0121               MOVS     R1,#+1
+   \   000000A4   2022               MOVS     R2,#+32
+   \   000000A6   94FBF2F3           SDIV     R3,R4,R2
+   \   000000AA   03FB1243           MLS      R3,R3,R2,R4
+   \   000000AE   9940               LSLS     R1,R1,R3
+   \   000000B0   0843               ORRS     R0,R1,R0
+   \   000000B2   ....               LDR.N    R1,??DataTable9_7  ;; 0xe000e108
+   \   000000B4   0860               STR      R0,[R1, #+0]
+    103                        break;
+    104              }              
+    105          }
+   \                     ??enable_irq_4:
+   \   000000B6   10BD               POP      {R4,PC}          ;; return
+    106          /***********************************************************************/
+    107          /*
+    108           * Initialize the NVIC to disable the specified IRQ.
+    109           * 
+    110           * NOTE: The function only initializes the NVIC to disable a single IRQ. 
+    111           * If you want to disable all interrupts, then use the DisableInterrupts
+    112           * macro instead. 
+    113           *
+    114           * Parameters:
+    115           * irq    irq number to be disabled (the irq number NOT the vector number)
+    116           */
+    117          
+
+   \                                 In section .text, align 2, keep-with-next
+    118          void disable_irq (int irq)
+    119          {
+   \                     disable_irq:
+   \   00000000   10B5               PUSH     {R4,LR}
+   \   00000002   0400               MOVS     R4,R0
+    120              int div;
+    121              
+    122              /* Make sure that the IRQ is an allowable number. Right now up to 91 is 
+    123               * used.
+    124               */
+    125              if (irq > 91)
+   \   00000004   5C2C               CMP      R4,#+92
+   \   00000006   03DB               BLT.N    ??disable_irq_0
+    126                  printf("\nERR! Invalid IRQ value passed to disable irq function!\n");
+   \   00000008   ........           ADR.W    R0,`?<Constant "\\nERR! Invalid IRQ val...">_1`
+   \   0000000C   ........           BL       printf
+    127              
+    128              /* Determine which of the NVICICERs corresponds to the irq */
+    129              div = irq/32;
+   \                     ??disable_irq_0:
+   \   00000010   2020               MOVS     R0,#+32
+   \   00000012   94FBF0F0           SDIV     R0,R4,R0
+    130              
+    131              switch (div)
+   \   00000016   0028               CMP      R0,#+0
+   \   00000018   03D0               BEQ.N    ??disable_irq_1
+   \   0000001A   0228               CMP      R0,#+2
+   \   0000001C   1BD0               BEQ.N    ??disable_irq_2
+   \   0000001E   0DD3               BCC.N    ??disable_irq_3
+   \   00000020   25E0               B.N      ??disable_irq_4
+    132              {
+    133              	case 0x0:
+    134                         NVICICER0 |= 1 << (irq%32);
+   \                     ??disable_irq_1:
+   \   00000022   ....               LDR.N    R0,??DataTable9_8  ;; 0xe000e180
+   \   00000024   0068               LDR      R0,[R0, #+0]
+   \   00000026   0121               MOVS     R1,#+1
+   \   00000028   2022               MOVS     R2,#+32
+   \   0000002A   94FBF2F3           SDIV     R3,R4,R2
+   \   0000002E   03FB1243           MLS      R3,R3,R2,R4
+   \   00000032   9940               LSLS     R1,R1,R3
+   \   00000034   0843               ORRS     R0,R1,R0
+   \   00000036   ....               LDR.N    R1,??DataTable9_8  ;; 0xe000e180
+   \   00000038   0860               STR      R0,[R1, #+0]
+    135                        break;
+   \   0000003A   18E0               B.N      ??disable_irq_4
+    136              	case 0x1:
+    137                        NVICICER1 |= 1 << (irq%32);
+   \                     ??disable_irq_3:
+   \   0000003C   ....               LDR.N    R0,??DataTable9_9  ;; 0xe000e184
+   \   0000003E   0068               LDR      R0,[R0, #+0]
+   \   00000040   0121               MOVS     R1,#+1
+   \   00000042   2022               MOVS     R2,#+32
+   \   00000044   94FBF2F3           SDIV     R3,R4,R2
+   \   00000048   03FB1243           MLS      R3,R3,R2,R4
+   \   0000004C   9940               LSLS     R1,R1,R3
+   \   0000004E   0843               ORRS     R0,R1,R0
+   \   00000050   ....               LDR.N    R1,??DataTable9_9  ;; 0xe000e184
+   \   00000052   0860               STR      R0,[R1, #+0]
+    138                        break;
+   \   00000054   0BE0               B.N      ??disable_irq_4
+    139              	case 0x2:
+    140                        NVICICER2 |= 1 << (irq%32);
+   \                     ??disable_irq_2:
+   \   00000056   ....               LDR.N    R0,??DataTable9_10  ;; 0xe000e188
+   \   00000058   0068               LDR      R0,[R0, #+0]
+   \   0000005A   0121               MOVS     R1,#+1
+   \   0000005C   2022               MOVS     R2,#+32
+   \   0000005E   94FBF2F3           SDIV     R3,R4,R2
+   \   00000062   03FB1243           MLS      R3,R3,R2,R4
+   \   00000066   9940               LSLS     R1,R1,R3
+   \   00000068   0843               ORRS     R0,R1,R0
+   \   0000006A   ....               LDR.N    R1,??DataTable9_10  ;; 0xe000e188
+   \   0000006C   0860               STR      R0,[R1, #+0]
+    141                        break;
+    142              }              
+    143          }
+   \                     ??disable_irq_4:
+   \   0000006E   10BD               POP      {R4,PC}          ;; return
+    144          /***********************************************************************/
+    145          /*
+    146           * Initialize the NVIC to set specified IRQ priority.
+    147           * 
+    148           * NOTE: The function only initializes the NVIC to set a single IRQ priority. 
+    149           * Interrupts will also need to be enabled in the ARM core. This can be 
+    150           * done using the EnableInterrupts macro.
+    151           *
+    152           * Parameters:
+    153           * irq    irq number to be enabled (the irq number NOT the vector number)
+    154           * prio   irq priority. 0-15 levels. 0 max priority
+    155           */
+    156          
+
+   \                                 In section .text, align 2, keep-with-next
+    157          void set_irq_priority (int irq, int prio)
+    158          {
+   \                     set_irq_priority:
+   \   00000000   38B5               PUSH     {R3-R5,LR}
+   \   00000002   0400               MOVS     R4,R0
+   \   00000004   0D00               MOVS     R5,R1
+    159              /*irq priority pointer*/
+    160              uint8 *prio_reg;
+    161              
+    162              /* Make sure that the IRQ is an allowable number. Right now up to 91 is 
+    163               * used.
+    164               */
+    165              if (irq > 91)
+   \   00000006   5C2C               CMP      R4,#+92
+   \   00000008   03DB               BLT.N    ??set_irq_priority_0
+    166                  printf("\nERR! Invalid IRQ value passed to priority irq function!\n");
+   \   0000000A   ........           ADR.W    R0,`?<Constant "\\nERR! Invalid IRQ val...">_2`
+   \   0000000E   ........           BL       printf
+    167          
+    168              if (prio > 15)
+   \                     ??set_irq_priority_0:
+   \   00000012   102D               CMP      R5,#+16
+   \   00000014   03DB               BLT.N    ??set_irq_priority_1
+    169                  printf("\nERR! Invalid priority value passed to priority irq function!\n");
+   \   00000016   ........           ADR.W    R0,`?<Constant "\\nERR! Invalid priorit...">`
+   \   0000001A   ........           BL       printf
+    170              
+    171              /* Determine which of the NVICIPx corresponds to the irq */
+    172              prio_reg = (uint8 *)(((uint32)&NVICIP0) + irq);
+   \                     ??set_irq_priority_1:
+   \   0000001E   ....               LDR.N    R0,??DataTable9_11  ;; 0xe000e400
+   \   00000020   0019               ADDS     R0,R0,R4
+    173              /* Assign priority to IRQ */
+    174              *prio_reg = ( (prio&0xF) << (8 - ARM_INTERRUPT_LEVEL_BITS) );             
+   \   00000022   2901               LSLS     R1,R5,#+4
+   \   00000024   0170               STRB     R1,[R0, #+0]
+    175          }
+   \   00000026   31BD               POP      {R0,R4,R5,PC}    ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9:
+   \   00000000   10ED00E0           DC32     0xe000ed10
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_1:
+   \   00000000   08ED00E0           DC32     0xe000ed08
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_2:
+   \   00000000   80E200E0           DC32     0xe000e280
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_3:
+   \   00000000   00E100E0           DC32     0xe000e100
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_4:
+   \   00000000   84E200E0           DC32     0xe000e284
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_5:
+   \   00000000   04E100E0           DC32     0xe000e104
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_6:
+   \   00000000   88E200E0           DC32     0xe000e288
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_7:
+   \   00000000   08E100E0           DC32     0xe000e108
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_8:
+   \   00000000   80E100E0           DC32     0xe000e180
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_9:
+   \   00000000   84E100E0           DC32     0xe000e184
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_10:
+   \   00000000   88E100E0           DC32     0xe000e188
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable9_11:
+   \   00000000   00E400E0           DC32     0xe000e400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "\\nERR! Invalid IRQ val...">`:
+   \   00000000                      ; Initializer data, 56 bytes
+   \   00000000   0A4552522120       DC8 10, 69, 82, 82, 33, 32, 73, 110, 118, 97
+   \              496E7661    
+   \   0000000A   6C6964204952       DC8 108, 105, 100, 32, 73, 82, 81, 32, 118, 97
+   \              51207661    
+   \   00000014   6C7565207061       DC8 108, 117, 101, 32, 112, 97, 115, 115, 101, 100
+   \              73736564    
+   \   0000001E   20746F20656E       DC8 32, 116, 111, 32, 101, 110, 97, 98, 108, 101
+   \              61626C65    
+   \   00000028   206972712066       DC8 32, 105, 114, 113, 32, 102, 117, 110, 99, 116
+   \              756E6374    
+   \   00000032   696F6E210A00       DC8 105, 111, 110, 33, 10, 0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "\\nERR! Invalid IRQ val...">_1`:
+   \   00000000                      ; Initializer data, 60 bytes
+   \   00000000   0A4552522120       DC8 10, 69, 82, 82, 33, 32, 73, 110, 118, 97
+   \              496E7661    
+   \   0000000A   6C6964204952       DC8 108, 105, 100, 32, 73, 82, 81, 32, 118, 97
+   \              51207661    
+   \   00000014   6C7565207061       DC8 108, 117, 101, 32, 112, 97, 115, 115, 101, 100
+   \              73736564    
+   \   0000001E   20746F206469       DC8 32, 116, 111, 32, 100, 105, 115, 97, 98, 108
+   \              7361626C    
+   \   00000028   652069727120       DC8 101, 32, 105, 114, 113, 32, 102, 117, 110, 99
+   \              66756E63    
+   \   00000032   74696F6E210A       DC8 116, 105, 111, 110, 33, 10, 0, 0, 0, 0
+   \              00000000    
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "\\nERR! Invalid IRQ val...">_2`:
+   \   00000000                      ; Initializer data, 60 bytes
+   \   00000000   0A4552522120       DC8 10, 69, 82, 82, 33, 32, 73, 110, 118, 97
+   \              496E7661    
+   \   0000000A   6C6964204952       DC8 108, 105, 100, 32, 73, 82, 81, 32, 118, 97
+   \              51207661    
+   \   00000014   6C7565207061       DC8 108, 117, 101, 32, 112, 97, 115, 115, 101, 100
+   \              73736564    
+   \   0000001E   20746F207072       DC8 32, 116, 111, 32, 112, 114, 105, 111, 114, 105
+   \              696F7269    
+   \   00000028   747920697271       DC8 116, 121, 32, 105, 114, 113, 32, 102, 117, 110
+   \              2066756E    
+   \   00000032   6374696F6E21       DC8 99, 116, 105, 111, 110, 33, 10, 0, 0, 0
+   \              0A000000    
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "\\nERR! Invalid priorit...">`:
+   \   00000000                      ; Initializer data, 64 bytes
+   \   00000000   0A4552522120       DC8 10, 69, 82, 82, 33, 32, 73, 110, 118, 97
+   \              496E7661    
+   \   0000000A   6C6964207072       DC8 108, 105, 100, 32, 112, 114, 105, 111, 114, 105
+   \              696F7269    
+   \   00000014   74792076616C       DC8 116, 121, 32, 118, 97, 108, 117, 101, 32, 112
+   \              75652070    
+   \   0000001E   617373656420       DC8 97, 115, 115, 101, 100, 32, 116, 111, 32, 112
+   \              746F2070    
+   \   00000028   72696F726974       DC8 114, 105, 111, 114, 105, 116, 121, 32, 105, 114
+   \              79206972    
+   \   00000032   712066756E63       DC8 113, 32, 102, 117, 110, 99, 116, 105, 111, 110
+   \              74696F6E    
+   \   0000003C   210A0000           DC8 33, 10, 0, 0
+    176          /***********************************************************************/
+    177          
+
+   Maximum stack usage in bytes:
+
+     Function         .cstack
+     --------         -------
+     disable_irq           8
+     enable_irq            8
+     set_irq_priority     16
+     stop                  0
+     wait                  0
+     write_vtor            0
+
+
+   Section sizes:
+
+     Function/Label                            Bytes
+     --------------                            -----
+     stop                                        16
+     wait                                        16
+     write_vtor                                   6
+     enable_irq                                 184
+     disable_irq                                112
+     set_irq_priority                            40
+     ??DataTable9                                 4
+     ??DataTable9_1                               4
+     ??DataTable9_2                               4
+     ??DataTable9_3                               4
+     ??DataTable9_4                               4
+     ??DataTable9_5                               4
+     ??DataTable9_6                               4
+     ??DataTable9_7                               4
+     ??DataTable9_8                               4
+     ??DataTable9_9                               4
+     ??DataTable9_10                              4
+     ??DataTable9_11                              4
+     ?<Constant "\nERR! Invalid IRQ val...">     56
+     ?<Constant "\nERR! Invalid IRQ val...">_1   60
+     ?<Constant "\nERR! Invalid IRQ val...">_2   60
+     ?<Constant "\nERR! Invalid priorit...">     64
+
+ 
+ 662 bytes in section .text
+ 
+ 662 bytes of CODE memory
+
+Errors: none
+Warnings: none

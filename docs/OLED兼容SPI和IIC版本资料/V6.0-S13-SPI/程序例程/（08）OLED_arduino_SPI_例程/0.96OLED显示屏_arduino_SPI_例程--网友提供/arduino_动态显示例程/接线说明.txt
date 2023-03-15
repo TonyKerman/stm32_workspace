@@ -1,0 +1,9 @@
+接线说明：
+ 
+   GND              地
+   VCC              3.3V或者5V
+   SCL     10
+   SDA    9
+   RES(OLED_RESET)  13
+   D/C(OLED_DC)      11
+   CS（OLED_CS）    12 ------（或者接地，片选信号）

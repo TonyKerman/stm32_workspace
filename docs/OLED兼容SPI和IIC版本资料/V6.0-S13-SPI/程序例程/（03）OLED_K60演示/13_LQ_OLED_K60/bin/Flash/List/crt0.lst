@@ -1,0 +1,68 @@
+###############################################################################
+#                                                                             #
+#     IAR Assembler V6.10.1.52143/W32 for ARM 21/Apr/2011  11:23:53           #
+#     Copyright 1999-2010 IAR Systems AB.                                     #
+#                                                                             #
+#           Source file   =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\src\Project_Settings\Startup_Code\crt0.s#
+#           List file     =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\bin\Flash\List\crt0.lst#
+#           Object file   =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\bin\Flash\Obj\crt0.o#
+#           Command line  =  D:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\src\Project_Settings\Startup_Code\crt0.s #
+#                            -OD:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\bin\Flash\Obj\ #
+#                            -s+ -M<> -w+ -r                                  #
+#                            -LD:\Projects\08 K60\k60\K60 完整\程序\K60_IAR(20110418)\01_light\bin\Flash\List\ #
+#                            -t8 --cpu Cortex-M4 --fpu None                   #
+#                                                                             #
+###############################################################################
+
+    1                          /*
+    2                           * File:        crt0.s
+    3                           * Purpose:     Lowest level routines for
+                                Kinetis.
+    4                           *
+    5                           * Notes:       
+    6                           *
+    7                           */
+    8                          
+    9                          ;         AREA   Crt0, CODE, READONLY      ;
+                                name this block of code
+   10                            SECTION .noinit : CODE
+   11                          
+   12                                  EXPORT  __startup
+   13                          __startup
+   14    00000000 4FF00000         MOV     r0,#0                   ; Initialize
+                                                                    the
+                                                                    GPRs
+   15    00000004 4FF00001             MOV     r1,#0
+   16    00000008 4FF00002             MOV     r2,#0
+   17    0000000C 4FF00003             MOV     r3,#0
+   18    00000010 4FF00004             MOV     r4,#0
+   19    00000014 4FF00005             MOV     r5,#0
+   20    00000018 4FF00006             MOV     r6,#0
+   21    0000001C 4FF00007             MOV     r7,#0
+   22    00000020 4FF00008             MOV     r8,#0
+   23    00000024 4FF00009             MOV     r9,#0
+   24    00000028 4FF0000A             MOV     r10,#0
+   25    0000002C 4FF0000B             MOV     r11,#0
+   26    00000030 4FF0000C             MOV     r12,#0
+   27    00000034 62B6                 CPSIE   i                       ; Unmask
+                                                                        interru
+                                                                       pts
+   28                                  import start
+   29    00000036 ........             BL      start                  ; call
+                                                                       the C
+                                                                       code
+   30                          __done
+   31    0000003A FEE7                 B       __done
+   32                          
+   33                          
+   34                                  END
+##############################
+#           CRC:0            #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 60          #
+##############################
+
+
+
+

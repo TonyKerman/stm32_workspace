@@ -1,0 +1,320 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.10.1.52143/W32 for ARM     24/Feb/2012  22:11:02 #
+# Copyright 1999-2010 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  E:\kinetis_IAR\13_LQ_OLED_K60\src\Sources\C\main.c       #
+#    Command line =  E:\kinetis_IAR\13_LQ_OLED_K60\src\Sources\C\main.c -D    #
+#                    IAR -D TWR_K60N512 -lCN E:\kinetis_IAR\13_LQ_OLED_K60\bi #
+#                    n\Flash\List\ -lB E:\kinetis_IAR\13_LQ_OLED_K60\bin\Flas #
+#                    h\List\ -o E:\kinetis_IAR\13_LQ_OLED_K60\bin\Flash\Obj\  #
+#                    --no_cse --no_unroll --no_inline --no_code_motion        #
+#                    --no_tbaa --no_clustering --no_scheduling --debug        #
+#                    --endian=little --cpu=Cortex-M4 -e --fpu=None            #
+#                    --dlib_config "C:\Program Files (x86)\IAR                #
+#                    Systems\Embedded Workbench 6.0\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I E:\kinetis_IAR\13_LQ_OLED_K60\src\Sources\H\   #
+#                    -I E:\kinetis_IAR\13_LQ_OLED_K60\src\Sources\H\Component #
+#                    _H\ -I E:\kinetis_IAR\13_LQ_OLED_K60\src\Sources\H\Frame #
+#                    _H\ -Ol --use_c++_inline                                 #
+#    List file    =  E:\kinetis_IAR\13_LQ_OLED_K60\bin\Flash\List\main.lst    #
+#    Object file  =  E:\kinetis_IAR\13_LQ_OLED_K60\bin\Flash\Obj\main.o       #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\kinetis_IAR\13_LQ_OLED_K60\src\Sources\C\main.c
+      1          /********************************************************   
+      2          【平    台】龙丘K10/60DN/DX多功能开发板
+      3          【编    写】龙丘
+      4          【Designed】by Chiu Sir
+      5          【E-mail  】chiusir@yahoo.cn
+      6          【软件版本】V1.0
+      7          【最后更新】2012年2月23日
+      8          【相关信息参考下列地址】
+      9          【网    站】http://www.lqist.cn
+     10          【淘宝店铺】http://shop36265907.taobao.com
+     11          ------------------------------------------------
+     12          【dev.env.】CodeWarrior 10.1/IAR
+     13          【Target  】K60DX/DN
+     14          【Crystal 】50.000Mhz
+     15          【busclock】???.000MHz
+     16          【pllclock】100.000MHz    
+     17          ***************************
+     18          ------------------------------------
+     19            使用说明： 
+     20          OLED电源使用3.3V。   
+     21          ----------------
+     22          G    电源地
+     23          3.3V 接3.3V电源
+     24          D0   PORTA_PA14  
+     25          D1   PORTA_PA15
+     26          RST  PORTA_PA16 
+     27          DC   PORTA_PA17
+     28          CS   已接地，不用接
+     29            
+     30           *********************************************************/
+     31          
+     32          //头文件
+     33          #include "includes.h"
+     34          #include "LQ12864.h"
+     35          
+     36          //全局变量声明
+
+   \                                 In section .text, align 2, keep-with-next
+     37          void Dly_ms(int ms)
+     38          {
+     39             int ii,jj;
+     40             if (ms<1) ms=1;
+   \                     Dly_ms:
+   \   00000000   0128               CMP      R0,#+1
+   \   00000002   00DA               BGE.N    ??Dly_ms_0
+   \   00000004   0120               MOVS     R0,#+1
+     41             for(ii=0;ii<ms;ii++)     
+   \                     ??Dly_ms_0:
+   \   00000006   0021               MOVS     R1,#+0
+   \   00000008   05E0               B.N      ??Dly_ms_1
+     42               for(jj=0;jj<5341;jj++);     
+   \                     ??Dly_ms_2:
+   \   0000000A   521C               ADDS     R2,R2,#+1
+   \                     ??Dly_ms_3:
+   \   0000000C   41F2DD43           MOVW     R3,#+5341
+   \   00000010   9A42               CMP      R2,R3
+   \   00000012   FADB               BLT.N    ??Dly_ms_2
+   \   00000014   491C               ADDS     R1,R1,#+1
+   \                     ??Dly_ms_1:
+   \   00000016   8142               CMP      R1,R0
+   \   00000018   01DA               BGE.N    ??Dly_ms_4
+   \   0000001A   0022               MOVS     R2,#+0
+   \   0000001C   F6E7               B.N      ??Dly_ms_3
+     43          }
+   \                     ??Dly_ms_4:
+   \   0000001E   7047               BX       LR               ;; return
+     44          //主函数
+
+   \                                 In section .text, align 4, keep-with-next
+     45          void main(void)
+     46          {
+   \                     main:
+   \   00000000   10B5               PUSH     {R4,LR}
+   \   00000002   82B0               SUB      SP,SP,#+8
+     47              //1 主程序使用的变量定义
+     48              uint32 i;	//运行计数器
+     49              
+     50              //2 关中断
+     51              DisableInterrupts;     //禁止总中断
+   \   00000004   72B6               CPSID i         
+     52              
+     53              //3 模块初始化
+     54              light_init(Light_Run_PORT,Light_Run1,Light_OFF); //指示灯初始化
+   \   00000006   0122               MOVS     R2,#+1
+   \   00000008   1121               MOVS     R1,#+17
+   \   0000000A   ....               LDR.N    R0,??DataTable5  ;; 0x400ff000
+   \   0000000C   ........           BL       light_init
+     55              light_init(Light_Run_PORT,Light_Run2,Light_ON); //指示灯初始化
+   \   00000010   0022               MOVS     R2,#+0
+   \   00000012   0E21               MOVS     R1,#+14
+   \   00000014   ....               LDR.N    R0,??DataTable5  ;; 0x400ff000
+   \   00000016   ........           BL       light_init
+     56              LCD_Init();  
+   \   0000001A   ........           BL       LCD_Init
+   \   0000001E   17E0               B.N      ??main_0
+     57              //4 开中断
+     58          
+     59              //主循环
+     60              while(1)
+     61              {
+     62                LCD_Fill(0xff);//黑屏 
+     63                Dly_ms(1000); 
+     64                LCD_Fill(0x00);//亮屏
+     65                Dly_ms(1000);      
+     66                LCD_Print(8,0,"北京龙丘智能科技");  //汉字字符串显示
+     67                LCD_Print(15,2,"智能车首选液晶");   //汉字字符串显示
+     68                LCD_P8x16Str(48,4,"OLED");          //英文字符串显示
+     69                LCD_P6x8Str(16,6,"chiusir@yahoo.cn");//英文字符串显示 
+     70                LCD_P6x8Str(34,7,"2011-09-03");     //英文字符串显示
+     71                Dly_ms(2000);       
+     72                LCD_CLS();                          //清屏
+     73                Draw_BMP(16,0,112,7,longqiu96x64);  //图片显示
+     74                Dly_ms(2000);
+     75                  
+     76               
+     77               for(i=0;i<32;i+=2)
+     78               {
+     79                  LCD_CLS();
+     80                  Draw_BMP(i,0,i+96,7,longqiu96x64);
+     81                  Dly_ms(300);        
+     82                  
+     83               }
+     84               for(i=32;i>1;i-=2)
+     85               {
+     86                  LCD_CLS();
+   \                     ??main_1:
+   \   00000020   ........           BL       LCD_CLS
+     87                  Draw_BMP(i,0,i+96,7,longqiu96x64);
+   \   00000024   ....               LDR.N    R0,??DataTable5_1
+   \   00000026   0090               STR      R0,[SP, #+0]
+   \   00000028   0723               MOVS     R3,#+7
+   \   0000002A   14F16002           ADDS     R2,R4,#+96
+   \   0000002E   D2B2               UXTB     R2,R2            ;; ZeroExt  R2,R2,#+24,#+24
+   \   00000030   0021               MOVS     R1,#+0
+   \   00000032   2000               MOVS     R0,R4
+   \   00000034   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000036   ........           BL       Draw_BMP
+     88                  Dly_ms(300);
+   \   0000003A   4FF49670           MOV      R0,#+300
+   \   0000003E   ........           BL       Dly_ms
+     89                  
+     90               }
+   \   00000042   A41E               SUBS     R4,R4,#+2
+   \                     ??main_2:
+   \   00000044   022C               CMP      R4,#+2
+   \   00000046   EBD2               BCS.N    ??main_1
+     91              
+     92               Dly_ms(500);
+   \   00000048   4FF4FA70           MOV      R0,#+500
+   \   0000004C   ........           BL       Dly_ms
+   \                     ??main_0:
+   \   00000050   FF20               MOVS     R0,#+255
+   \   00000052   ........           BL       LCD_Fill
+   \   00000056   4FF47A70           MOV      R0,#+1000
+   \   0000005A   ........           BL       Dly_ms
+   \   0000005E   0020               MOVS     R0,#+0
+   \   00000060   ........           BL       LCD_Fill
+   \   00000064   4FF47A70           MOV      R0,#+1000
+   \   00000068   ........           BL       Dly_ms
+   \   0000006C   ........           ADR.W    R2,`?<Constant "\\261\\261\\276\\251\\301\\372\\307\\360\\3`
+   \   00000070   0021               MOVS     R1,#+0
+   \   00000072   0820               MOVS     R0,#+8
+   \   00000074   ........           BL       LCD_Print
+   \   00000078   ........           ADR.W    R2,`?<Constant "\\326\\307\\304\\334\\263\\265\\312\\327\\3`
+   \   0000007C   0221               MOVS     R1,#+2
+   \   0000007E   0F20               MOVS     R0,#+15
+   \   00000080   ........           BL       LCD_Print
+   \   00000084   ........           ADR.W    R2,`?<Constant "OLED">`
+   \   00000088   0421               MOVS     R1,#+4
+   \   0000008A   3020               MOVS     R0,#+48
+   \   0000008C   ........           BL       LCD_P8x16Str
+   \   00000090   ........           ADR.W    R2,`?<Constant "chiusir@yahoo.cn">`
+   \   00000094   0621               MOVS     R1,#+6
+   \   00000096   1020               MOVS     R0,#+16
+   \   00000098   ........           BL       LCD_P6x8Str
+   \   0000009C   ........           ADR.W    R2,`?<Constant "2011-09-03">`
+   \   000000A0   0721               MOVS     R1,#+7
+   \   000000A2   2220               MOVS     R0,#+34
+   \   000000A4   ........           BL       LCD_P6x8Str
+   \   000000A8   4FF4FA60           MOV      R0,#+2000
+   \   000000AC   ........           BL       Dly_ms
+   \   000000B0   ........           BL       LCD_CLS
+   \   000000B4   ....               LDR.N    R0,??DataTable5_1
+   \   000000B6   0090               STR      R0,[SP, #+0]
+   \   000000B8   0723               MOVS     R3,#+7
+   \   000000BA   7022               MOVS     R2,#+112
+   \   000000BC   0021               MOVS     R1,#+0
+   \   000000BE   1020               MOVS     R0,#+16
+   \   000000C0   ........           BL       Draw_BMP
+   \   000000C4   4FF4FA60           MOV      R0,#+2000
+   \   000000C8   ........           BL       Dly_ms
+   \   000000CC   0024               MOVS     R4,#+0
+   \   000000CE   11E0               B.N      ??main_3
+   \                     ??main_4:
+   \   000000D0   ........           BL       LCD_CLS
+   \   000000D4   ....               LDR.N    R0,??DataTable5_1
+   \   000000D6   0090               STR      R0,[SP, #+0]
+   \   000000D8   0723               MOVS     R3,#+7
+   \   000000DA   14F16002           ADDS     R2,R4,#+96
+   \   000000DE   D2B2               UXTB     R2,R2            ;; ZeroExt  R2,R2,#+24,#+24
+   \   000000E0   0021               MOVS     R1,#+0
+   \   000000E2   2000               MOVS     R0,R4
+   \   000000E4   C0B2               UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   000000E6   ........           BL       Draw_BMP
+   \   000000EA   4FF49670           MOV      R0,#+300
+   \   000000EE   ........           BL       Dly_ms
+   \   000000F2   A41C               ADDS     R4,R4,#+2
+   \                     ??main_3:
+   \   000000F4   202C               CMP      R4,#+32
+   \   000000F6   EBD3               BCC.N    ??main_4
+   \   000000F8   2024               MOVS     R4,#+32
+   \   000000FA   A3E7               B.N      ??main_2
+     93              }
+     94          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   00F00F40           DC32     0x400ff000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_1:
+   \   00000000   ........           DC32     longqiu96x64
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "\\261\\261\\276\\251\\301\\372\\307\\360\\3`:
+   \   00000000                      ; Initializer data, 20 bytes
+   \   00000000   B1B1BEA9C1FA       DC8 177, 177, 190, 169, 193, 250, 199, 240, 214, 199
+   \              C7F0D6C7    
+   \   0000000A   C4DCBFC6BCBC       DC8 196, 220, 191, 198, 188, 188, 0, 0, 0, 0
+   \              00000000    
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "\\326\\307\\304\\334\\263\\265\\312\\327\\3`:
+   \   00000000                      ; Initializer data, 16 bytes
+   \   00000000   D6C7C4DCB3B5       DC8 214, 199, 196, 220, 179, 181, 202, 215, 209, 161
+   \              CAD7D1A1    
+   \   0000000A   D2BABEA70000       DC8 210, 186, 190, 167, 0, 0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "OLED">`:
+   \   00000000                      ; Initializer data, 8 bytes
+   \   00000000   4F4C45440000       DC8 79, 76, 69, 68, 0, 0, 0, 0
+   \              0000        
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "chiusir@yahoo.cn">`:
+   \   00000000                      ; Initializer data, 20 bytes
+   \   00000000   636869757369       DC8 99, 104, 105, 117, 115, 105, 114, 64, 121, 97
+   \              72407961    
+   \   0000000A   686F6F2E636E       DC8 104, 111, 111, 46, 99, 110, 0, 0, 0, 0
+   \              00000000    
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     `?<Constant "2011-09-03">`:
+   \   00000000                      ; Initializer data, 12 bytes
+   \   00000000   323031312D30       DC8 50, 48, 49, 49, 45, 48, 57, 45, 48, 51
+   \              392D3033    
+   \   0000000A   0000               DC8 0, 0
+     95          
+     96          
+     97          
+     98          
+
+   Maximum stack usage in bytes:
+
+     Function .cstack
+     -------- -------
+     Dly_ms        0
+     main         16
+
+
+   Section sizes:
+
+     Function/Label                                 Bytes
+     --------------                                 -----
+     Dly_ms                                           32
+     main                                            252
+     ??DataTable5                                      4
+     ??DataTable5_1                                    4
+     ?<Constant "\261\261\276\251\301\372\307\360\3   20
+     ?<Constant "\326\307\304\334\263\265\312\327\3   16
+     ?<Constant "OLED">                                8
+     ?<Constant "chiusir@yahoo.cn">                   20
+     ?<Constant "2011-09-03">                         12
+
+ 
+ 368 bytes in section .text
+ 
+ 368 bytes of CODE memory
+
+Errors: none
+Warnings: none

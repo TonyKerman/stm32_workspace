@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>uart_loop/FLASH</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>214</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+    </Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-23050-16090</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>uart_loop</ExpandedNode><ExpandedNode>uart_loop/Sources</ExpandedNode><ExpandedNode>uart_loop/Sources/C</ExpandedNode><ExpandedNode>uart_loop/Sources/C/Component_C</ExpandedNode><ExpandedNode>uart_loop/Sources/C/Frame_C</ExpandedNode><ExpandedNode>uart_loop/Sources/H</ExpandedNode><ExpandedNode>uart_loop/Sources/H/Component_H</ExpandedNode><ExpandedNode>uart_loop/Sources/H/Frame_H</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-9688-16136</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>736</SelStart><SelEnd>736</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Component_H\uart.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>3344</SelStart><SelEnd>3344</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\includes.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>641</SelStart><SelEnd>641</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Project_Settings\Startup_Code\start.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>1483</SelStart><SelEnd>1483</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Frame_C\common.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>809</SelStart><SelEnd>907</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Frame_H\common.h</Filename><XPos>0</XPos><YPos>16</YPos><SelStart>1722</SelStart><SelEnd>1722</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Project_Settings\Startup_Code\crt0.s</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Component_C\gpio.c</Filename><XPos>0</XPos><YPos>54</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Component_C\light.c</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Component_C\uart.c</Filename><XPos>0</XPos><YPos>54</YPos><SelStart>8013</SelStart><SelEnd>8013</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Component_C\wdog.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>1625</SelStart><SelEnd>1625</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Frame_C\sysinit.c</Filename><XPos>0</XPos><YPos>170</YPos><SelStart>7468</SelStart><SelEnd>7468</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\Frame_C\vectors.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\C\isr.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Component_H\gpio.h</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>2804</SelStart><SelEnd>2804</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Component_H\light.h</Filename><XPos>0</XPos><YPos>19</YPos><SelStart>2849</SelStart><SelEnd>2849</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Component_H\wdog.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1213</SelStart><SelEnd>1213</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Frame_H\sysinit.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>458</SelStart><SelEnd>458</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\src\Sources\H\Frame_H\vectors.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-012ebe60><key>iaridepm.enu1</key></Toolbar-012ebe60></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>774</Bottom><Right>288</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>156250</sizeHorzCX><sizeHorzCY>218818</sizeHorzCY><sizeVertCX>226563</sizeVertCX><sizeVertCY>849015</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>95</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>97</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>106127</sizeHorzCY><sizeVertCX>156250</sizeVertCX><sizeVertCY>218818</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

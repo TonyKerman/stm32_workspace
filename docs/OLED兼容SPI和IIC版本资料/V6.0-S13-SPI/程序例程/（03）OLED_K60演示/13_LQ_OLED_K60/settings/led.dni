@@ -1,0 +1,17 @@
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Disassemble mode]
+mode=0
+[Breakpoints]
+Count=0
+[Aliases]
+Count=0
+SuppressDialog=0
