@@ -21,14 +21,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="030771ef-9220-4c58-ab02-c2fc2d8ea18a" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../LCD_I2C/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LCD_I2C/CMakeLists_template.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LCD_I2C/Core/Inc/lcd1602_i2c.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LCD_I2C/Core/Src/lcd1602_i2c.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/serial_debug/serial_debug.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../prewtringSTM32.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../prewtringSTM32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../motor/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../motor/CMakeLists_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MPU6050/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MPU6050/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../projects/CAR/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../projects/CAR/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../projects/CAR/cmake-build-stm32_debug/CMakeFiles/clion-stm32_debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../projects/CAR/cmake-build-stm32_debug/CMakeFiles/clion-stm32_debug-log.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +68,11 @@
   }
 }</component>
   <component name="RunManager" selected="OpenOCD 下载并运行.OCD SPI_speaker">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SPI_speaker.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SPI_speaker" TARGET_NAME="SPI_speaker.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SPI_speaker" RUN_TARGET_NAME="SPI_speaker.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -92,6 +94,7 @@
       <workItem from="1677746162495" duration="607000" />
       <workItem from="1677751135140" duration="3160000" />
       <workItem from="1677904175334" duration="41000" />
+      <workItem from="1679497752837" duration="5000" />
     </task>
     <servers />
   </component>
