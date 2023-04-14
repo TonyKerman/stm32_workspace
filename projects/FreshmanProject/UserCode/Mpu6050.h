@@ -1,10 +1,9 @@
 //
-// Created by tony on 2023/3/4.
+// Created by tony on 2023/4/12.
 //
 
-#ifndef MPU6050_MPU6050_H
-#define MPU6050_MPU6050_H
-
+#ifndef FRESHMANPROJECT_MPU6050_H
+#define FRESHMANPROJECT_MPU6050_H
 #ifdef __cplusplus
 extern "C"
 {
@@ -83,24 +82,14 @@ extern "C"
 //如果接V3.3,则IIC地址为0X69(不包含最低位).
 #define MPU_ADDR				0X68
 
-
-class MPU
-{
-I2C_HandleTypeDef *i2c;
-uint8_t dev_addr;
-void write_reg(uint16_t MemAddress,uint8_t pData);
-uint8_t read_reg(uint16_t MemAddress);
-public:
-    MPU(I2C_HandleTypeDef *mi2c,uint8_t mdev_addr=0x68);
-    uint8_t init();
-    void Read_Accel(void);
-    void Read_Gyro(void);
-    void Read_Temp(void);
-
+typedef struct Mpu6050 Mpu6050;
+struct Mpu6050{
+    
 };
+
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif //MPU6050_MPU6050_H
+#endif //FRESHMANPROJECT_MPU6050_H

@@ -5,7 +5,7 @@
 extern "C"
 {
 #endif
-[[noreturn]] void startup(void);
+void startup(void);
 #ifdef __cplusplus
 }
 #endif

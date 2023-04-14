@@ -21,7 +21,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3692c6b-049e-4b1f-8175-def783811e7f" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/../FreshmanProject/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FreshmanProject/CMakeLists_template.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/MPU6050.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../motor/Core/Inc/encoder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../motor/Core/Src/encoder.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/.idea/FreshmanProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/.idea/runConfigurations/OCD_FreshmanProject.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/UserCode/Mpu6050.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../projects/FreshmanProject/UserCode/Mpu6050.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu6050.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu6050.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/mpu6050.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/mpu6050.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Inc/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Inc/pid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Inc/pid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Inc/serial_debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Inc/serial_debug.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Inc/start.h" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Inc/start.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Inc/tim.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Src/gpio.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Src/pid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Src/pid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Src/serial_debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Src/serial_debug.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/Core/Src/tim.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../motor/motor.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/../motor/motor.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prewtringSTM32.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/pid/pid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/pid/pid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/pid/pid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/pid/pid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/CAN.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/Cpp.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/FreeRTOS.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/I2C.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/0.96-7pin_spi_sch.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/0.96寸7针SPI模块.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/C50278_MPU6500_2017-05-05.PDF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/PS2解码通讯手册_PDF.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SPI_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SPI_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SPI_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SSD1306.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/SPI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/UART.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/blueteeth.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/ps2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/tim.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/步进电机.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../prewtringSTM32.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../prewtringSTM32.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,38 +101,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/home/tony/stm32_workspace/projects/CAR",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tony/stm32_workspace/ClionProjects/FreshmanProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Core/Inc" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="OpenOCD 下载并运行.OCD MPU6050">
     <configuration name="MPU6050.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MPU6050" TARGET_NAME="MPU6050.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MPU6050" RUN_TARGET_NAME="MPU6050.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="CMake 应用程序.MPU6050.elf" />
+      <item itemvalue="OpenOCD 下载并运行.OCD MPU6050" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -91,10 +145,25 @@
       <updated>1677918936712</updated>
       <workItem from="1677918962989" duration="3091000" />
       <workItem from="1679494405793" duration="29000" />
+      <workItem from="1679710392591" duration="6958000" />
+      <workItem from="1681302156010" duration="1259000" />
+      <workItem from="1681304272103" duration="75000" />
+      <workItem from="1681481316565" duration="28000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

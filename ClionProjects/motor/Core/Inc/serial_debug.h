@@ -14,17 +14,20 @@ extern "C"
 #include <string>
 #include "usart.h"
 using namespace std;
+extern  string name_buffer;
 extern string debug_buffer;
 void dbg_start(__UART_HandleTypeDef * uartx);
 void dbg_display();
-void dbg_add(float val, const char * vname);
-void dbg_add(double val, const char *vname);
+void  dbg_add(float val, const char * vname);
+void  dbg_add(double val, const char *vname);
 void dbg_add(uint8_t * data,const char * vname,bool hex=0);
 template <typename T>
 void dbg_add( T val,const char* vname ) {
-    debug_buffer += vname;
-    debug_buffer += ": ";
+
+    name_buffer += vname;
+    name_buffer += "\t";
     debug_buffer += (to_string(val));
+    debug_buffer += ",";
     debug_buffer += "\t";
 }
 #endif

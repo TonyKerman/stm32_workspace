@@ -21,15 +21,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a835abed-f734-4eee-9a78-007209aa9917" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists_template.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Inc/pid.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Src/pid.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/Inc/encoder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/Src/encoder.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MPU6050/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MPU6050/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SPI_listener/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SPI_listener/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SPI_speaker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SPI_speaker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../projects/CAR/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../projects/CAR/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../projects/CAR/cmake-build-stm32_debug/CMakeFiles/clion-stm32_debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../projects/CAR/cmake-build-stm32_debug/CMakeFiles/clion-stm32_debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MPU6050/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../MPU6050/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MPU6050/Core/Inc/mpu6050.h" beforeDir="false" afterPath="$PROJECT_DIR$/../MPU6050/Core/Inc/mpu6050.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MPU6050/Core/Src/mpu6050.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../MPU6050/Core/Src/mpu6050.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MPU6050/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../MPU6050/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/pid.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/pid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/serial_debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/serial_debug.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/start.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/start.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/tim.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/pid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/pid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/serial_debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/serial_debug.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/tim.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/motor.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/motor.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prewtringSTM32.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/pid/pid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/pid/pid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/pid/pid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/pid/pid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../prewtringSTM32.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../prewtringSTM32.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,19 +79,25 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/tony/stm32_workspace/projects/ER-Chassis-F407",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "MTConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Core/Src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Core/Inc" />
+    </key>
+  </component>
   <component name="RunManager" selected="OpenOCD 下载并运行.OCD motor">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="motor.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="motor" TARGET_NAME="motor.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="motor" RUN_TARGET_NAME="motor.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -97,36 +118,23 @@
       <updated>1679494614389</updated>
       <workItem from="1679494623269" duration="8766000" />
       <workItem from="1679504633549" duration="19381000" />
+      <workItem from="1679638714923" duration="2812000" />
+      <workItem from="1679645476758" duration="10060000" />
+      <workItem from="1679710029122" duration="362000" />
+      <workItem from="1679714288008" duration="33000" />
+      <workItem from="1679718364037" duration="9482000" />
+      <workItem from="1679892891893" duration="911000" />
+      <workItem from="1679896555736" duration="841000" />
+      <workItem from="1679909516686" duration="2338000" />
+      <workItem from="1679921018242" duration="661000" />
+      <workItem from="1680128829581" duration="1000" />
+      <workItem from="1680108358066" duration="1229000" />
+      <workItem from="1681211668602" duration="50000" />
+      <workItem from="1681211731134" duration="52000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/pid.cpp</url>
-          <line>51</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/pid.cpp</url>
-          <line>58</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/start.cpp</url>
-          <line>99</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
-        <watch expression="output" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

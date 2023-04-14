@@ -15,7 +15,7 @@ void startup()
     while(1)
     {
         HAL_Delay(100);
-       
+      
     }
 }'''
 text2 ='''
@@ -44,6 +44,7 @@ except FileExistsError as e:
     
 
 text3=[]
+
 print("change main.c")
 with open("./Core/Src/main.c","r") as f:
     for line in f.readlines():

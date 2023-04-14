@@ -8,8 +8,15 @@
 extern "C"
 {
 #endif
-float pid_incr(float tgt_val,float cur_val,float Kp, float Ki, float Kd, int maxi, int maxo);
-float pid_post(float tgt_val,float cur_val,float Kp, float Ki, float Kd, int maxi, int maxo);
+typedef struct {
+    float lerr=0;
+    float llerr=0;
+    float intg=0;
+    float loutput=0;
+}PidValsTypeDef;
+float pid_incr(PidValsTypeDef* vals,float tgt_val,float cur_val,float Kp, float Ki, float Kd, int maxi, int maxo);
+float pid_post(PidValsTypeDef* vals,float tgt_val,float cur_val,float Kp, float Ki, float Kd, int maxi, int maxo);
+
 #ifdef __cplusplus
 }
 #endif
