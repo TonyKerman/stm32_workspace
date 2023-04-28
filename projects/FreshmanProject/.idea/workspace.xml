@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="FreshmanProject" targetName="FreshmanProject.elf" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="14cffd5e-ba0a-4f12-9de6-53331e9ef1ca" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/.idea/MPU6050.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/encoder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/encoder.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/FreshmanProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/OCD_FreshmanProject.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserCode/Mpu6050.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserCode/Mpu6050.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/MPU6050/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/MPU6050/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/MPU6050/Core/Inc/mpu6050.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/Core/Inc/mpu6050.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/MPU6050/Core/Src/mpu6050.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/Core/Src/mpu6050.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/MPU6050/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/MPU6050/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/pid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/pid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/serial_debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/serial_debug.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/start.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/start.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Inc/tim.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/gpio.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/pid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/pid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/serial_debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/serial_debug.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/start.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/start.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/Core/Src/tim.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/motor/motor.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/../../ClionProjects/motor/motor.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ClionProjects/prewtringSTM32.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/pid/pid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/pid/pid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Mylibs/pid/pid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Mylibs/pid/pid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/CAN.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/Cpp.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/FreeRTOS.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/I2C.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/0.96-7pin_spi_sch.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/0.96寸7针SPI模块.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/C50278_MPU6500_2017-05-05.PDF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/PS2解码通讯手册_PDF.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SPI_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SPI_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SPI_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/References/SSD1306.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/SPI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/UART.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/blueteeth.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/ps2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/tim.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebooks/步进电机.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../prewtringSTM32.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../prewtringSTM32.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="1.1" />
+  </component>
+  <component name="ProjectId" id="2OKDsxX6Rshvi0lbRV3OLMcxvFI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tony/stm32_workspace/ClionProjects/MPU6050&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="OpenOCD 下载并运行.OCD FreshmanProject">
+    <configuration name="FreshmanProject.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="FreshmanProject" TARGET_NAME="FreshmanProject.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="FreshmanProject" RUN_TARGET_NAME="FreshmanProject.elf">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake 应用程序.FreshmanProject.elf" />
+      <item itemvalue="OpenOCD 下载并运行.OCD FreshmanProject" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="14cffd5e-ba0a-4f12-9de6-53331e9ef1ca" name="更改" comment="" />
+      <created>1681300589136</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681300589136</updated>
+      <workItem from="1681300655012" duration="2547000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
