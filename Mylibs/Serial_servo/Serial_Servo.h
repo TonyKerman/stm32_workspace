@@ -43,17 +43,22 @@ struct Serial_Servo{
     UART_HandleTypeDef * uartHandle;
     uint8_t id;
     int16_t currentPostion;
+    uint16_t maxPos,minPos;
+    int16_t offset;
 };
 
-void Serial_Servo_SetID(UART_HandleTypeDef * uartHandle,uint8_t oldID, uint8_t newID);
+void Serial_Servo_SetID(const UART_HandleTypeDef * uartHandle,const uint8_t oldID,const uint8_t newID);
 int Serial_Servo_ReadID(UART_HandleTypeDef * uartHandle);
-Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef *uartx, uint8_t id);
 
-void Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,uint8_t size);
-void Serial_Servo_Move(Serial_Servo *me, int16_t position, uint16_t time);
-int Serial_Servo_ReadPosition(Serial_Servo *me);
-void Ser_Servo_SetLoadOrUnload(Serial_Servo * me,uint8_t is_load);
+Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef *uartx, uint8_t id, int16_t offset);
+
+int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,uint8_t size);
+int8_t Serial_Servo_Move(Serial_Servo *me, uint16_t position, uint16_t time);
+//int8_t Serial_Servo_Move_Angle(Serial_Servo *me, float angle, uint16_t time);
+void Serial_Servo_SetLoadOrUnload(Serial_Servo * me,uint8_t is_load);
 void Serial_Servo_SetLED(Serial_Servo *me, uint8_t LED_State);
+int Serial_Servo_SetLimit(Serial_Servo * me,uint16_t min,uint16_t max);
+int Serial_Servo_ReadLimit(Serial_Servo * me,uint16_t minOutput,uint16_t maxOutput);
 int Serial_Servo_ReadLED(Serial_Servo *me);
-
+int8_t Serial_Servo_ReadPosition(Serial_Servo *me);
 #endif //SERIAL_BUS_SERVO_SERIAL_SERVO_H

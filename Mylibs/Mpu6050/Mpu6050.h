@@ -9,10 +9,8 @@
 extern "C"
 {
 #endif
-
 #include "main.h"
 #include "i2c.h"
-#include "./driver/eMPL//inv_mpu.h"
 
 #define MPU_SELF_TESTX_REG		0X0D	//自检寄存器X
 #define MPU_SELF_TESTY_REG		0X0E	//自检寄存器Y
@@ -81,12 +79,33 @@ extern "C"
 #define MPU_FIFO_RW_REG			0X74	//FIFO读写寄存器
 #define MPU_DEVICE_ID_REG		0X75	//器件ID寄存器
 
- struct Mpu6050 {
-     float pitch,roll,yaw;
-    };
-extern struct Mpu6050 mpu6050;
-uint8_t mpu_dmp_init();
-uint8_t mpu_dmp_get_data();
+//加速度传感器满量程范围,afsr 0:±2g;1:±4g;2:±8g;3:±16g
+enum mpu_AfsrDef{Afsr_2g,Afsr_4g,Afsr_8g,Afsr_16g};
+//角速度量程范围，gfsr 0:±250度/秒 ...
+enum mpu_GfsrDef{Gfsr_250LSB,Gfsr_500LSB,Gfsr_1000LSB,Gfsr_2000LSB};
+
+typedef struct Mpu6050 Mpu6050;
+struct Mpu6050{
+    I2C_HandleTypeDef * i2cHandle;
+    uint16_t deviceAddr, writeAddr,readAddr;
+    enum mpu_AfsrDef aFsr;
+    enum mpu_GfsrDef gFsr;
+    float pitch,roll,yaw;
+    float gx,gy,gz;
+    float ax,ay,az;
+    float quat[4] ;          // 四元数的元素，代表估计方向
+    float exInt, eyInt , ezInt ;
+    float temp;
+    uint16_t samplingRate;
+};
+
+Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,
+                         enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate);
+HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me);
+HAL_StatusTypeDef Mpu6050_getTemp(Mpu6050 * me);
+HAL_StatusTypeDef Mpu6050_getGyroscope(Mpu6050 * me);
+HAL_StatusTypeDef Mpu6050_getAccelerometer(Mpu6050 * me);
+int Mpup6050_update(Mpu6050 *me);
 void vTaskSensorControl(void *pvParameters);
 
 

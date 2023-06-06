@@ -90,18 +90,24 @@ struct Mpu6050{
     uint16_t deviceAddr, writeAddr,readAddr;
     enum mpu_AfsrDef aFsr;
     enum mpu_GfsrDef gFsr;
+    float pitch,roll,yaw;
     float gx,gy,gz;
     float ax,ay,az;
+    float q0 , q1 , q2 , q3 ;          // 四元数的元素，代表估计方向
+    float exInt, eyInt , ezInt ;
     float temp;
-
+    uint16_t samplingRate;
 };
 
-Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr);
+Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,
+                         enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate);
 HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me);
 HAL_StatusTypeDef Mpu6050_getTemp(Mpu6050 * me);
 HAL_StatusTypeDef Mpu6050_getGyroscope(Mpu6050 * me);
 HAL_StatusTypeDef Mpu6050_getAccelerometer(Mpu6050 * me);
+int Mpup6050_update(Mpu6050 *me);
 void vTaskSensorControl(void *pvParameters);
+
 
 #ifdef __cplusplus
 }

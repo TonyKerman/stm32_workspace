@@ -6,147 +6,197 @@
 
 #include "main.h"
 #include <stdlib.h>
-#include <math.h>
 #include "retarget.h"
+#include <math.h>
 
-#include "./driver/eMPL/inv_mpu_dmp_motion_driver.h"
-#include "mllite/data_builder.h"
-#include "mllite/ml_math_func.h"
-
-#define q30 1073741824.0
-#define MPL_LOGI printf
-struct platform_data_s {
-    signed char orientation[9];
-};
-struct Mpu6050 mpu6050;
+#define Kp 100.0f                        // 比例增益支配率收敛到加速度计/磁强计
+#define Ki 0.002f                // 积分增益支配率的陀螺仪偏见的衔接
+#define halfT 0.0005f                // 采样周期的一半
 
 
-/* The sensors can be mounted onto the board in any orientation. The mounting
- * matrix seen below tells the MPL how to rotate the raw data from the
- * driver(s).
- * TODO: The following matrices refer to the configuration on internal test
- * boards at Invensense. If needed, please modify the matrices to match the
- * chip-to-body matrix for your particular set up.
- */
-static struct platform_data_s gyro_pdata = {
-        .orientation = { 1, 0, 0,
-                         0, 1, 0,
-                         0, 0, 1}
-};
 
-static inline int run_self_test(void)
+void Mpu6050_writeReg(Mpu6050 * me, uint16_t reg_addr, uint8_t p_data);
+uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr);
+void MPU_Set_Gyro_Fsr(Mpu6050 * me,uint8_t fsr);
+void MPU_Set_Accel_Fsr(Mpu6050 * me,uint8_t fsr);
+void MPU_Set_Rate(Mpu6050 * me,uint16_t rate);
+HAL_StatusTypeDef MPU6050_readLen(Mpu6050 * me,uint8_t p_reg,uint8_t len,uint8_t *buf);
+
+Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate)
 {
-    int result;
-    long gyro[3], accel[3];
+    Mpu6050 * me =(Mpu6050*)malloc(sizeof (Mpu6050));
+    me->i2cHandle=p_i2cHandle;
 
-//#if defined (MPU6500) || defined (MPU9250)
-//    result = mpu_run_6500_self_test(gyro, accel, 0);
-//#elif defined (MPU6050) || defined (MPU9150)
-//    result = mpu_run_self_test(gyro, accel);
-//#endif
-    result = mpu_run_self_test(gyro, accel);
-    if (result == 0x7) {
-        MPL_LOGI("Passed!\n");
-        MPL_LOGI("accel: %7.4f %7.4f %7.4f\n",
-                 accel[0]/65536.f,
-                 accel[1]/65536.f,
-                 accel[2]/65536.f);
-        MPL_LOGI("gyro: %7.4f %7.4f %7.4f\n",
-                 gyro[0]/65536.f,
-                 gyro[1]/65536.f,
-                 gyro[2]/65536.f);
+    //如果AD0脚(9脚)接地,IIC地址为0X68(不包含最低位).
+    //如果接V3.3,则IIC地址为0X69(不包含最低位).
+    if(is_AD0_pull_up)
+        me->deviceAddr=0x69;
+    else
+        me->deviceAddr=0x68;
+    me->readAddr=(me->deviceAddr<<1)|0x01;
+    me->writeAddr=(me->deviceAddr<<1)|0x00;
+    //设置量程
+    me->aFsr = a_fsr;
+    me->gFsr = g_fsr;
+    //采样率 (recommend 100Hz)
+    me->samplingRate=samplingRate;
+    me->quat[0] = 1.0;
+    me->quat[1] = 0.0;
+    me->quat[2] = 0.0;
+    me->quat[3] = 0.0;
+    me->exInt = 0.0;
+    me->eyInt = 0.0;
+    me->ezInt = 0.0;
+    me->pitch = 0;
+    me->roll = 0;
+    me->yaw = 0;
+    return me;
 
-        /* Push the calibrated data to the MPL library.
-         *
-         * MPL expects biases in hardware units << 16, but self test returns
-		 * biases in g's << 16.
-		 */
-        unsigned short accel_sens;
-        float gyro_sens;
+}
 
-        mpu_get_accel_sens(&accel_sens);
-        accel[0] *= accel_sens;
-        accel[1] *= accel_sens;
-        accel[2] *= accel_sens;
-        inv_set_accel_bias(accel, 3);
-        mpu_get_gyro_sens(&gyro_sens);
-        gyro[0] = (long) (gyro[0] * gyro_sens);
-        gyro[1] = (long) (gyro[1] * gyro_sens);
-        gyro[2] = (long) (gyro[2] * gyro_sens);
-        inv_set_gyro_bias(gyro, 3);
-        return 0;
-    } else
+
+HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me) {
+
+    HAL_Delay(500);
+    Mpu6050_writeReg(me, MPU_PWR_MGMT1_REG, 0X80);    //复位MPU6050
+    HAL_Delay(100);
+    Mpu6050_writeReg(me,MPU_PWR_MGMT1_REG, 0X00);    //唤醒MPU6050
+    MPU_Set_Gyro_Fsr(me,me->gFsr);					//陀螺仪角速度传感器
+    MPU_Set_Accel_Fsr(me,me->aFsr);					//加速度传感器
+    MPU_Set_Rate(me,me->samplingRate);						//设置采样率100Hz
+    Mpu6050_writeReg(me,MPU_INT_EN_REG,0X00);	//关闭所有中断
+    Mpu6050_writeReg(me,MPU_USER_CTRL_REG,0X00);	//I2C主模式关闭
+    Mpu6050_writeReg(me,MPU_FIFO_EN_REG,0X00);	//关闭FIFO
+    Mpu6050_writeReg(me,MPU_INTBP_CFG_REG,0X80);	//INT引脚低电平有效
+    uint8_t res = Mpu6050_readReg(me,MPU_DEVICE_ID_REG);
+    if (res == me->deviceAddr)//器件ID正确
+        return HAL_OK;
+    else
+        return HAL_ERROR;
+    HAL_Delay(100);
+}
+
+
+
+//设置MPU6050角速度传感器满量程范围
+void MPU_Set_Gyro_Fsr(Mpu6050 * me,uint8_t fsr)
+{
+    Mpu6050_writeReg(me,MPU_GYRO_CFG_REG,fsr<<3);
+    //Mpu6050_writeReg(me,MPU_GYRO_CFG_REG,0x18);
+}
+
+
+//设置MPU6050加速度传感器满量程范围
+void MPU_Set_Accel_Fsr(Mpu6050 * me,uint8_t fsr)
+{
+    Mpu6050_writeReg(me,MPU_ACCEL_CFG_REG,fsr<<3);
+}
+
+
+//设置MPU6050的数字低通滤波器
+//lpf:数字低通滤波频率(Hz)
+uint8_t MPU_Set_LPF(Mpu6050 * me,uint16_t lpf)
+{
+    uint8_t data=0;
+    if(lpf>=188)data=1;
+    else if(lpf>=98)data=2;
+    else if(lpf>=42)data=3;
+    else if(lpf>=20)data=4;
+    else if(lpf>=10)data=5;
+    else data=6;
+    Mpu6050_writeReg(me,MPU_CFG_REG,data);//设置数字低通滤波器
+}
+
+
+//设置MPU6050的采样率(假定Fs=1KHz)
+//rate:4~1000(Hz)
+void MPU_Set_Rate(Mpu6050 * me,uint16_t rate)
+{
+    uint8_t data;
+    if(rate>1000)rate=1000;
+    if(rate<4)rate=4;
+    data=1000/rate-1;
+    Mpu6050_writeReg(me,MPU_SAMPLE_RATE_REG,data);	//设置数字低通滤波器
+    MPU_Set_LPF(me,rate/2);	//自动设置LPF为采样率的一半
+}
+
+
+//获取温度 单位 摄氏度
+HAL_StatusTypeDef Mpu6050_getTemp(Mpu6050 * me)
+{
+    uint8_t buf[2];
+    HAL_StatusTypeDef result = MPU6050_readLen(me,MPU_TEMP_OUTH_REG,2,buf);
+    if(result == HAL_OK)
     {
-        if (!(result & 0x1))
-            MPL_LOGI("Gyro failed.\n");
-        if (!(result & 0x2))
-            MPL_LOGI("Accel failed.\n");
-        if (!(result & 0x4))
-            MPL_LOGI("Compass failed.\n");
-        return -1;
+        int16_t raw = (buf[0]<<8)| buf[1];
+        me->temp=36.53+((double)raw)/340;
+    }
+    return result;
+}
+
+
+//得到陀螺仪角速度值 单位 rad/秒
+HAL_StatusTypeDef Mpu6050_getGyroscope(Mpu6050 * me)
+{
+    uint8_t buf[6];
+    int16_t rawData[3];
+    //比率
+    float k[4]={0.00133125,0.0026625,0.005325,0.001065};
+
+    HAL_StatusTypeDef result =  MPU6050_readLen(me,MPU_GYRO_XOUTH_REG,6,buf);
+    if(result == HAL_OK)
+    {
+        //16位ADC，原始值
+        rawData[0] = ( buf[0] << 8) | buf[1];
+        rawData[1] = ( buf[2] << 8) | buf[3];
+        rawData[2] = ( buf[4] << 8) | buf[5];
+        //单位转换
+        me->gx = rawData[0]*k[me->gFsr];
+        me->gy = rawData[1]*k[me->gFsr];
+        me->gz = rawData[2]*k[me->gFsr];
     }
 
+    return result;
 
 }
 
-uint8_t mpu_dmp_init() {
-    struct int_param_s intParams;
-    int state = mpu_init(&intParams);
-    uint8_t res = 0;
-    res = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL);//设置所需要的传感器
-    if (res)return 1;
-    res = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL);//设置FIFO
-    if (res)return 2;
-    res = mpu_set_sample_rate(20);    //设置采样率
-    if (res)return 3;
-    res = dmp_load_motion_driver_firmware();        //加载dmp固件
-    if (res)return 4;
-    res = dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_pdata.orientation));//设置陀螺仪方向
-    if (res)return 5;
-    res = dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |    //设置dmp功能
-                             DMP_FEATURE_ANDROID_ORIENT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO |
-                             DMP_FEATURE_GYRO_CAL);
-    if (res)return 6;
-    res = dmp_set_fifo_rate(20);    //设置DMP输出速率(最大不超过200Hz)
-    if (res)return 7;
-    res = run_self_test();        //自检
-    if (res)return 8;
-    res = mpu_set_dmp_state(1);    //使能DMP
-    if (res)return 9;
-    return 0;
-}
 
-uint8_t mpu_dmp_get_data()
+//得到加速度值(带符号) 单位 米方/秒
+HAL_StatusTypeDef Mpu6050_getAccelerometer(Mpu6050 * me)
 {
+    uint8_t buf[6];
+    int16_t rawData[3];
+    //比率= (9.8*量程绝对值)/32767
+    float k[4]={0.000598163,0.001196326,0.002392652,0.004785304};
 
-    float q0=1.0f,q1=0.0f,q2=0.0f,q3=0.0f;
-    unsigned long sensor_timestamp;
-    short gyro[3], accel[3], sensors;
-    unsigned char more;
-    long quat[4];
-    if(dmp_read_fifo(gyro, accel, quat, &sensor_timestamp, &sensors,&more))return 1;
-    /* Gyro and accel data are written to the FIFO by the DMP in chip frame and hardware units.
-     * This behavior is convenient because it keeps the gyro and accel outputs of dmp_read_fifo and mpu_read_fifo consistent.
-    **/
-    /*if (sensors & INV_XYZ_GYRO )
-    send_packet(PACKET_TYPE_GYRO, gyro);
-    if (sensors & INV_XYZ_ACCEL)
-    send_packet(PACKET_TYPE_ACCEL, accel); */
-    /* Unlike gyro and accel, quaternions are written to the FIFO in the body frame, q30.
-     * The orientation is set by the scalar passed to dmp_set_orientation during initialization.
-    **/
-    if(sensors&INV_WXYZ_QUAT)
+    HAL_StatusTypeDef result = MPU6050_readLen(me,MPU_ACCEL_XOUTH_REG,6,buf);
+    if(result == HAL_OK)
     {
-        q0 = quat[0] / q30;	//q30格式转换为浮点数 q30 = 2^30
-        q1 = quat[1] / q30;
-        q2 = quat[2] / q30;
-        q3 = quat[3] / q30;
-        //计算得到俯仰角/横滚角/航向角
-        mpu6050.pitch = asin(-2 * q1 * q3 + 2 * q0* q2)* 57.3;	// pitch
-        mpu6050.roll  = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* 57.3;	// roll
-        mpu6050.yaw   = atan2(2*(q1*q2 + q0*q3),q0*q0+q1*q1-q2*q2-q3*q3) * 57.3;	//yaw
-    }else return 2;
-    return 0;
+        rawData[0] = ( buf[0] << 8) | buf[1];
+        rawData[1] = ( buf[2] << 8) | buf[3];
+        rawData[2] = ( buf[4] << 8) | buf[5];
+
+        me->ax =rawData[0]*k[me->aFsr];
+        me->ay =rawData[1]*k[me->aFsr];
+        me->az =rawData[2]*k[me->aFsr];
+    }
+    return result;
+}
+void Mpu6050_writeReg(Mpu6050 * me, uint16_t reg_addr, uint8_t p_data)
+{
+    HAL_I2C_Mem_Write(me->i2cHandle, me->writeAddr, reg_addr, I2C_MEMADD_SIZE_8BIT, &p_data, 1, 100);
+}
+
+uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr)
+{
+    uint8_t data;
+    HAL_I2C_Mem_Read(me->i2cHandle, me->readAddr, regAddr, I2C_MEMADD_SIZE_8BIT, &data, 1, 100);
+    return data;
+}
+
+HAL_StatusTypeDef MPU6050_readLen(Mpu6050 * me,uint8_t p_reg,uint8_t len,uint8_t *buf)
+{
+    return HAL_I2C_Mem_Read(me->i2cHandle, me->readAddr, p_reg, I2C_MEMADD_SIZE_8BIT, buf, len, 0xfff);
 }
 
 
@@ -154,5 +204,61 @@ uint8_t mpu_dmp_get_data()
 
 
 
+int Mpup6050_update(Mpu6050 *me)
+{
+    float norm;
+    float ax,ay,az;
+    float gx,gy,gz;
+    float vx, vy, vz;
+    float ex, ey, ez;
+    // 读取加速度计和陀螺仪数据
+    Mpu6050_getAccelerometer(me);
+    Mpu6050_getGyroscope(me);
 
+    if(me->ax*me->ay*me->az == 0)
+        return-1; // 未更新
+    // 测量正常化
+    norm = sqrt(me->ax*me->ax + me->ay*me->ay + me->az*me->az);
+    ax = me->ax / norm;                   //单位化
+    ay = me->ay / norm;
+    az = me->az / norm;
 
+    // 估计方向的重力
+    vx = 2*(me->quat[1]*me->quat[3] - me->quat[0]*me->quat[2]);
+    vy = 2*(me->quat[0]*me->quat[1] + me->quat[2]*me->quat[3]);
+    vz = me->quat[0]*me->quat[0] - me->quat[1]*me->quat[1] - me->quat[2]*me->quat[2] + me->quat[3]*me->quat[3];
+
+    // 错误的领域和方向传感器测量参考方向之间的交叉乘积的总和
+    ex = (ay*vz - az*vy);
+    ey = (az*vx - ax*vz);
+    ez = (ax*vy - ay*vx);
+
+    // 积分误差比例积分增益
+    me->exInt = me->exInt + ex*Ki;
+    me->eyInt = me->eyInt + ey*Ki;
+    me->ezInt = me->ezInt + ez*Ki;
+
+    // 调整后的陀螺仪测量
+    gx = me->gx + Kp*ex + me->exInt;
+    gy = me->gy + Kp*ey + me->eyInt;
+    gz = me->gz + Kp*ez + me->ezInt;
+
+    // 整合四元数率和正常化
+    me->quat[0] = me->quat[0] + (-me->quat[1]*gx - me->quat[2]*gy - me->quat[3]*gz)*halfT;
+    me->quat[1] = me->quat[1] + (me->quat[0]*gx + me->quat[2]*gz - me->quat[3]*gy)*halfT;
+    me->quat[2] = me->quat[2] + (me->quat[0]*gy - me->quat[1]*gz + me->quat[3]*gx)*halfT;
+    me->quat[3] = me->quat[3] + (me->quat[0]*gz + me->quat[1]*gy - me->quat[2]*gx)*halfT;
+
+    // 正常化四元
+    norm = sqrt(me->quat[0]*me->quat[0] + me->quat[1]*me->quat[1] + me->quat[2]*me->quat[2] + me->quat[3]*me->quat[3]);
+    me->quat[0] = me->quat[0] / norm;
+    me->quat[1] = me->quat[1] / norm;
+    me->quat[2] = me->quat[2] / norm;
+    me->quat[3] = me->quat[3] / norm;
+
+    me->pitch  = asin(-2 * me->quat[1] * me->quat[3] + 2 * me->quat[0]* me->quat[2])* 57.3; // pitch ,转换为度数
+    me->roll = atan2(2 * me->quat[2] * me->quat[3] + 2 * me->quat[0] * me->quat[1], -2 * me->quat[1] * me->quat[1] - 2 * me->quat[2]* me->quat[2] + 1)* 57.3; // rollv
+    me->yaw = atan2(2*(me->quat[1]*me->quat[2] + me->quat[0]*me->quat[3]),me->quat[0]*me->quat[0]+me->quat[1]*me->quat[1]-me->quat[2]*me->quat[2]-me->quat[3]*me->quat[3]) * 57.3;                //此处没有价值，注掉
+    //printf("pitch=%.2f,Roll=%.2f,Yaw=%.2f,\n",Pitch,Roll);
+    return 0;
+}
