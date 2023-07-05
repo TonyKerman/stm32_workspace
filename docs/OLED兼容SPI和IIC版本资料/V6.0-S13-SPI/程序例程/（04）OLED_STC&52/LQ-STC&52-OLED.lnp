@@ -1,4 +1,0 @@
-"LQ12864.obj",
-"LQ12864main.obj" 
-TO "LQ-STC&52-OLED" 
-RAMSIZE(256) 
