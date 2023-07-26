@@ -2,7 +2,7 @@
 // Created by tony on 2023/5/20.
 //
 
-#include "UserInc/mMessage.h"
+#include "mMessage.h"
 #include "main.h"
 #include "usart.h"
 #include "stdlib.h"
@@ -41,7 +41,7 @@ msgData_t * add32(uint32_t *pdata, uint8_t size){
         content[4*i+3] = (uint8_t)(pdata[i]);
         //int a =BYTE_TO_HW(content[ind],content[ind+1]);
     }
-    msgData_t *data={0};
+    msgData_t *data= (msgData_t *)malloc(sizeof(msgData_t ));
     data->content = content;
 
     data->length = size * 4;
@@ -57,7 +57,7 @@ msgData_t *add16(uint16_t *pdata, uint8_t size){
         content[2*i+1] = (uint8_t)(pdata[i]);
         //int a =BYTE_TO_HW(content[ind],content[ind+1]);
     }
-    msgData_t *data={0};
+    msgData_t *data= (msgData_t *)malloc(sizeof(msgData_t ));
     data->content = content;
     data->length = size * 2;
     return data;
@@ -68,7 +68,7 @@ msgData_t *addu8(uint8_t *pdata, uint8_t size){
     for (i = 0; i < size; i++) {
         content[i] = pdata[i];
     }
-    msgData_t *data={0};
+    msgData_t *data= (msgData_t *)malloc(sizeof(msgData_t ));
     data->content = content;
     data->length = size;
     return data;
@@ -96,10 +96,11 @@ int8_t sendMsg(UART_HandleTypeDef * huartx,uint8_t dataType,msgData_t * data)
     state=HAL_UART_Transmit(huartx, temp, data->length + 5, 0xffff);
     free(temp);
     free(data->content);
+    free(data);
 }
 
-// remmber to free(data->content)!
-int8_t getMsg(UART_HandleTypeDef * huartx, msgData_t *data, uint32_t countout)
+
+int8_t getMsg(UART_HandleTypeDef * huartx, msgData_t *pdata, uint32_t countout)
 {
     int8_t state;
     uint8_t buf;
@@ -122,14 +123,14 @@ int8_t getMsg(UART_HandleTypeDef * huartx, msgData_t *data, uint32_t countout)
                 continue;
         }
     }
-    HAL_UART_Receive(huartx, &data->type,1,5);
-    HAL_UART_Receive(huartx, &data->length, 1, 5);
-    if(data->length>DATALEN)
+    HAL_UART_Receive(huartx, &pdata->type,1,5);
+    HAL_UART_Receive(huartx, &pdata->length, 1, 5);
+    if(pdata->length>DATALEN)
         return -2;
     uint8_t *content[DATALEN];
-    HAL_UART_Receive(huartx, content, data->length, 5*data->length);
+    HAL_UART_Receive(huartx, content, pdata->length, 5*pdata->length);
     HAL_UART_Receive(huartx, &buf,1,1);
-    data->content =content;
+    pdata->content=content;
     return 0;
 
 }

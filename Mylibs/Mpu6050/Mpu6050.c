@@ -3,17 +3,10 @@
 //
 
 #include "Mpu6050.h"
-
 #include "main.h"
 #include <stdlib.h>
 #include "retarget.h"
 #include <math.h>
-
-#define Kp 100.0f                        // 比例增益支配率收敛到加速度计/磁强计
-#define Ki 0.002f                // 积分增益支配率的陀螺仪偏见的衔接
-#define halfT 0.0005f                // 采样周期的一半
-
-
 
 void Mpu6050_writeReg(Mpu6050 * me, uint16_t reg_addr, uint8_t p_data);
 uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr);
@@ -40,6 +33,7 @@ Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,enum
     me->gFsr = g_fsr;
     //采样率 (recommend 100Hz)
     me->samplingRate=samplingRate;
+    me->dt=1.0/samplingRate;
     me->quat[0] = 1.0;
     me->quat[1] = 0.0;
     me->quat[2] = 0.0;
@@ -200,10 +194,6 @@ HAL_StatusTypeDef MPU6050_readLen(Mpu6050 * me,uint8_t p_reg,uint8_t len,uint8_t
 }
 
 
-
-
-
-
 int Mpup6050_update(Mpu6050 *me)
 {
     float norm;
@@ -211,6 +201,10 @@ int Mpup6050_update(Mpu6050 *me)
     float gx,gy,gz;
     float vx, vy, vz;
     float ex, ey, ez;
+
+    float Kp =100.0; //比例增益支配率收敛到加速度计/磁强计
+    float Ki =0.005; //积分增益支配率的陀螺仪偏见的衔接
+    float halfT = me->dt/2;
     // 读取加速度计和陀螺仪数据
     Mpu6050_getAccelerometer(me);
     Mpu6050_getGyroscope(me);
@@ -255,10 +249,9 @@ int Mpup6050_update(Mpu6050 *me)
     me->quat[1] = me->quat[1] / norm;
     me->quat[2] = me->quat[2] / norm;
     me->quat[3] = me->quat[3] / norm;
-
-    me->pitch  = asin(-2 * me->quat[1] * me->quat[3] + 2 * me->quat[0]* me->quat[2])* 57.3; // pitch ,转换为度数
-    me->roll = atan2(2 * me->quat[2] * me->quat[3] + 2 * me->quat[0] * me->quat[1], -2 * me->quat[1] * me->quat[1] - 2 * me->quat[2]* me->quat[2] + 1)* 57.3; // rollv
-    me->yaw = atan2(2*(me->quat[1]*me->quat[2] + me->quat[0]*me->quat[3]),me->quat[0]*me->quat[0]+me->quat[1]*me->quat[1]-me->quat[2]*me->quat[2]-me->quat[3]*me->quat[3]) * 57.3;                //此处没有价值，注掉
+    me->pitch  = asin(-2 * me->quat[1] * me->quat[3] + 2 * me->quat[0]* me->quat[2]); //rad
+    me->roll = atan2(2 * me->quat[2] * me->quat[3] + 2 * me->quat[0] * me->quat[1], -2 * me->quat[1] * me->quat[1] - 2 * me->quat[2]* me->quat[2] + 1);
+    //me->yaw = atan2(2*(me->quat[1]*me->quat[2] + me->quat[0]*me->quat[3]),me->quat[0]*me->quat[0]+me->quat[1]*me->quat[1]-me->quat[2]*me->quat[2]-me->quat[3]*me->quat[3]) * 57.3;                //此处没有价值，注掉
     //printf("pitch=%.2f,Roll=%.2f,Yaw=%.2f,\n",Pitch,Roll);
     return 0;
 }

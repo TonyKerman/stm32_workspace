@@ -1,3 +1,7 @@
 **/cmake-build-debug
+**/cmake-build-debug-stm32
+**/CMakeLists_template.txt
+**/STM32F1xx_HAL_Driver
+**/STM32F4xx_HAL_Driver
 docs/*.zip
-
+Mylibs/u8g2

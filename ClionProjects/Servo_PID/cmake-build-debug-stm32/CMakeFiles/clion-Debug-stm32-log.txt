@@ -1,6 +1,6 @@
-/snap/clion/219/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/bin/arm-none-eabi-gcc -DCMAKE_CXX_COMPILER=/bin/arm-none-eabi-g++ -G "CodeBlocks - Unix Makefiles" -S /home/tony/stm32_workspace/ClionProjects/Servo_PID -B /home/tony/stm32_workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32
--- The C compiler identification is GNU 10.3.1
--- The CXX compiler identification is GNU 10.3.1
+/snap/clion/241/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/bin/arm-none-eabi-gcc -DCMAKE_CXX_COMPILER=/bin/arm-none-eabi-g++ -G "CodeBlocks - Unix Makefiles" -S /home/tony/2STM32workspace/ClionProjects/Servo_PID -B /home/tony/2STM32workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32
+-- The C compiler identification is GNU 12.2.1
+-- The CXX compiler identification is GNU 12.2.1
 -- The ASM compiler identification is GNU
 -- Found assembler: /usr/bin/arm-none-eabi-gcc
 -- Detecting C compiler ABI info
@@ -16,4 +16,4 @@
 -- Minimal optimization, debug info included
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/tony/stm32_workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32
+-- Build files have been written to: /home/tony/2STM32workspace/ClionProjects/Servo_PID/cmake-build-debug-stm32

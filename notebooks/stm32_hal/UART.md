@@ -9,6 +9,10 @@
         text ="***";
         HAL_UART_Transmit(&huart1,(uint8_t *)text.data(),text.size(),100);
 
+## 中断接收
+1. in cubemx：打开串口gloabl中断
+2. 直接 
+
 ## 接收DMA IDLE中断
 <https://blog.csdn.net/qq_31562655/article/details/121014887>
 

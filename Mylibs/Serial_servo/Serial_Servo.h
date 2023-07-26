@@ -42,6 +42,7 @@ typedef struct Serial_Servo Serial_Servo;
 struct Serial_Servo{
     UART_HandleTypeDef * uartHandle;
     uint8_t id;
+    uint8_t is_motor_mode;
     int16_t currentPostion;
     uint16_t maxPos,minPos;
     int16_t offset;
@@ -54,6 +55,9 @@ Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef *uartx, uint8_t id, int16_
 
 int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,uint8_t size);
 int8_t Serial_Servo_Move(Serial_Servo *me, uint16_t position, uint16_t time);
+int8_t Serial_Servo_Stop(Serial_Servo *me);
+int8_t Serial_Servo_Set_Mode(Serial_Servo *me, uint8_t is_motor_mode);
+int8_t Serial_Servo_Speed(Serial_Servo *me, int16_t speed);
 //int8_t Serial_Servo_Move_Angle(Serial_Servo *me, float angle, uint16_t time);
 void Serial_Servo_SetLoadOrUnload(Serial_Servo * me,uint8_t is_load);
 void Serial_Servo_SetLED(Serial_Servo *me, uint8_t LED_State);

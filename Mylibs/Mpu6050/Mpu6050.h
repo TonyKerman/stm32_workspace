@@ -90,6 +90,7 @@ struct Mpu6050{
     uint16_t deviceAddr, writeAddr,readAddr;
     enum mpu_AfsrDef aFsr;
     enum mpu_GfsrDef gFsr;
+    float dt;
     float pitch,roll,yaw;
     float gx,gy,gz;
     float ax,ay,az;

@@ -1,18 +1,26 @@
 # FreeRTOS
+
 ../STM32RTOS培训_嵌入式操作系统介绍.pdf
+
 ## 创建项目
+
 ### CubeMX
+
 <https://blog.csdn.net/qq_36347513/article/details/122187066>
 ->System Core->SYS:->imbase:TIM1
 
 ->FREERTOS
 
-* mode：v1 
+* mode：v1
 * Tasks and Queues:添加任务,名称,优先级
-* Include parameters:选择是否添加某些指令
 
-####Kernel settings：
-    
+#### Include parameters:选择是否添加某些指令
+
+uxTaskGetStackHighWaterMark(xTaskHandle  oneTaskHandle); //主要用来查询指定任务的运行历史中，其栈空间还差多少就要溢出。这个值被称为栈空间的”高水线(High Water Mark)”
+
+
+#### Kernel settings:
+
     USE_PREEMPTION： Enabled：RTOS使用抢占式调度器；Disabled：RTOS使用协作式调度器（时间片）。
     TICK_RATE_HZ： 值设置为1000，即周期就是1ms。RTOS系统节拍中断的频率，单位为HZ。
     MAX_PRIORITIES： 可使用的最大优先级数量。设置好以后任务就可以使用从0到（MAX_PRIORITIES - 1）的优先级，其中0位最低优先级，（MAX_PRIORITIES - 1）为最高优先级。
@@ -56,7 +64,9 @@
     
     LIBRARY_LOWEST_INTERRUPT_PRIORITY： 中断最低优先级。
     LIBRARY_LOWEST_INTERRUPT_PRIORITY： 系统可管理的最高中断优先级。
+
 ### Code
+
 1. CMakeLists.txt:去掉注释
 
         add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
@@ -67,15 +77,6 @@
 2. freertos.c 中
     void StartTask01(void const * argument)函数下写task01代码
 
+### tick 与 ms转换
 
-
-
-
-
-
-
-
-
-
-
-
+    const portTickType xTicksToWait = time / portTICK_RATE_MS;

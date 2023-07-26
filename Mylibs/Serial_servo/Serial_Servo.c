@@ -12,6 +12,10 @@
 //宏函数 将高地八位合成为十六位
 #define BYTE_TO_HW(A, B) ((((uint16_t)(A)) << 8) | (uint8_t)(B))
 
+union v16{
+    int16_t int16;
+    uint8_t uint8[2];
+};
 
 
 
@@ -132,20 +136,53 @@ int8_t Serial_Servo_ReadCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pData)
 *     数角度。该指令到达舵机后，舵机会立即转动。
 */
 int8_t Serial_Servo_Move(Serial_Servo *me, uint16_t position, uint16_t time)
-{
+{   uint8_t args[4];
+    union v16 buf[2];
+
     if(position < me->minPos)
         position = me->minPos;
     if(position > me->maxPos)
         position = me->maxPos;
-    uint8_t args[4];
-    args[0] = GET_LOW_BYTE(position);
-    args[1] = GET_HIGH_BYTE(position);
-    args[2] = GET_LOW_BYTE(time);
-    args[3] = GET_HIGH_BYTE(time);
+    if (me->is_motor_mode)
+        Serial_Servo_Set_Mode(me,0);
+    buf[0].int16= position;
+    buf[1].int16= time;
+    args[0]=buf[0].uint8[0];
+    args[1]=buf[0].uint8[1];
+    args[2]=buf[1].uint8[0];
+    args[3]=buf[1].uint8[1];
     return Serial_Servo_WriteCmd(me,SERIAL_SERVO_MOVE_TIME_WRITE,args,4);
 }
+int8_t Serial_Servo_Stop(Serial_Servo *me)
+{
+    uint8_t *args;
+    return Serial_Servo_WriteCmd(me, SERIAL_SERVO_MOVE_STOP, args, 0);
+}
+int8_t Serial_Servo_Set_Mode(Serial_Servo *me, uint8_t is_motor_mode)
+{
+    uint8_t args[4];
 
+    me->is_motor_mode = is_motor_mode;
+    args[0] = is_motor_mode;
+    args[1] = 0;
+    args[2] = 0;
+    args[3] = 0;
+    return Serial_Servo_WriteCmd(me,SERIAL_SERVO_OR_MOTOR_MODE_WRITE,args,4);
+}
 
+int8_t Serial_Servo_Speed(Serial_Servo *me, int16_t speed)
+{
+    uint8_t args[4];
+    union v16 buf;
+
+    me->is_motor_mode =1;
+    buf.int16 = speed;
+    args[0] = 1;
+    args[1] = 0;
+    args[2] = buf.uint8[0];
+    args[3] = buf.uint8[1];
+    return Serial_Servo_WriteCmd(me,SERIAL_SERVO_OR_MOTOR_MODE_WRITE,args,4);
+}
 //int8_t Serial_Servo_Move_Angle(Serial_Servo *me, float angle, uint16_t time)
 //{
 //    uint16_t position = (uint16_t)(angle*1000/240)+me->offset;
@@ -163,20 +200,20 @@ void Serial_Servo_SetLoadOrUnload(Serial_Servo * me,uint8_t is_load)
     Serial_Servo_WriteCmd(me,SERIAL_SERVO_LOAD_OR_UNLOAD_WRITE,(uint8_t*)&is_load,1);
 }
 
-
+// at least delay 20ms after the function
 int Serial_Servo_SetLimit(Serial_Servo * me,uint16_t min,uint16_t max)
 {
 
-    uint8_t pargs[4];
+    uint8_t args[4];
     if(min<max)
     {
         me->maxPos = max;
         me->minPos = min;
-        pargs[0] = GET_LOW_BYTE(min);
-        pargs[1] = GET_HIGH_BYTE(min);
-        pargs[2] = GET_LOW_BYTE(max);
-        pargs[3] = GET_HIGH_BYTE(max);
-        Serial_Servo_WriteCmd(me,SERIAL_SERVO_ANGLE_LIMIT_WRITE,pargs,4);
+        args[0] = GET_LOW_BYTE(min);
+        args[1] = GET_HIGH_BYTE(min);
+        args[2] = GET_LOW_BYTE(max);
+        args[3] = GET_HIGH_BYTE(max);
+        Serial_Servo_WriteCmd(me,SERIAL_SERVO_ANGLE_LIMIT_WRITE,args,4);
         return 0;
     }
     return -1;
@@ -225,7 +262,7 @@ int8_t Serial_Servo_ReadPosition(Serial_Servo *me)
         me->currentPostion = (int16_t)pos;
         return 0;
     }
-    me->currentPostion = -1;
+    //me->currentPostion = -1;
     return -1;
 
 }
