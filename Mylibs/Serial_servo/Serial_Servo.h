@@ -45,7 +45,7 @@ struct Serial_Servo{
     uint8_t is_motor_mode;
     int16_t currentPostion;
     uint16_t maxPos,minPos;
-    int16_t offset;
+    int16_t offset; //偏置
 };
 
 void Serial_Servo_SetID(const UART_HandleTypeDef * uartHandle,const uint8_t oldID,const uint8_t newID);

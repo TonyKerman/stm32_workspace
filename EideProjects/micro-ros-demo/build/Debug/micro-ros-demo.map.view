@@ -1,0 +1,3 @@
+tool: GCC
+fileName: micro-ros-demo.map
+elfName: micro-ros-demo.elf

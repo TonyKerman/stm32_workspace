@@ -18,7 +18,11 @@ union v16{
 };
 
 
-
+/*创建舵机对象
+ * uartx:串口号
+ * id:舵机ID
+ * offset:偏置（一般=0）
+*/
 Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef * uartx, uint8_t id,int16_t offset)
 {
     Serial_Servo * me =(Serial_Servo*)malloc(sizeof (Serial_Servo));
@@ -36,7 +40,7 @@ Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef * uartx, uint8_t id,int16_
 Checksum=~(ID+Length+Cmd+Prm1+...PrmN)若括号内的计算和超出255,则取最低的一个字节，
 “~”表示取反。
 */
-static uint8_t CheckSum(const uint8_t buf[])
+static  uint8_t CheckSum(const uint8_t buf[])
 {
     uint8_t i;
     uint16_t temp = 0;
@@ -48,7 +52,11 @@ static uint8_t CheckSum(const uint8_t buf[])
     return i;
 }
 
-//设置ID
+/*设置ID
+* oldID:原ID 默认为1,若控制器发出的 ID 号为 254(0xFE)，所有
+的舵机均接收指令
+* newID:新ID
+*/
 void Serial_Servo_SetID(const UART_HandleTypeDef * uartHandle, const uint8_t oldID, const uint8_t newID)
 {
     uint8_t buf[7];
@@ -80,10 +88,15 @@ int Serial_Servo_ReadID(UART_HandleTypeDef * uartHandle)
     return (int)ref[5];
 }
 
-//写一个命令
+/*写一个命令
+* cmdName:命令名
+* pArgs:命令参数
+* size:参数长度
+*/
 int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,uint8_t size)
 {
-    //每一个命令对应的数据长度，数组下标是命令序号，“0”是占位符 ，具体命令对照.h中宏定义
+    //参考协议文档
+    //每一个命令对应的参数数据长度，数组下标是命令序号，“0”是占位符 ，具体命令对照.h中宏定义
     const int cmds[36] = {0,7, 3, 0,0,0,0,7, 3,0,0, 3, 3, 4, 3,0,0, 4, 3, 3, 7, 3, 7, 3, 4, 3, 3, 3, 3, 7, 3, 4, 3, 4, 3, 4};
     uint8_t buf[6+size];
     buf[0] = buf[1] = SERIAL_SERVO_FRAME_HEADER;
@@ -98,7 +111,10 @@ int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,ui
     return HAL_UART_Transmit(me->uartHandle,buf,6+size,1000);
 }
 
-//读命令
+/*读命令
+* cmdName:命令名
+* pData:读取到的数据
+*/
 int8_t Serial_Servo_ReadCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pData)
 {
     //第一个元素是读命令的序号，第二个是其对应的数据长度
@@ -128,6 +144,8 @@ int8_t Serial_Servo_ReadCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pData)
     }
     return -1;
 }
+
+//以下函数根据舵机手册编写
 
 /*
 *舵机转动函数
