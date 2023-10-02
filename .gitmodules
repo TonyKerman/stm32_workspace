@@ -1,5 +1,5 @@
 [submodule "micro_ros_stm32cubemx_utils"]
-	path = micro_ros_stm32cubemx_utils
+	path = EideProjects/micro-ros-demo/micro_ros_stm32cubemx_utils
 	url = https://github.com/micro-ROS/micro_ros_stm32cubemx_utils
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = EideProjects/micro-ros-demo/WTR_micro_ros_stm32cubemx_utils
