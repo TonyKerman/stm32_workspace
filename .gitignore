@@ -3,5 +3,11 @@
 **/CMakeLists_template.txt
 **/STM32F1xx_HAL_Driver
 **/STM32F4xx_HAL_Driver
+**/Drivers
+.idea
+.vscode
+
 docs/*.zip
 Mylibs/u8g2
+# 默认忽略的文件
+/ClionProjects/LED-c8t6/.idea/workspace.xml
