@@ -4,9 +4,9 @@
   "dependenceList": [],
   "srcDirs": [
     ".eide/deps",
-    "Core",
-    "Drivers",
-    "Middlewares"
+    "Core/Src",
+    "Drivers/STM32F4xx_HAL_Driver/Src",
+    "Middlewares/Third_Party/FreeRTOS/Source"
   ],
   "virtualFolder": {
     "name": "<virtual_root>",
@@ -25,7 +25,10 @@
   },
   "targets": {
     "Debug": {
-      "excludeList": [],
+      "excludeList": [
+        "WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_transports",
+        "<virtual_root>/src"
+      ],
       "toolchain": "GCC",
       "compileConfig": {
         "cpuType": "Cortex-M4",
@@ -83,12 +86,13 @@
           "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F",
           "WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include"
         ],
-        "libList": [],
+        "libList": [
+          "WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros"
+        ],
         "sourceDirList": [],
         "defineList": [
           "USE_HAL_DRIVER",
-          "STM32F427xx",
-          "STM32_THREAD_SAFE_STRATEGY=5"
+          "STM32F427xx"
         ]
       }
     }

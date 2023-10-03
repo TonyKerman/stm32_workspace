@@ -2,12 +2,6 @@
     "folders": [
         {
             "path": "."
-        },
-        {
-            "path": "../stm32_micro_ros_setup/f429_microros"
-        },
-        {
-            "path": "../../ClionProjects/freertos_demo1"
         }
     ],
     "settings": {
