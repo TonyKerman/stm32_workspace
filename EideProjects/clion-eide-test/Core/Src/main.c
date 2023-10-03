@@ -33,9 +33,9 @@
 #include <uxr/client/transport.h>
 #include <rmw_microxrcedds_c/config.h>
 #include <rmw_microros/rmw_microros.h>
-
 #include <std_msgs/msg/int32.h>
 #include "usart.h"
+#include "retarget.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,6 +113,7 @@ int main(void)
   MX_CAN1_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
+    RetargetInit(&huart6);
   /* USER CODE END 2 */
 
   /* Init scheduler */
