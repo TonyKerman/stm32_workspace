@@ -4,4 +4,12 @@
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = EideProjects/micro-ros-demo/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
+	
+[submodule "WTR_micro_ros_stm32cubemx_utils"]
+	path = EideProjects/micro-ros-Aboard/WTR_micro_ros_stm32cubemx_utils
+	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
+	
+[submodule "WTR_micro_ros_stm32cubemx_utils"]
+	path = EideProjects/rc24-r2-arm-test/WTR_micro_ros_stm32cubemx_utils
+	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
 

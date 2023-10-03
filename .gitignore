@@ -3,9 +3,10 @@
 **/CMakeLists_template.txt
 **/STM32F1xx_HAL_Driver
 **/STM32F4xx_HAL_Driver
+**/Middlewares
 **/Drivers
 .idea
-.vscode
+**/.vscode
 
 docs/*.zip
 Mylibs/u8g2
