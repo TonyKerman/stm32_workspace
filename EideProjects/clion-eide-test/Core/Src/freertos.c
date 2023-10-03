@@ -118,7 +118,7 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-      HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
+      HAL_GPIO_TogglePin(LDR_GPIO_Port, LDR_Pin);
       HAL_UART_Transmit(&huart6, (uint8_t*)"Hello World!\r\n", 14, 1000);
     osDelay(300);
   }

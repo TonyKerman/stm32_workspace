@@ -114,6 +114,9 @@ int main(void)
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
     RetargetInit(&huart6);
+    HAL_Delay(200);
+    printf("point0\n");
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -193,14 +196,16 @@ void UserStartDefaultTask(void *argument)
     /* USER CODE BEGIN 5 */
 
     // micro-ROS configuration
+    printf("point1\n");
 
-    rmw_uros_set_custom_transport(
+    if(rmw_uros_set_custom_transport(
             true,
             (void *) &huart6,
             cubemx_transport_open,
             cubemx_transport_close,
             cubemx_transport_write,
-            cubemx_transport_read);
+            cubemx_transport_read) == RMW_RET_ERROR)
+        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
 
     rcl_allocator_t freeRTOS_allocator = rcutils_get_zero_initialized_allocator();
     freeRTOS_allocator.allocate = microros_allocate;
@@ -209,7 +214,9 @@ void UserStartDefaultTask(void *argument)
     freeRTOS_allocator.zero_allocate =  microros_zero_allocate;
 
     if (!rcutils_set_default_allocator(&freeRTOS_allocator)) {
+        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
         printf("Error on default allocators (line %d)\n", __LINE__);
+
     }
 
     // micro-ROS app
@@ -221,10 +228,10 @@ void UserStartDefaultTask(void *argument)
     rcl_node_t node;
 
     allocator = rcl_get_default_allocator();
-
+    HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_RESET);
     //create init_options
     rclc_support_init(&support, 0, NULL, &allocator);
-
+    HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
     // create node
     rclc_node_init_default(&node, "cubemx_node", "", &support);
 
@@ -234,7 +241,7 @@ void UserStartDefaultTask(void *argument)
             &node,
             ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
             "cubemx_publisher");
-
+    printf("point2\n");
     msg.data = 0;
 
     for(;;)
@@ -246,7 +253,8 @@ void UserStartDefaultTask(void *argument)
         }
 
         msg.data++;
-        osDelay(10);
+        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
+        osDelay(300);
     }
     /* USER CODE END 5 */
 }

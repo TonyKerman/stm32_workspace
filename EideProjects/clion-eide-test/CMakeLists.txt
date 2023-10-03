@@ -82,7 +82,8 @@ add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT}
 set(LIBMICROROS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros")
 # 添加库文件搜索路径
 link_directories(${LIBMICROROS_PATH})
-
+# 链接库，使用库的实际名称
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE ${LIBMICROROS_PATH}/libmicroros.a)
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 
