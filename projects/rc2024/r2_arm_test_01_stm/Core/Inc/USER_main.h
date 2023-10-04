@@ -7,7 +7,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+void UserStartDefaultTask(void *argument);
 #ifdef __cplusplus
 }
 #endif

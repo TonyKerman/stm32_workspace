@@ -63,7 +63,7 @@ void Error_Handler(void);
 #define LDG_GPIO_Port GPIOF
 
 /* USER CODE BEGIN Private defines */
-void UserStartDefaultTask(void *argument);
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

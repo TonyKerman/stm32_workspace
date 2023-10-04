@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usart.h"
+#include "USER_main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,7 +121,7 @@ void StartDefaultTask(void *argument)
   {
       HAL_GPIO_TogglePin(LDR_GPIO_Port, LDR_Pin);
       HAL_UART_Transmit(&huart6, (uint8_t*)"Hello World!\r\n", 14, 1000);
-    osDelay(300);
+    osDelay(100);
   }
   /* USER CODE END StartDefaultTask */
 }
