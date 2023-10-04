@@ -13,11 +13,13 @@
         "optimization": "level-debug",
         "warnings": "all-warnings",
         "one-elf-section-per-function": true,
-        "one-elf-section-per-data": true
+        "one-elf-section-per-data": true,
+        "C_FLAGS": "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F427xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -IMiddlewares/Third_Party/FreeRTOS/Source/include -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IWTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MFprint_info"
     },
     "asm-compiler": {},
     "linker": {
         "output-format": "elf",
-        "remove-unused-input-sections": true
+        "remove-unused-input-sections": true,
+        "LD_FLAGS": "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -specs=nano.specs -TSTM32F427IIHx_FLASH.ld -lc -lm -lnosys -Wl,-Map=build/DJI-Aboard.map,--cref -Wl,--gc-sections WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/libmicroros.a"
     }
 }
