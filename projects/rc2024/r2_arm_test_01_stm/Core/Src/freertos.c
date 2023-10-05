@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "usart.h"
 #include "USER_main.h"
+#include "tim.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -115,14 +116,14 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+
+    //TestTask(argument);
   UserStartDefaultTask(argument);
   /* Infinite loop */
-  for(;;)
-  {
-      HAL_GPIO_TogglePin(LDR_GPIO_Port, LDR_Pin);
-      HAL_UART_Transmit(&huart6, (uint8_t*)"Hello World!\r\n", 14, 1000);
-    osDelay(100);
-  }
+    for(;;)
+    {
+        osDelay(1);
+    }
   /* USER CODE END StartDefaultTask */
 }
 

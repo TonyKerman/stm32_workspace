@@ -8,8 +8,9 @@
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = EideProjects/micro-ros-Aboard/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
-	
-
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = projects/rc2024/r2_arm_test_01_stm/WTR_micro_ros_stm32cubemx_utils
+	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
+[submodule "WTR_micro_ros_stm32cubemx_utils"]
+	path = projects/rc2024/r1_getplant_test_01_stm/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils

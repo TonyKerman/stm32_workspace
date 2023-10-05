@@ -21,6 +21,7 @@
 #include "cmsis_os.h"
 #include "can.h"
 #include "dma.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -95,6 +96,8 @@ int main(void)
   MX_DMA_Init();
   MX_CAN1_Init();
   MX_USART6_UART_Init();
+  MX_TIM2_Init();
+  MX_UART7_Init();
   /* USER CODE BEGIN 2 */
     RetargetInit(&huart6);
     HAL_Delay(200);

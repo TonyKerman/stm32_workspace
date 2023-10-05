@@ -76,8 +76,7 @@ add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR
 add_link_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT}
-        WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_transports/dma_transport.c)
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 # 构建绝对路径
 set(LIBMICROROS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros")
 # 添加库文件搜索路径
