@@ -11,7 +11,9 @@
 #include <uxr/client/transport.h>
 #include <rmw_microxrcedds_c/config.h>
 #include <rmw_microros/rmw_microros.h>
-#include <std_msgs/msg/float32.h>
+#include <sensor_msgs/msg/joint_state.h>
+//#include <std_msgs/msg/float32_multi_array.h>
+#include <std_msgs/msg/string.h>
 #include "usart.h"
 #include "tim.h"
 #include "retarget.h"
@@ -42,9 +44,19 @@ void *microros_zero_allocate(size_t number_of_elements, size_t size_of_element, 
 void micro_ros_node_start(void);
 void servo_subscribe_callback(const void * msgin);
 
+rcl_subscription_t servo_cmd_subscriber;
+rcl_publisher_t debug_publisher;
+//std_msgs__msg__Float32MultiArray msgJointState;
+sensor_msgs__msg__JointState msgj;
+std_msgs__msg__String debugmsg;
+rclc_support_t support;
+rcl_allocator_t allocator;
+rclc_executor_t executor;
+rcl_node_t node;
 Genetic_Servo servo1 = Genetic_Servo(75, 115);
 Genetic_Servo servo2 = Genetic_Servo(40, 75);
 Genetic_Servo genetic_feet = Genetic_Servo(1700, 4000);
+
 FEET_Servo feet_servo = FEET_Servo(huart7);
 void UserStartDefaultTask(void *argument)
 {
@@ -58,9 +70,25 @@ void UserStartDefaultTask(void *argument)
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     micro_ros_node_start();
     for(;;)
-    {}
+    {
+
+    }
 }
 
+void servo_subscribe_callback(const void * msgin)
+{
+    const sensor_msgs__msg__JointState * msgj = (const sensor_msgs__msg__JointState *)msgin;
+    debugmsg.data.capacity = 10;
+    debugmsg.data.size = 10;
+//    sprintf(debugmsg.data.data,"%f",msgj->position.data[2]);
+//    rcl_publish(&debug_publisher, &debugmsg, NULL);
+    HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
+
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msgj->position.data[2]));
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj->position.data[2]));
+    feet_servo.Servo_Write_PosEx(genetic_feet.run(msgj->position.data[1]),254,254);
+    //msg->data.data[0]
+}
 
 void micro_ros_node_start()
 {
@@ -82,16 +110,7 @@ void micro_ros_node_start()
 
     if (!rcutils_set_default_allocator(&freeRTOS_allocator))
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
-
     // micro-ROS app
-
-    rcl_subscription_t servo_cmd_subscriber;
-    std_msgs__msg__Float32 servo_cmd_msg;
-    rclc_support_t support;
-    rcl_allocator_t allocator;
-    rclc_executor_t executor;
-    rcl_node_t node;
-
     allocator = rcl_get_default_allocator();
     //create support
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
@@ -104,13 +123,24 @@ void micro_ros_node_start()
     if( rclc_node_init_default(&node,"stm32_node","",&support)
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
+    std_msgs__msg__String__init(&debugmsg);
+
+    // create publisher
+    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
+    if( rclc_publisher_init_default(
+            &debug_publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            "debug")
+        == RCL_RET_OK)
+        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     // create subscriber
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
     if( rclc_subscription_init_default(
             &servo_cmd_subscriber,
             &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
-            "servos_open_cmd")
+            ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg,JointState),
+            "joint_cmd")
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     //create executor
@@ -120,37 +150,42 @@ void micro_ros_node_start()
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     //add subscriber to executor
+
     rclc_executor_add_subscription(
             &executor,
             &servo_cmd_subscriber,
-            &servo_cmd_msg,
+            &msgj,
             &servo_subscribe_callback,
             ON_NEW_DATA);
     osDelay(300);
+    debugmsg.data.capacity = 5;
+    debugmsg.data.size = 5;
+    debugmsg.data.data = "start";
+    rcl_publish(&debug_publisher, &debugmsg, NULL);
+    char buf1[3];
+    msgj.header.frame_id.data = buf1;
+    msgj.header.frame_id.capacity = sizeof(buf1);
+    char buf2[3];
+    msgj.name.data->data = buf2;
+    msgj.name.data->capacity = sizeof (buf2);
+    double buf3[3];
+    msgj.position.data = buf3;
+    msgj.position.capacity = sizeof (buf3);
+    double buf4[3];
+    msgj.velocity.data = buf4;
+    msgj.velocity.capacity = sizeof (buf4);
+    double buf5[3];
+    msgj.effort.data = buf5;
+    msgj.effort.capacity = sizeof (buf5);
+    //sensor_msgs__msg__JointState__init(&msgj);
+    debugmsg.data.capacity = 10;
+    debugmsg.data.size = 0;
+    debugmsg.data.data = (char *)malloc(10*sizeof(char));
     rclc_executor_spin(&executor);
 }
 
-//void limit_int16(int16_t * value, const int16_t min,const int16_t max)
-//{
-//    if(*value<min)
-//        *value=min;
-//    if(*value>max)
-//        *value=max;
-//}
-//void limit_float(float * value, const float min,const float max)
-//{
-//    if(*value<min)
-//        *value=min;
-//    if(*value>max)
-//        *value=max;
-//}
-void servo_subscribe_callback(const void * msgin)
-{
-    const std_msgs__msg__Float32 * msg = (const std_msgs__msg__Float32 *)msgin;
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msg->data));
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msg->data));
-    //msg->data.data[0]
-}
+
+
 
 void TestTask(void *argument)
 {
@@ -159,7 +194,7 @@ void TestTask(void *argument)
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
     servo1.set_trans_in2out(0,1.57,0,75,125,75);
-
+    genetic_feet.set_trans_in2out(-3.14,3.14,-3.14,0,4096,2815);
     osDelay(10);
     int p = 0;
     for(;;)
@@ -168,10 +203,10 @@ void TestTask(void *argument)
         // __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 30);
         servo1.run(1.57);
         osDelay(300);
-        //genetic_feet.run(p);
-        feet_servo.Servo_Write_PosEx(genetic_feet.pos_out,254,254);
+        genetic_feet.run(p);
+        feet_servo.Servo_Write_PosEx(0,254,254);
         p+=0.1;
-        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 75);
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 75);
         osDelay(300);
         //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 75);
 

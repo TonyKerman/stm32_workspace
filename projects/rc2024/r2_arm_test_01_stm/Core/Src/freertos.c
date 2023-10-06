@@ -117,8 +117,8 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
 
-    //TestTask(argument);
-  UserStartDefaultTask(argument);
+    TestTask(argument);
+  //UserStartDefaultTask(argument);
   /* Infinite loop */
     for(;;)
     {
