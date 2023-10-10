@@ -5,8 +5,7 @@
  * @brief 舵机构造函数
  * @param uart_handle 串口句柄
  */
-FEET_Servo::FEET_Servo(UART_HandleTypeDef uart_handle)
-{
+void FEET_Servo::FEET_Servo_Init(UART_HandleTypeDef uart_handle) {
     servo_uart_handle = uart_handle;
     ID                = 0x01;
     End               = 0; // 大小端结构

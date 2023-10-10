@@ -1,16 +1,17 @@
-[submodule "micro_ros_stm32cubemx_utils"]
-	path = EideProjects/micro-ros-demo/micro_ros_stm32cubemx_utils
-	url = https://github.com/micro-ROS/micro_ros_stm32cubemx_utils
-[submodule "WTR_micro_ros_stm32cubemx_utils"]
-	path = EideProjects/micro-ros-demo/WTR_micro_ros_stm32cubemx_utils
-	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
-	
-[submodule "WTR_micro_ros_stm32cubemx_utils"]
-	path = EideProjects/micro-ros-Aboard/WTR_micro_ros_stm32cubemx_utils
-	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
+
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = projects/rc2024/r2_arm_test_01_stm/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = projects/rc2024/r1_getplant_test_01_stm/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/TonyKerman/WTR_micro_ros_stm32cubemx_utils
+	
+[submodule "stm32_micro_ros_setup"]
+	path = EideProjects/stm32_micro_ros_setup
+	url = https://github.com/lFatality/stm32_micro_ros_setup
+
+[submodule "STM32_Libs"]
+	path = STM32_Libs
+	url = https://github.com/WTR2023/STM32_Libs
+	
+	

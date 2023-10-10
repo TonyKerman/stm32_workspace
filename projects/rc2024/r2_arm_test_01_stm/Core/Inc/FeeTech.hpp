@@ -105,8 +105,9 @@ private:
     int Servo_reg_Write(uint8_t ID, uint8_t MemAddr, uint8_t *nDat, uint8_t nLen);
 
 public:
-    FEET_Servo(UART_HandleTypeDef uart_handle);
 
+    FEET_Servo(){};
+    void FEET_Servo_Init(UART_HandleTypeDef uart_handle);
     int Servo_Write_PosEx(int16_t Position, uint16_t Speed = 100, uint8_t ACC = 100);
     int WheelMode(void);
     int Servo_Write_Speed(int16_t Speed, uint8_t ACC = 100);

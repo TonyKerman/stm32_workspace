@@ -56,16 +56,18 @@ rcl_node_t node;
 Genetic_Servo servo1 = Genetic_Servo(75, 115);
 Genetic_Servo servo2 = Genetic_Servo(40, 75);
 Genetic_Servo genetic_feet = Genetic_Servo(1700, 4000);
+FEET_Servo feet_servo;
 
-FEET_Servo feet_servo = FEET_Servo(huart7);
+
+
 void UserStartDefaultTask(void *argument)
 {
-
+    feet_servo.FEET_Servo_Init(huart7);
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
     servo1.set_trans_in2out(0,1.57,0,125,75,125);
     servo2.set_trans_in2out(1.57,0,1.57,75,25,75);
-    genetic_feet.set_trans_in2out(-3.14,3.14,-3.14,0,4096,2815);
+    genetic_feet.set_trans_in2out(3.14,-3.14,0,0,4096,2815);
     // micro-ROS configuration
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     micro_ros_node_start();
@@ -78,8 +80,7 @@ void UserStartDefaultTask(void *argument)
 void servo_subscribe_callback(const void * msgin)
 {
     const sensor_msgs__msg__JointState * msgj = (const sensor_msgs__msg__JointState *)msgin;
-    debugmsg.data.capacity = 10;
-    debugmsg.data.size = 10;
+
 //    sprintf(debugmsg.data.data,"%f",msgj->position.data[2]);
 //    rcl_publish(&debug_publisher, &debugmsg, NULL);
     HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
@@ -88,6 +89,12 @@ void servo_subscribe_callback(const void * msgin)
     __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj->position.data[2]));
     feet_servo.Servo_Write_PosEx(genetic_feet.run(msgj->position.data[1]),254,254);
     //msg->data.data[0]
+    debugmsg.data.capacity = 20;
+    debugmsg.data.size = 20;
+    debugmsg.data.data = (char *)malloc(20*sizeof(char));
+    sprintf(debugmsg.data.data,"%d",genetic_feet.pos_out);
+    rcl_publish(&debug_publisher, &debugmsg, NULL);
+    free(debugmsg.data.data);
 }
 
 void micro_ros_node_start()
@@ -190,21 +197,23 @@ void micro_ros_node_start()
 void TestTask(void *argument)
 {
     osDelay(300);
-
+    feet_servo.FEET_Servo_Init(huart7);
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
     servo1.set_trans_in2out(0,1.57,0,75,125,75);
-    genetic_feet.set_trans_in2out(-3.14,3.14,-3.14,0,4096,2815);
+    genetic_feet.set_trans_in2out(-3.14,3.14,0,0,4096,2815);
     osDelay(10);
-    int p = 0;
+    float p = 0;
     for(;;)
     {
-        HAL_GPIO_TogglePin(LDR_GPIO_Port, LDR_Pin);
+        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
         // __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 30);
         servo1.run(1.57);
         osDelay(300);
         genetic_feet.run(p);
-        feet_servo.Servo_Write_PosEx(0,254,254);
+        printf("p:%d\n",genetic_feet.pos_out);
+        //HAL_UART_Transmit(&huart7, (uint8_t *) "hello world", 11, 1000);
+        feet_servo.Servo_Write_PosEx(genetic_feet.pos_out,254,254);
         p+=0.1;
         __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 75);
         osDelay(300);

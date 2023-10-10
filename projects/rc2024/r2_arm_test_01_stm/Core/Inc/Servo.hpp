@@ -42,7 +42,7 @@ public:
             target_out = this->max_out;
         else if (target_out < this->min_out)
             target_out = this->min_out;
-        printf("k:%f,b:%d,target_out:%d\n", this->k, this->b, target_out);
+        //printf("k:%f,b:%d,target_out:%d\n", this->k, this->b, target_out);
         this->pos_out = target_out;
         return target_out;
     }
