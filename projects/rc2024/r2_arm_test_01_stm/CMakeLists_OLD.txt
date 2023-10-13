@@ -57,6 +57,7 @@ include_directories(Core/Inc Drivers/STM32F4xx_HAL_Driver/Inc
         Drivers/CMSIS/Device/ST/STM32F4xx/Include
         Drivers/CMSIS/Include
         WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include
+        Core/Unitree_SDK
 )
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F427xx)
@@ -64,6 +65,7 @@ add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F427xx)
 file(GLOB_RECURSE SOURCES "Core/*.*"
         "Middlewares/*.*"
         "Drivers/*.*"
+        "Core/Unitree_SDK/*.*"
         "WTR_micro_ros_stm32cubemx_utils/extra_sources/custom_memory_manager.c"
         "WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_allocators.c"
         "WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_time.c"
