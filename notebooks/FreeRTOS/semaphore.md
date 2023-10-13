@@ -7,19 +7,29 @@
 
 ## 使用
 
-1. 声明
+0. include
+```c
+    #include "semphr.h"
+```
 
+1. 声明
+```c
     SemaphoreHandle_t sem;
+```
 
 2. 根据类型定义
-
+```c
     sem = xSemaphoreCreateBinary(); //二值信号量
     sem = xSemaphoreCreateMutex(); //互斥信号量
+```
+    
 
 3. 使用
-
+```c
     xSemaphoreTake(sem);
     xSemaphoreGive(sem);
+```
+    
 
 # notebook
 
