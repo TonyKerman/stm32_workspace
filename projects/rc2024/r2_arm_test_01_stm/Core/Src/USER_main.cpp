@@ -59,24 +59,6 @@ Genetic_Servo genetic_feet = Genetic_Servo(1700, 4000);
 FEET_Servo feet_servo;
 
 
-
-void UserStartDefaultTask(void *argument)
-{
-    feet_servo.FEET_Servo_Init(huart7);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-    servo1.set_trans_in2out(0,1.57,0,125,75,125);
-    servo2.set_trans_in2out(1.57,0,1.57,75,25,75);
-    genetic_feet.set_trans_in2out(3.14,-3.14,0,0,4096,2815);
-    // micro-ROS configuration
-    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
-    micro_ros_node_start();
-    for(;;)
-    {
-
-    }
-}
-
 void servo_subscribe_callback(const void * msgin)
 {
     const sensor_msgs__msg__JointState * _msgj = (const sensor_msgs__msg__JointState *)msgin;
@@ -116,9 +98,9 @@ void timer1_callback(rcl_timer_t *timer, int64_t last_call_time)
     vPortFree(debugmsg.data.data);
 }
 
-void micro_ros_node_start()
+void UserStartDefaultTask(void *argument)
 {
-
+    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     if(rmw_uros_set_custom_transport(
             true,
             (void *) &huart8,
@@ -205,18 +187,29 @@ void micro_ros_node_start()
     debugmsg.data.data = (char *)pvPortMalloc(10*sizeof(char));
     xSemaphoreGive(sync_mutex);
     rclc_executor_spin(&executor);
+    for(;;){}
 }
 
 
-void StartTestTask(void *argument)
+void StartControllerTask(void *argument)
 {
+    feet_servo.FEET_Servo_Init(huart7);
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+    servo1.set_trans_in2out(0,1.57,0,125,75,125);
+    servo2.set_trans_in2out(1.57,0,1.57,75,25,75);
+    genetic_feet.set_trans_in2out(3.14,-3.14,0,0,4096,2815);
     xSemaphoreTake(sync_mutex, portMAX_DELAY);
     for(;;)
     {
-        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msgj.position.data[2]));
-        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj.position.data[2]));
+        if(xSemaphoreTake(data_mutex,100/portTICK_RATE_MS)!=pdTRUE)
+            continue;
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msgj.position.data[2]));
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj.position.data[2]));
+        feet_servo.Servo_Write_PosEx(genetic_feet.run(msgj.position.data[1]),254,254);
+        xSemaphoreGive(data_mutex);
         HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
-        osDelay(500);
+        osDelay(100);
     }
 }
 

@@ -61,9 +61,9 @@ const osThreadAttr_t defaultTask_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 osThreadId_t testTaskHandle;
-const osThreadAttr_t testTask_attributes = {
-        .name = "testTask",
-        .stack_size = 128 * 4,
+const osThreadAttr_t controllerTask_attributes = {
+        .name = "controllerTask",
+        .stack_size = 256 * 4,
         .priority = (osPriority_t) osPriorityLow,
 };
 /* USER CODE END FunctionPrototypes */
@@ -107,7 +107,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-  testTaskHandle = osThreadNew(StartTestTask, NULL, &testTask_attributes);
+  testTaskHandle = osThreadNew(StartControllerTask, NULL, &controllerTask_attributes);
 
     /* USER CODE END RTOS_THREADS */
 
