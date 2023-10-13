@@ -53,10 +53,7 @@ rclc_support_t support;
 rcl_allocator_t allocator;
 rclc_executor_t executor;
 rcl_node_t node;
-Genetic_Servo servo1 = Genetic_Servo(75, 115);
-Genetic_Servo servo2 = Genetic_Servo(40, 75);
-Genetic_Servo genetic_feet = Genetic_Servo(1700, 4000);
-FEET_Servo feet_servo;
+
 
 
 
@@ -87,8 +84,17 @@ void servo_subscribe_callback(const void *msgin) {
 }
 
 void StartControllerTask(void *argument) {
-    UnitreeMotor * unitree_motor1 = (UnitreeMotor *) pvPortMalloc(sizeof(UnitreeMotor));
-    Unitree_init(unitree_motor1);
+    Genetic_Servo servo1 = Genetic_Servo(75, 115);
+    Genetic_Servo servo2 = Genetic_Servo(40, 75);
+    Genetic_Servo genetic_feet = Genetic_Servo(1700, 4000);
+    FEET_Servo feet_servo;
+    UnitreeMotor  * unitree_motor1 =Unitree_Create_Motor();
+
+    while(Unitree_init(unitree_motor1,&huart6)==HAL_ERROR)
+    {
+        osDelay(50);
+        HAL_GPIO_TogglePin(LDR_GPIO_Port, LDR_Pin);
+    }
     feet_servo.FEET_Servo_Init(huart7);
 
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
@@ -226,29 +232,29 @@ void joint_msg_init(sensor_msgs__msg__JointState *msg) {
     msg->effort.capacity = 3;
 }
 
-void TestTask(void *argument) {
-    osDelay(300);
-    feet_servo.FEET_Servo_Init(huart7);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-    servo1.set_trans_in2out(0, 1.57, 0, 75, 125, 75);
-    genetic_feet.set_trans_in2out(-3.14, 3.14, 0, 0, 4096, 2815);
-    osDelay(10);
-    float p = 0;
-    for (;;) {
-        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
-        // __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 30);
-        servo1.run(1.57);
-        osDelay(300);
-        genetic_feet.run(p);
-        printf("p:%d\n", genetic_feet.pos_out);
-        //HAL_UART_Transmit(&huart7, (uint8_t *) "hello world", 11, 1000);
-        feet_servo.Servo_Write_PosEx(genetic_feet.pos_out, 254, 254);
-        p += 0.1;
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 75);
-        osDelay(300);
-        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 75);
-
-
-    }
-}
+//void TestTask(void *argument) {
+//    osDelay(300);
+//    feet_servo.FEET_Servo_Init(huart7);
+//    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+//    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+//    servo1.set_trans_in2out(0, 1.57, 0, 75, 125, 75);
+//    genetic_feet.set_trans_in2out(-3.14, 3.14, 0, 0, 4096, 2815);
+//    osDelay(10);
+//    float p = 0;
+//    for (;;) {
+//        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
+//        // __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 30);
+//        servo1.run(1.57);
+//        osDelay(300);
+//        genetic_feet.run(p);
+//        printf("p:%d\n", genetic_feet.pos_out);
+//        //HAL_UART_Transmit(&huart7, (uint8_t *) "hello world", 11, 1000);
+//        feet_servo.Servo_Write_PosEx(genetic_feet.pos_out, 254, 254);
+//        p += 0.1;
+//        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 75);
+//        osDelay(300);
+//        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 75);
+//
+//
+//    }
+//}
