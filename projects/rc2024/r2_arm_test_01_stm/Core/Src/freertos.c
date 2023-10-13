@@ -47,7 +47,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+SemaphoreHandle_t data_mutex;
+SemaphoreHandle_t sync_mutex;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -87,6 +88,9 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
+
+        data_mutex = xSemaphoreCreateMutex();
+        sync_mutex = xSemaphoreCreateBinary();
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */
@@ -103,7 +107,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-    testTaskHandle = osThreadNew(StartTestTask, NULL, &testTask_attributes);
+  testTaskHandle = osThreadNew(StartTestTask, NULL, &testTask_attributes);
 
     /* USER CODE END RTOS_THREADS */
 

@@ -7,6 +7,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "semphr.h"
+    extern SemaphoreHandle_t data_mutex;
+    extern SemaphoreHandle_t sync_mutex;
     void StartTestTask(void *argument);
     void UserStartDefaultTask(void *argument);
     void TestTask(void *argument);

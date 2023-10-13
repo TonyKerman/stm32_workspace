@@ -24,31 +24,29 @@
 extern "C" {
 #endif
 bool cubemx_transport_open(struct uxrCustomTransport *transport);
-
 bool cubemx_transport_close(struct uxrCustomTransport *transport);
-
 size_t cubemx_transport_write(struct uxrCustomTransport *transport, const uint8_t *buf, size_t len, uint8_t *err);
-
 size_t cubemx_transport_read(struct uxrCustomTransport *transport, uint8_t *buf, size_t len, int timeout, uint8_t *err);
-
 void *microros_allocate(size_t size, void *state);
-
 void microros_deallocate(void *pointer, void *state);
-
 void *microros_reallocate(void *pointer, size_t size, void *state);
-
 void *microros_zero_allocate(size_t number_of_elements, size_t size_of_element, void *state);
 #ifdef __cplusplus
 }
 #endif
 void micro_ros_node_start(void);
+
 void timer1_callback(rcl_timer_t *timer, int64_t last_call_time);
+
 void servo_subscribe_callback(rcl_timer_t *msgin, int64_t i1);
+
+void joint_msg_init(sensor_msgs__msg__JointState * msg);
 
 rcl_subscription_t servo_cmd_subscriber;
 rcl_publisher_t debug_publisher;
 rcl_timer_t timer1;
 //std_msgs__msg__Float32MultiArray msgJointState;
+sensor_msgs__msg__JointState _msgj;
 sensor_msgs__msg__JointState msgj;
 std_msgs__msg__String debugmsg;
 rclc_support_t support;
@@ -81,7 +79,7 @@ void UserStartDefaultTask(void *argument)
 
 void servo_subscribe_callback(const void * msgin)
 {
-    const sensor_msgs__msg__JointState * msgj = (const sensor_msgs__msg__JointState *)msgin;
+    const sensor_msgs__msg__JointState * _msgj = (const sensor_msgs__msg__JointState *)msgin;
 
 //    sprintf(debugmsg.data.data,"%f",msgj->position.data[2]);
 //    rcl_publish(&debug_publisher, &debugmsg, NULL);
@@ -91,22 +89,31 @@ void servo_subscribe_callback(const void * msgin)
 //    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj->position.data[2]));
 //    feet_servo.Servo_Write_PosEx(genetic_feet.run(msgj->position.data[1]),254,254);
     //msg->data.data[0]
+    if(xSemaphoreTake(data_mutex,10/portTICK_RATE_MS)==pdTRUE)
+    {
+        sensor_msgs__msg__JointState__copy(_msgj,&msgj);
+        xSemaphoreGive(data_mutex);
+    }
+    else
+    {
+        return;
+    }
     debugmsg.data.capacity = 20;
     debugmsg.data.size = 20;
-    debugmsg.data.data = (char *)malloc(20*sizeof(char));
-    sprintf(debugmsg.data.data,"callback%lu",xTaskGetTickCount());
+    debugmsg.data.data = (char *)pvPortMalloc(20*sizeof(char));
+    sprintf(debugmsg.data.data,"%f",msgj.position.data[2]);
     rcl_publish(&debug_publisher, &debugmsg, NULL);
-    free(debugmsg.data.data);
+    vPortFree(debugmsg.data.data);
 
 }
 void timer1_callback(rcl_timer_t *timer, int64_t last_call_time)
 {
     debugmsg.data.capacity = 20;
     debugmsg.data.size = 20;
-    debugmsg.data.data = (char *)malloc(20*sizeof(char));
+    debugmsg.data.data = (char *)pvPortMalloc(20*sizeof(char));
     sprintf(debugmsg.data.data,"timer%lu",xTaskGetTickCount());
     rcl_publish(&debug_publisher, &debugmsg, NULL);
-    free(debugmsg.data.data);
+    vPortFree(debugmsg.data.data);
 }
 
 void micro_ros_node_start()
@@ -181,7 +188,7 @@ void micro_ros_node_start()
     rclc_executor_add_subscription(
             &executor,
             &servo_cmd_subscriber,
-            &msgj,
+            &_msgj,
             &servo_subscribe_callback,
             ON_NEW_DATA);
     rclc_executor_add_timer(&executor, &timer1);
@@ -190,40 +197,42 @@ void micro_ros_node_start()
     debugmsg.data.size = 5;
     debugmsg.data.data = "start";
     rcl_publish(&debug_publisher, &debugmsg, NULL);
-    char buf1[3];
-    msgj.header.frame_id.data = buf1;
-    msgj.header.frame_id.capacity = sizeof(buf1);
-    char buf2[3];
-    msgj.name.data->data = buf2;
-    msgj.name.data->capacity = sizeof (buf2);
-    double buf3[3];
-    msgj.position.data = buf3;
-    msgj.position.capacity = sizeof (buf3);
-    double buf4[3];
-    msgj.velocity.data = buf4;
-    msgj.velocity.capacity = sizeof (buf4);
-    double buf5[3];
-    msgj.effort.data = buf5;
-    msgj.effort.capacity = sizeof (buf5);
+    joint_msg_init(&_msgj);
+    joint_msg_init(&msgj);
     //sensor_msgs__msg__JointState__init(&msgj);
     debugmsg.data.capacity = 10;
     debugmsg.data.size = 0;
-    debugmsg.data.data = (char *)malloc(10*sizeof(char));
+    debugmsg.data.data = (char *)pvPortMalloc(10*sizeof(char));
+    xSemaphoreGive(sync_mutex);
     rclc_executor_spin(&executor);
 }
 
 
 void StartTestTask(void *argument)
 {
-
+    xSemaphoreTake(sync_mutex, portMAX_DELAY);
     for(;;)
     {
-        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin)
+        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msgj.position.data[2]));
+        //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj.position.data[2]));
+        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
         osDelay(500);
     }
 }
 
-
+void joint_msg_init(sensor_msgs__msg__JointState * msg)
+{
+    msg->header.frame_id.data = (char *)pvPortMalloc(3*sizeof(char));
+    msg->header.frame_id.capacity = 3;
+    msg->name.data->data = (char *)pvPortMalloc(3*sizeof(char));
+    msg->name.data->capacity = 3;
+    msg->position.data = (double *)pvPortMalloc(3*sizeof(double));
+    msg->position.capacity = 3;
+    msg->velocity.data = (double *)pvPortMalloc(3*sizeof(double));
+    msg->velocity.capacity = 3;
+    msg->effort.data = (double *)pvPortMalloc(3*sizeof(double));
+    msg->effort.capacity = 3;
+}
 
 void TestTask(void *argument)
 {
