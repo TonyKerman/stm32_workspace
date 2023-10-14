@@ -16,7 +16,8 @@
 
 #### Include parameters:选择是否添加某些指令
 
-uxTaskGetStackHighWaterMark(xTaskHandle  oneTaskHandle); //主要用来查询指定任务的运行历史中，其栈空间还差多少就要溢出。这个值被称为栈空间的”高水线(High Water Mark)”
+`uxTaskGetStackHighWaterMark(xTaskHandle  oneTaskHandle);` 
+主要用来查询指定任务的运行历史中，其栈空间还差多少就要溢出。这个值被称为栈空间的”高水线(High Water Mark)”
 
 
 #### Kernel settings:

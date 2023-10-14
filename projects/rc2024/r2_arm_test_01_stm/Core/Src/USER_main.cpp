@@ -20,6 +20,7 @@
 #include "FeeTech.hpp"
 #include "Servo.hpp"
 #include "Unitree_user.h"
+#include<math.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -98,7 +99,8 @@ void StartControllerTask(void *argument) {
     servo2.set_trans_in2out(1.57, 0, 1.57, 75, 25, 75);
     genetic_feet.set_trans_in2out(3.14, -3.14, 0, 0, 4096, 2815);
     xSemaphoreTake(sync_mutex, portMAX_DELAY);
-
+    osDelay(10);
+    xSemaphoreGive(sync_mutex);
     uint32_t xLastWakeTime = xTaskGetTickCount();
     for (;;) {
         if (xSemaphoreTake(data_mutex, 100 / portTICK_RATE_MS) != pdTRUE)
@@ -107,18 +109,13 @@ void StartControllerTask(void *argument) {
         __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.trans_i2o(msgj_in.position.data[2]));
         __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.trans_i2o(msgj_in.position.data[2]));
         feet_servo.Servo_Write_PosEx(genetic_feet.trans_i2o(msgj_in.position.data[1]), 254, 254);
-        Unitree_UART_tranANDrev(unitree_motor1, 0, 1, 0, 0, 0, 0, 0);
+        float tf = 0.7*sin(unitree_motor1->data.Pos / UNITREE_REDUCTION_RATE-0.3);
+        Unitree_UART_tranANDrev(unitree_motor1, 0, 1, tf, 0, msgj_in.position.data[0]+0.3, 0.1, 0.1);
         pos_feedback.data.data[2] = msgj_in.position.data[2];
-        pos_feedback.data.data[0]= unitree_motor1->data.Pos / UNITREE_REDUCTION_RATE;
+        pos_feedback.data.data[0]= unitree_motor1->data.Pos / UNITREE_REDUCTION_RATE-0.3;
         pos_feedback.data.data[1]=(float)feet_servo.Servo_Read_Pos();
         xSemaphoreGive(data_mutex);
 
-//        debugmsg.data.capacity = 20;
-//        debugmsg.data.size = 20;
-//        debugmsg.data.data = (char *)pvPortMalloc(20*sizeof(char));
-//        sprintf(debugmsg.data.data,"running:%lu",xTaskGetTickCount());
-//        rcl_publish(&debug_publisher, &debugmsg, NULL);
-//        vPortFree(debugmsg.data.data);
 
         vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
     }
@@ -252,6 +249,8 @@ void UserStartDefaultTask(void *argument) {
 //    debugmsg.data.size = 0;
 //    debugmsg.data.data = (char *) pvPortMalloc(10 * sizeof(char));
     xSemaphoreGive(sync_mutex);
+    osDelay(10);
+    xSemaphoreTake(sync_mutex, portMAX_DELAY);
     rclc_executor_spin(&executor);
     for (;;) {}
 }
