@@ -12,6 +12,8 @@
 #include <rmw_microxrcedds_c/config.h>
 #include <rmw_microros/rmw_microros.h>
 #include <sensor_msgs/msg/joint_state.h>
+#include <std_msgs/msg/float32_multi_array.h>
+#include <std_msgs/msg/int32.h>
 #include <std_msgs/msg/string.h>
 #include "usart.h"
 #include "tim.h"
@@ -30,24 +32,25 @@ void *microros_allocate(size_t size, void *state);
 void microros_deallocate(void *pointer, void *state);
 void *microros_reallocate(void *pointer, size_t size, void *state);
 void *microros_zero_allocate(size_t number_of_elements, size_t size_of_element, void *state);
+
 #ifdef __cplusplus
 }
 #endif
-
-void micro_ros_node_start(void);
-
-//void timer1_callback(rcl_timer_t *timer, int64_t last_call_time);
 
 void servo_subscribe_callback(const void *msgin);
 
 void joint_msg_init(sensor_msgs__msg__JointState *msg);
 
+void joint_msg_fini(sensor_msgs__msg__JointState *msg);
+
 rcl_subscription_t servo_cmd_subscriber;
 rcl_publisher_t debug_publisher;
-//rcl_timer_t timer1;
-//std_msgs__msg__Float32MultiArray msgJointState;
-sensor_msgs__msg__JointState _msgj;
-sensor_msgs__msg__JointState msgj;
+rcl_publisher_t msgj_feedback_publisher;
+rcl_publisher_t stm_time_publisher;
+sensor_msgs__msg__JointState _msgj_in;
+sensor_msgs__msg__JointState msgj_in;
+std_msgs__msg__Float32MultiArray pos_feedback;
+std_msgs__msg__Int32 stm_time;
 std_msgs__msg__String debugmsg;
 rclc_support_t support;
 rcl_allocator_t allocator;
@@ -58,18 +61,9 @@ rcl_node_t node;
 
 
 void servo_subscribe_callback(const void *msgin) {
-    const sensor_msgs__msg__JointState *_msgj = (const sensor_msgs__msg__JointState *) msgin;
-
-//    sprintf(debugmsg.data.data,"%f",msgj->position.data[2]);
-//    rcl_publish(&debug_publisher, &debugmsg, NULL);
-//    HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
-//
-//    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msgj->position.data[2]));
-//    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj->position.data[2]));
-//    feet_servo.Servo_Write_PosEx(genetic_feet.run(msgj->position.data[1]),254,254);
-    //msg->data.data[0]
+    const sensor_msgs__msg__JointState *_msgj_in = (const sensor_msgs__msg__JointState *) msgin;
     if (xSemaphoreTake(data_mutex, 10 / portTICK_RATE_MS) == pdTRUE) {
-        sensor_msgs__msg__JointState__copy(_msgj, &msgj);
+        sensor_msgs__msg__JointState__copy(_msgj_in, &msgj_in);
         xSemaphoreGive(data_mutex);
     } else {
         return;
@@ -77,7 +71,7 @@ void servo_subscribe_callback(const void *msgin) {
     debugmsg.data.capacity = 20;
     debugmsg.data.size = 20;
     debugmsg.data.data = (char *) pvPortMalloc(20 * sizeof(char));
-    sprintf(debugmsg.data.data, "%f", msgj.position.data[2]);
+    sprintf(debugmsg.data.data, "%f", msgj_in.position.data[2]);
     rcl_publish(&debug_publisher, &debugmsg, NULL);
     vPortFree(debugmsg.data.data);
 
@@ -93,7 +87,7 @@ void StartControllerTask(void *argument) {
     while(Unitree_init(unitree_motor1,&huart6)==HAL_ERROR)
     {
         osDelay(50);
-        HAL_GPIO_TogglePin(LDR_GPIO_Port, LDR_Pin);
+        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
     }
     feet_servo.FEET_Servo_Init(huart7);
 
@@ -103,17 +97,37 @@ void StartControllerTask(void *argument) {
     servo2.set_trans_in2out(1.57, 0, 1.57, 75, 25, 75);
     genetic_feet.set_trans_in2out(3.14, -3.14, 0, 0, 4096, 2815);
     xSemaphoreTake(sync_mutex, portMAX_DELAY);
+    pos_feedback.data.capacity=3;
+    pos_feedback.data.size=3;
+    pos_feedback.data.data=(float *)pvPortMalloc(3*sizeof(float));
+    uint32_t xLastWakeTime = xTaskGetTickCount();
     for (;;) {
         if (xSemaphoreTake(data_mutex, 100 / portTICK_RATE_MS) != pdTRUE)
             continue;
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.run(msgj.position.data[2]));
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.run(msgj.position.data[2]));
-        feet_servo.Servo_Write_PosEx(genetic_feet.run(msgj.position.data[1]), 254, 254);
-        Unitree_UART_tranANDrev(unitree_motor1, 0, 1, 0, 0, 0, 0, 0);
 
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, servo1.trans_i2o(msgj_in.position.data[2]));
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, servo2.trans_i2o(msgj_in.position.data[2]));
+        feet_servo.Servo_Write_PosEx(genetic_feet.trans_i2o(msgj_in.position.data[1]), 254, 254);
+        Unitree_UART_tranANDrev(unitree_motor1, 0, 1, 0, 0, 0, 0, 0);
+        pos_feedback.data.data[2] = msgj_in.position.data[2];
         xSemaphoreGive(data_mutex);
-        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
-        osDelay(100);
+
+//        debugmsg.data.capacity = 20;
+//        debugmsg.data.size = 20;
+//        debugmsg.data.data = (char *)pvPortMalloc(20*sizeof(char));
+//        sprintf(debugmsg.data.data,"running:%lu",xTaskGetTickCount());
+//        rcl_publish(&debug_publisher, &debugmsg, NULL);
+//        vPortFree(debugmsg.data.data);
+        HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_RESET);
+
+        pos_feedback.data.data[0]= unitree_motor1->data.Pos / UNITREE_REDUCTION_RATE;
+        pos_feedback.data.data[1]=(float)feet_servo.Servo_Read_Pos();
+        rcl_publish(&msgj_feedback_publisher, &pos_feedback, NULL);
+        stm_time.data = (int32_t)xTaskGetTickCount();
+        rcl_publish(&stm_time_publisher, &stm_time, NULL);
+        HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_SET);
+
+        vTaskDelayUntil(&xLastWakeTime, 300 / portTICK_RATE_MS);
     }
 }
 
@@ -170,7 +184,23 @@ void UserStartDefaultTask(void *argument) {
             "debug")
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
-    // create subscriber
+    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
+    if (rclc_publisher_init_best_effort(
+            &msgj_feedback_publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
+            "pos_feedback")
+        == RCL_RET_OK)
+        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
+    if (rclc_publisher_init_default(
+            &stm_time_publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+            "stm32_time")
+        == RCL_RET_OK)
+        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
+     //create subscriber
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
     if (rclc_subscription_init_default(
             &servo_cmd_subscriber,
@@ -179,7 +209,7 @@ void UserStartDefaultTask(void *argument) {
             "joint_cmd")
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
+//    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
 //    if( rclc_timer_init_default(
 //            &timer1,
 //            &support,
@@ -198,21 +228,24 @@ void UserStartDefaultTask(void *argument) {
     rclc_executor_add_subscription(
             &executor,
             &servo_cmd_subscriber,
-            &_msgj,
+            &_msgj_in,
             &servo_subscribe_callback,
             ON_NEW_DATA);
-    //rclc_executor_add_timer(&executor, &timer1);
+//    //rclc_executor_add_timer(&executor, &timer1);
     osDelay(300);
-    debugmsg.data.capacity = 5;
-    debugmsg.data.size = 5;
-    debugmsg.data.data = "start";
-    rcl_publish(&debug_publisher, &debugmsg, NULL);
-    joint_msg_init(&_msgj);
-    joint_msg_init(&msgj);
-    //sensor_msgs__msg__JointState__init(&msgj);
-    debugmsg.data.capacity = 10;
-    debugmsg.data.size = 0;
-    debugmsg.data.data = (char *) pvPortMalloc(10 * sizeof(char));
+//    debugmsg.data.capacity = 5;
+//    debugmsg.data.size = 5;
+//    debugmsg.data.data = "start";
+//    rcl_publish(&debug_publisher, &debugmsg, NULL);
+    joint_msg_init(&_msgj_in);
+    joint_msg_init(&msgj_in);
+
+
+
+//    //sensor_msgs__msg__JointState__init(&msgj_in);
+//    debugmsg.data.capacity = 10;
+//    debugmsg.data.size = 0;
+//    debugmsg.data.data = (char *) pvPortMalloc(10 * sizeof(char));
     xSemaphoreGive(sync_mutex);
     rclc_executor_spin(&executor);
     for (;;) {}
@@ -232,6 +265,14 @@ void joint_msg_init(sensor_msgs__msg__JointState *msg) {
     msg->effort.capacity = 3;
 }
 
+void joint_msg_fini(sensor_msgs__msg__JointState *msg) {
+    vPortFree(msg->header.frame_id.data);
+    vPortFree(msg->name.data->data);
+    vPortFree(msg->position.data);
+    vPortFree(msg->velocity.data);
+    vPortFree(msg->effort.data);
+}
+
 //void TestTask(void *argument) {
 //    osDelay(300);
 //    feet_servo.FEET_Servo_Init(huart7);
@@ -244,9 +285,9 @@ void joint_msg_init(sensor_msgs__msg__JointState *msg) {
 //    for (;;) {
 //        HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
 //        // __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 30);
-//        servo1.run(1.57);
+//        servo1.trans_i2o(1.57);
 //        osDelay(300);
-//        genetic_feet.run(p);
+//        genetic_feet.trans_i2o(p);
 //        printf("p:%d\n", genetic_feet.pos_out);
 //        //HAL_UART_Transmit(&huart7, (uint8_t *) "hello world", 11, 1000);
 //        feet_servo.Servo_Write_PosEx(genetic_feet.pos_out, 254, 254);

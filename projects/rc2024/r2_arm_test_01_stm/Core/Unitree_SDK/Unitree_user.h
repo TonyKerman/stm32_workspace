@@ -10,6 +10,7 @@ extern "C" {
 #include "motor_control.h"
 #include "usart.h"
 
+
 typedef struct{
     UART_HandleTypeDef *huart;
     MOTOR_send cmd;
@@ -31,6 +32,8 @@ HAL_StatusTypeDef Unitree_Encoder_Autoclibrating(UnitreeMotor *MotorInstance);
 
 #ifndef UNITREE_M8010_UNITREE_USER_H_
 #define  UNITREE_M8010_UNITREE_USER_H_
+
+#define UNITREE_REDUCTION_RATE 6.33
 
 #define RS485_DE_GPIO_Port           GPIOF
 #define RS485_DE_Pin                 GPIO_PIN_0

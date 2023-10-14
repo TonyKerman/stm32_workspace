@@ -37,8 +37,9 @@
 #endif
 
 
-const float ReductionRate = 6.33;
-           //电机实例化数组
+
+
+
 
 UnitreeMotor * Unitree_Create_Motor()
 {
@@ -88,8 +89,8 @@ HAL_StatusTypeDef Unitree_UART_tranANDrev(UnitreeMotor *MotorInstance, unsigned 
     MotorInstance->cmd.id = motor_id;
     MotorInstance->cmd.mode = mode;
     MotorInstance->cmd.T = T;
-    MotorInstance->cmd.W = W * ReductionRate;
-    MotorInstance->cmd.Pos = Pos * ReductionRate;
+    MotorInstance->cmd.W = W * UNITREE_REDUCTION_RATE;
+    MotorInstance->cmd.Pos = Pos * UNITREE_REDUCTION_RATE;
     MotorInstance->cmd.K_P = K_P;
     MotorInstance->cmd.K_W = K_W;
     return SERVO_Send_recv(MotorInstance->huart,&(MotorInstance->cmd),&(MotorInstance->data));
