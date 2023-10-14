@@ -47,6 +47,7 @@ rcl_subscription_t servo_cmd_subscriber;
 rcl_publisher_t debug_publisher;
 rcl_publisher_t msgj_feedback_publisher;
 rcl_publisher_t stm_time_publisher;
+rcl_timer_t timer1;
 sensor_msgs__msg__JointState _msgj_in;
 sensor_msgs__msg__JointState msgj_in;
 std_msgs__msg__Float32MultiArray pos_feedback;
@@ -97,9 +98,7 @@ void StartControllerTask(void *argument) {
     servo2.set_trans_in2out(1.57, 0, 1.57, 75, 25, 75);
     genetic_feet.set_trans_in2out(3.14, -3.14, 0, 0, 4096, 2815);
     xSemaphoreTake(sync_mutex, portMAX_DELAY);
-    pos_feedback.data.capacity=3;
-    pos_feedback.data.size=3;
-    pos_feedback.data.data=(float *)pvPortMalloc(3*sizeof(float));
+
     uint32_t xLastWakeTime = xTaskGetTickCount();
     for (;;) {
         if (xSemaphoreTake(data_mutex, 100 / portTICK_RATE_MS) != pdTRUE)
@@ -110,6 +109,8 @@ void StartControllerTask(void *argument) {
         feet_servo.Servo_Write_PosEx(genetic_feet.trans_i2o(msgj_in.position.data[1]), 254, 254);
         Unitree_UART_tranANDrev(unitree_motor1, 0, 1, 0, 0, 0, 0, 0);
         pos_feedback.data.data[2] = msgj_in.position.data[2];
+        pos_feedback.data.data[0]= unitree_motor1->data.Pos / UNITREE_REDUCTION_RATE;
+        pos_feedback.data.data[1]=(float)feet_servo.Servo_Read_Pos();
         xSemaphoreGive(data_mutex);
 
 //        debugmsg.data.capacity = 20;
@@ -118,28 +119,29 @@ void StartControllerTask(void *argument) {
 //        sprintf(debugmsg.data.data,"running:%lu",xTaskGetTickCount());
 //        rcl_publish(&debug_publisher, &debugmsg, NULL);
 //        vPortFree(debugmsg.data.data);
-        HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_RESET);
 
-        pos_feedback.data.data[0]= unitree_motor1->data.Pos / UNITREE_REDUCTION_RATE;
-        pos_feedback.data.data[1]=(float)feet_servo.Servo_Read_Pos();
-        rcl_publish(&msgj_feedback_publisher, &pos_feedback, NULL);
-        stm_time.data = (int32_t)xTaskGetTickCount();
-        rcl_publish(&stm_time_publisher, &stm_time, NULL);
-        HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_SET);
-
-        vTaskDelayUntil(&xLastWakeTime, 300 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
     }
 }
 
-//void timer1_callback(rcl_timer_t *timer, int64_t last_call_time)
-//{
-//    debugmsg.data.capacity = 20;
-//    debugmsg.data.size = 20;
+void timer1_callback(rcl_timer_t *timer, int64_t last_call_time)
+{
+    HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_RESET);
+//    debugmsg.data.capacity = 30;
+//    debugmsg.data.size = 30;
 //    debugmsg.data.data = (char *)pvPortMalloc(20*sizeof(char));
 //    sprintf(debugmsg.data.data,"timer%lu",xTaskGetTickCount());
 //    rcl_publish(&debug_publisher, &debugmsg, NULL);
 //    vPortFree(debugmsg.data.data);
-//}
+    stm_time.data = (int32_t)xTaskGetTickCount();
+    rcl_publish(&stm_time_publisher, &stm_time, NULL);
+    if(xSemaphoreTake(data_mutex, 70/portTICK_RATE_MS)==pdTRUE)
+    {
+        rcl_publish(&msgj_feedback_publisher, &pos_feedback, NULL);
+        xSemaphoreGive(data_mutex);
+    }
+    HAL_GPIO_WritePin(LDG_GPIO_Port, LDG_Pin, GPIO_PIN_SET);
+}
 
 void UserStartDefaultTask(void *argument) {
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
@@ -209,18 +211,18 @@ void UserStartDefaultTask(void *argument) {
             "joint_cmd")
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
-//    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
-//    if( rclc_timer_init_default(
-//            &timer1,
-//            &support,
-//            RCL_MS_TO_NS(400),
-//            timer1_callback)
-//        == RCL_RET_OK)
-//        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
+    if( rclc_timer_init_default(
+            &timer1,
+            &support,
+            RCL_MS_TO_NS(100),
+            timer1_callback)
+        == RCL_RET_OK)
+        HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     //create executor
     executor = rclc_executor_get_zero_initialized_executor();
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
-    if (rclc_executor_init(&executor, &support.context, 1, &allocator)
+    if (rclc_executor_init(&executor, &support.context, 2, &allocator)
         == RCL_RET_OK)
         HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
     //add subscriber to executor
@@ -231,7 +233,7 @@ void UserStartDefaultTask(void *argument) {
             &_msgj_in,
             &servo_subscribe_callback,
             ON_NEW_DATA);
-//    //rclc_executor_add_timer(&executor, &timer1);
+    rclc_executor_add_timer(&executor, &timer1);
     osDelay(300);
 //    debugmsg.data.capacity = 5;
 //    debugmsg.data.size = 5;
@@ -239,6 +241,9 @@ void UserStartDefaultTask(void *argument) {
 //    rcl_publish(&debug_publisher, &debugmsg, NULL);
     joint_msg_init(&_msgj_in);
     joint_msg_init(&msgj_in);
+    pos_feedback.data.capacity=3;
+    pos_feedback.data.size=3;
+    pos_feedback.data.data=(float *)pvPortMalloc(3*sizeof(float));
 
 
 
