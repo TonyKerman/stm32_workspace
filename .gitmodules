@@ -5,11 +5,6 @@
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = projects/rc2024/r1_getplant_test_01_stm/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/WTR2023/WTR_micro_ros_stm32cubemx_utils
-	
-[submodule "stm32_micro_ros_setup"]
-	path = EideProjects/stm32_micro_ros_setup
-	url = https://github.com/lFatality/stm32_micro_ros_setup
-
 [submodule "STM32_Libs"]
 	path = STM32_Libs
 	url = https://github.com/WTR2023/STM32_Libs
