@@ -6,7 +6,10 @@
 #include "math.h"
 #define Delay_ms(x) HAL_Delay(x)
 
-
+void _Swheel_get_rotationSpeed(steering_wheel_t *this);
+void _Swheel_get_rotationPos(steering_wheel_t *this);
+void _Swheel_rMotor_speedServo(steering_wheel_t *this, const float speed);
+void _Swheel_rMotor_posServo(steering_wheel_t *this, const float pos);
 #ifdef USE_DEFAULT_MOTOR_PARAM
 #include "DJI.h"
 #include "Caculate.h"
@@ -86,7 +89,7 @@ void Swheel_init(steering_wheel_t *this,const uint8_t id,GPIO_TypeDef* LS_GPIOx,
     this->rotation_speed = 0;
     this->main_pos = 0;
     this->rotation_pos = 0;
-    this->state = CORRECTING;
+    this->state = STOP;
 }
 /**
  * @brief 转向轮启动校准
@@ -172,36 +175,29 @@ void Swheel_executor(steering_wheel_t *this)
 {
     this->direction=fmod(this->rotation_pos,2*M_PI)+this->direction_offset;
     _Swheel_get_rotationSpeed(this);
-    if(this->state==STOP)
-    {
-        _Swheel_rMotor_speedServo(this, 0);
-        return;
-    }
     if(this->state==CORRECTING)
     {
         if(_Swheel_correcting(this))
             this->state = STOP;;
         return;
     }
+    if(this->state==STOP)
+    {
+        _Swheel_rMotor_speedServo(this, 0);
+        return;
+    }
     if(this->state==RUNNING)
     {
         _Swheel_rMotor_posServo(this, this->target_direction +2 * M_PI *(int) ((this->rotation_pos - this->direction_offset)/ (2 * M_PI)));
         _Swheel_mMotor_speedServo(this, this->target_main_speed);
-        if(fabsf(this->rotation_pos-this->target_direction)>0.05f)
-        {
-            this->state = AIMMING;
-            return;
-        }
+        return;
     }
-    if (this->state==AIMMING)
+    if(this->state==AIMMING)
     {
         _Swheel_rMotor_posServo(this, this->target_direction +2 * M_PI *(int) ((this->rotation_pos - this->direction_offset)/ (2 * M_PI)));
-        if(fabsf(this->rotation_pos-this->target_direction)<0.05f)
-        {
-            this->state = RUNNING;
-            return;
-        }
+    return;
     }
+
 }
 
 

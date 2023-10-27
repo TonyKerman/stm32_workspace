@@ -14,7 +14,7 @@ extern "C" {
 #define CHASSIS_WHEEL_DISTANCE 0.3f//轮子在y方向间距，单位m
 #define CHASSIS_WHEEL_LENGTH_X 0.3f//轮子在x方向间距，单位m
 
-    typedef enum{CHASSIS_CORRECTING,CHASSIS_AIMMING,CHASSIS_MOVING,CHASSIS_STOP}Swheel_chassis_state_e;
+    typedef enum{CHASSIS_CORRECTING,CHASSIS_AIMMING,CHASSIS_MOVING,CHASSIS_RUNNING,CHASSIS_STOP,CHASSIS_READY}Swheel_chassis_state_e;
     typedef struct {
      float vx;
      float vy;

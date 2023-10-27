@@ -7,7 +7,8 @@
 #include "math.h"
 
 #define norm(a,b) sqrtf(a*a+b*b) //计算模长
-
+void calculate_target_velocity(Swheel_chassis_t *this);
+void chassis_state_machine(Swheel_chassis_t *this);
 void chassis_init(Swheel_chassis_t *this)
 {
 #ifdef FOUR_WHEELS_CHASSIS
@@ -17,7 +18,7 @@ void chassis_init(Swheel_chassis_t *this)
     Swheel_init(&this->wheels[3],3,SWHEEL_4_LS_GPIO_Port,SWHEEL_4_LS_Pin);
     this->swheel_num = 4;
 #endif
-    this->state = CHASSIS_STOP;
+    this->state = CHASSIS_CORRECTING;
     this->target_v.vx = 0;
     this->target_v.vy = 0;
     this->target_v.vw = 0;
@@ -28,7 +29,11 @@ void chassis_init(Swheel_chassis_t *this)
 void chassis_startCorrect(Swheel_chassis_t *this)
 {
     this->state= CHASSIS_CORRECTING;
-
+    for (uint8_t i = 0; i <this->swheel_num ; i++)
+    {
+        if(this->wheels[i].state==CORRECTING)
+            return;
+    }
 }
 void chassis_set_targetVelocity(Swheel_chassis_t *this, const float vx, const float vy, const float vw)
 {
@@ -36,39 +41,55 @@ void chassis_set_targetVelocity(Swheel_chassis_t *this, const float vx, const fl
     this->target_v.vy = vy;
     this->target_v.vw = vw;
 }
-void chassis_state_estimation(Swheel_chassis_t *this)
+void chassis_state_machine(Swheel_chassis_t *this)
 {
-    if(this->target_v.vx==0&&this->target_v.vy==0&&this->target_v.vw==0)
+    if(this->state==CHASSIS_CORRECTING)
     {
-        this->state = CHASSIS_STOP;
-        return;
-    }
-    for (uint8_t i = 0; i <this->swheel_num ; i++)
-    {
-        if(this->wheels[i].state==CORRECTING)
+        for (uint8_t i = 0; i <this->swheel_num ; i++)
         {
-            this->state = CHASSIS_CORRECTING;
+            if(this->wheels[i].state!=STOP)
+                return;
+        }
+        this->state = CHASSIS_READY;
+    }
+    else
+    {
+        if (this->target_v.vx==0&&this->target_v.vy==0&&this->target_v.vw==0)
+        {
+            for (uint8_t i = 0;i<this->swheel_num;i++)
+                this->wheels[i].state = STOP;
+            this->state = CHASSIS_STOP;
             return;
         }
-        if(fabsf(this->wheels[i].target_direction-this->wheels[i].direction)>0.05f)
+        calculate_target_velocity(this);
+        this->state = CHASSIS_RUNNING;
+        for (uint8_t i = 0; i <this->swheel_num ; i++)
         {
-            this->state = CHASSIS_AIMMING;
-            return;
+            if(fabsf(this->wheels[i].target_direction-this->wheels[i].direction)>0.05f)
+            {
+                this->state = CHASSIS_AIMMING;
+                break;
+            }
+        }
+        if (this->state==CHASSIS_AIMMING)
+        {
+            for (uint8_t i = 0; i <this->swheel_num ; i++)
+                this->wheels[i].state = AIMMING;
+        }
+        else
+        {
+            for (uint8_t i = 0; i <this->swheel_num ; i++)
+                this->wheels[i].state = RUNNING;
         }
     }
-    this->state= CHASSIS_MOVING;
-}
-void chassis_executor(Swheel_chassis_t *this)
-{
-    chassis_state_estimation(this);
-#ifdef FOUR_WHEELS_CHASSIS
-    for(int i=0;i<this->swheel_num;i++)
-    {
-        Swheel_executor(&this->wheels[i]);
-    }
-#endif
 }
 
+void chassis_executor(Swheel_chassis_t *this)
+{
+    chassis_state_machine(this);
+    for(int i=0;i<this->swheel_num;i++)
+        Swheel_executor(&this->wheels[i]);
+}
 
 void calculate_target_velocity(Swheel_chassis_t *this)
 {
@@ -89,8 +110,4 @@ void calculate_target_velocity(Swheel_chassis_t *this)
             this->wheels[i].main_speed = vw* norm(Ix-this->wheel_x[i],Iy-this->wheel_y[i]);
         }
     }
-
-
-
-
 }
