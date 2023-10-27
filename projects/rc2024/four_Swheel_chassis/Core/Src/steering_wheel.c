@@ -89,6 +89,7 @@ void Swheel_init(steering_wheel_t *this,const uint8_t id,GPIO_TypeDef* LS_GPIOx,
     this->rotation_speed = 0;
     this->main_pos = 0;
     this->rotation_pos = 0;
+    this->correcting_stage=0;
     this->state = STOP;
 }
 /**
@@ -120,14 +121,13 @@ void Swheel_EXTI_Callback(steering_wheel_t *this,const uint16_t GPIO_Pin)
  */
 static inline uint8_t _Swheel_correcting(steering_wheel_t *this)
 {
-    static int8_t stage = 0;
-    if(stage==0)
+    if(this->correcting_stage==0)
     {
         if(this->_light_switch_flag)
         {
             _Swheel_rMotor_speedServo(this, -2);
             this->_light_switch_flag = 0;
-            stage=1;
+            this->correcting_stage=1;
         }
         else
         {
@@ -135,30 +135,31 @@ static inline uint8_t _Swheel_correcting(steering_wheel_t *this)
         }
         return 0;
     }
-    else if(stage>0&&stage<100)
+    else if(this->correcting_stage>0&&this->correcting_stage<1000)
     {
         if(this->_light_switch_flag)
         {
             _Swheel_rMotor_speedServo(this, 0);
             this->_light_switch_flag = 0;
-            stage=-1;
+            this->correcting_stage=-1;
             return 0;
         }
         else
-        {   stage++;
+        {   this->correcting_stage++;
             _Swheel_rMotor_speedServo(this, -2);
             return 0;
         }
     }
-    else if(stage>=100){stage = 0;return 0;}//重头再来
-    else if(stage<0&&stage>-10)
+    else if(this->correcting_stage>=1000){this->correcting_stage = 0;return 0;}//重头再来
+    else if(this->correcting_stage<0&&this->correcting_stage>-10)
     {
-        stage--;
+        this->correcting_stage--;
         Swheel_rMotor_reset(this);
         return 0;
     }//延时
-    else if(stage==-10)
+    else if(this->correcting_stage==-10)
     {
+        this->correcting_stage=0;
         return 1;
     }
 
@@ -173,6 +174,7 @@ static inline uint8_t _Swheel_correcting(steering_wheel_t *this)
  */
 void Swheel_executor(steering_wheel_t *this)
 {
+    _Swheel_get_rotationPos(this);
     this->direction=fmod(this->rotation_pos,2*M_PI)+this->direction_offset;
     _Swheel_get_rotationSpeed(this);
     if(this->state==CORRECTING)
@@ -195,7 +197,7 @@ void Swheel_executor(steering_wheel_t *this)
     if(this->state==AIMMING)
     {
         _Swheel_rMotor_posServo(this, this->target_direction +2 * M_PI *(int) ((this->rotation_pos - this->direction_offset)/ (2 * M_PI)));
-    return;
+        return;
     }
 
 }

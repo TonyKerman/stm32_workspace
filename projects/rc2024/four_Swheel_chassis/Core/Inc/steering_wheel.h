@@ -9,6 +9,10 @@ extern "C" {
 #endif
 //#define USE_M2006_AS_ROTATION_MOTOR
 #define USE_DEFAULT_MOTOR_PARAM
+#ifdef USE_DEFAULT_MOTOR_PARAM
+#include "wtr_vesc.h"
+extern VESC_t hVESC[4];
+#endif
 #define STEERING_WHEEL_ROTATIOM_REDUCTION 3.3f//转向齿轮减速比（大比小）
 #define STEERING_WHEEL_DIAMETER 0.1f//轮子直径，单位m
 #include "main.h"
@@ -26,6 +30,7 @@ extern "C" {
         float direction;//方向，弧度制，0为正前方，逆时针为正
         float direction_offset;//方向偏移，弧度制,相对于光电开关的偏移
         float rotation_pos;//弧度制，0为正前方，逆时针为正
+        int16_t correcting_stage;
         Swheel_state_e state;
     }steering_wheel_t;
 

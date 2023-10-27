@@ -12,14 +12,15 @@ extern "C" {
 
 #define FOUR_WHEELS_CHASSIS
 #define CHASSIS_WHEEL_DISTANCE 0.3f//轮子在y方向间距，单位m
-#define CHASSIS_WHEEL_LENGTH_X 0.3f//轮子在x方向间距，单位m
+#define CHASSIS_WHEEL_LENGTH 0.3f//轮子在x方向间距，单位m
 
-    typedef enum{CHASSIS_CORRECTING,CHASSIS_AIMMING,CHASSIS_MOVING,CHASSIS_RUNNING,CHASSIS_STOP,CHASSIS_READY}Swheel_chassis_state_e;
+    typedef enum{CHASSIS_CORRECTING,CHASSIS_AIMMING,CHASSIS_RUNNING,CHASSIS_STOP,CHASSIS_READY}Swheel_chassis_state_e;
     typedef struct {
      float vx;
      float vy;
      float vw;
     }Swheel_chassis_velocity_t;
+
     typedef struct{
         Swheel_chassis_velocity_t target_v;
         Swheel_chassis_velocity_t current_v;
@@ -35,6 +36,7 @@ extern "C" {
     void Swheel_chassis_startCorrect(Swheel_chassis_t *this);
     void Swheel_chassis_set_targetVelocity(Swheel_chassis_t *this, const float vx, const float vy, const float vw);
     void Swheel_chassis_executor(Swheel_chassis_t *this);
+    void Swheel_chassis_EXTI_Callback(Swheel_chassis_t *this,uint16_t GPIO_Pin);
 #ifdef __cplusplus
 }
 #endif
