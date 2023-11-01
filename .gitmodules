@@ -1,4 +1,6 @@
-
+[submodule "RC24_R2_v1_stm32"]
+	path = projects/rc2024/_RC24_r2_arm_test
+	url = https://github.com/WTR2023/_RC24_r2_arm_test
 [submodule "_RC24_r2_arm_test"]
 	path = projects/rc2024/_RC24_r2_arm_test
 	url = https://github.com/WTR2023/_RC24_r2_arm_test

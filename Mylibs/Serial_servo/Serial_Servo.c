@@ -40,7 +40,7 @@ Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef * uartx, uint8_t id,int16_
 Checksum=~(ID+Length+Cmd+Prm1+...PrmN)若括号内的计算和超出255,则取最低的一个字节，
 “~”表示取反。
 */
-static  uint8_t CheckSum(const uint8_t buf[])
+static inline  uint8_t CheckSum(const uint8_t buf[])
 {
     uint8_t i;
     uint16_t temp = 0;
