@@ -22,6 +22,7 @@ private:
 
 public:
     //int16_t pos_out;
+    Mapping(){}
     Mapping(int16_t min_out,int16_t max_out){
         this->min_out = min_out;
         this->max_out = max_out;
@@ -31,7 +32,7 @@ public:
         this->b_o2i = 0;
 
     }
-    void  set_trans_in2out(float in_a,float in_b,float in_off,int16_t out_a,int16_t out_b,int16_t out_off)
+    void  set_trans_param_i2o(float in_a, float in_b, float in_off, int16_t out_a, int16_t out_b, int16_t out_off)
     {
         this->k_i2o = (float)(out_b - out_a) / (in_b - in_a);
         this->b_i20 = out_off - (int16_t)(this->k_i2o * in_off);
