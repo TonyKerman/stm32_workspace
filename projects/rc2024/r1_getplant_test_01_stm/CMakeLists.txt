@@ -49,25 +49,35 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc Drivers/STM32F4xx_HAL_Driver/Inc
+include_directories(
+        Core/Inc
+        Drivers/STM32F4xx_HAL_Driver/Inc
         Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
         Middlewares/Third_Party/FreeRTOS/Source/include
         Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
         Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
         Drivers/CMSIS/Device/ST/STM32F4xx/Include
         Drivers/CMSIS/Include
-        WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include
-)
+        Core/ThreadSafe
+        USB_DEVICE/App
+        USB_DEVICE/Target
+        Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+        Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+        #WTR_micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include
+        )
 
-add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F427xx)
+add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F427xx -DSTM32_THREAD_SAFE_STRATEGY=4)
 
-file(GLOB_RECURSE SOURCES "Core/*.*"
+file(GLOB_RECURSE SOURCES
+        "Core/*.*"
         "Middlewares/*.*"
         "Drivers/*.*"
-        "WTR_micro_ros_stm32cubemx_utils/extra_sources/custom_memory_manager.c"
-        "WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_allocators.c"
-        "WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_time.c"
-        "WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_transports/dma_transport.c"
+        "USB_DEVICE/*.*"
+        #"WTR_micro_ros_stm32cubemx_utils/extra_sources/custom_memory_manager.c"
+        #"WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_allocators.c"
+        #"WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_time.c"
+        #"WTR_micro_ros_stm32cubemx_utils/extra_sources/microros_transports/usb_cdc_transport.c"
+
 )
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F427IIHX_FLASH.ld)

@@ -130,7 +130,7 @@ static inline uint8_t _Swheel_correcting(steering_wheel_t *this)
         }
         else
         {
-            _Swheel_rMotor_speedServo(this, 25);
+            _Swheel_rMotor_speedServo(this, 20);
         }
         return 0;
     }

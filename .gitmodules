@@ -5,10 +5,16 @@
 	path = projects/rc2024/_RC24_r2_arm_test
 	url = https://github.com/WTR2023/_RC24_r2_arm_test
 [submodule "WTR_micro_ros_stm32cubemx_utils"]
+	path = WTR_micro_ros_stm32cubemx_utils
+	url = https://github.com/WTR2023/WTR_micro_ros_stm32cubemx_utils
+[submodule "WTR_micro_ros_stm32cubemx_utils"]
 	path = projects/rc2024/r1_getplant_test_01_stm/WTR_micro_ros_stm32cubemx_utils
 	url = https://github.com/WTR2023/WTR_micro_ros_stm32cubemx_utils
 [submodule "STM32_Libs"]
 	path = STM32_Libs
 	url = https://github.com/WTR2023/STM32_Libs
+[submodule "FreshmanProject-stm32"]
+	path = projects/FreshmanProject-stm32
+	url = https://github.com/TonyKerman/FreshmanProject-stm32
 	
 	

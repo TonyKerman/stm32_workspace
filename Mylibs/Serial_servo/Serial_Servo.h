@@ -37,7 +37,9 @@
 #define SERIAL_SERVO_LED_ERROR_WRITE      35
 #define SERIAL_SERVO_LED_ERROR_READ       36
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 typedef struct Serial_Servo Serial_Servo;
 struct Serial_Servo{
     UART_HandleTypeDef * uartHandle;
@@ -65,4 +67,7 @@ int Serial_Servo_SetLimit(Serial_Servo * me,uint16_t min,uint16_t max);
 int Serial_Servo_ReadLimit(Serial_Servo * me,uint16_t minOutput,uint16_t maxOutput);
 int Serial_Servo_ReadLED(Serial_Servo *me);
 int8_t Serial_Servo_ReadPosition(Serial_Servo *me);
+#ifdef __cplusplus
+}
+#endif
 #endif //SERIAL_BUS_SERVO_SERIAL_SERVO_H

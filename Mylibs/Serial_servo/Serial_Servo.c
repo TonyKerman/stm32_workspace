@@ -118,7 +118,7 @@ int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,ui
 int8_t Serial_Servo_ReadCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pData)
 {
     //第一个元素是读命令的序号，第二个是其对应的数据长度
-    const uint8_t readCmds[14][2]={{2,7},{8,7},{14,7},{14,4},
+    const uint8_t readCmds[14][2]={{2,7},{8,7},{14,4},
                                 {19,4},{21,7},{23,7},{25,4},
                                 {26,4},{27,5},{28,5},{30,7},
                                 {32,4},{34,4},{36,4}};

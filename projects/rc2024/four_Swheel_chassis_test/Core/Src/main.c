@@ -100,24 +100,29 @@ int main(void)
   MX_UART8_Init();
   /* USER CODE BEGIN 2 */
  int cnt =0;
-//    CANFilterInit(&hcan1);
-//    DJI_Init();
-//    for (int i = 0; i < 4; i++) {
-//        hDJI[i].motorType = M2006;
-//        hDJI[i].speedPID.KI=0.01;
-//        hDJI[i].speedPID.KD=0.1;
-//        hDJI[i].speedPID.KP=1.5;
-//        hDJI[i].posPID.KP=150;
-//        hDJI[i].posPID.KI=1.4;
-//        hDJI[i].posPID.KD=0;
-//    }
-    swChassis_init(&mychassis);
-    swChassis_startCorrect(&mychassis);
+    CANFilterInit(&hcan1);
+    for (int i = 0; i < 4; i++) {
+        hDJI[i].motorType = M2006;}
+    DJI_Init();
+    for (int i = 0; i < 4; i++) {
+        hDJI[i].motorType = M2006;
+        hDJI[i].speedPID.KI=0.01;
+        hDJI[i].speedPID.KD=0.1;
+        hDJI[i].speedPID.KP=1.5;
+        hDJI[i].posPID.KP=150;
+        hDJI[i].posPID.KI=1.4;
+        hDJI[i].posPID.KD=0;
+    }
+
+ //   swChassis_startCorrect(&mychassis);
     //swChassis_set_targetVelocity(&mychassis,-10,0,0);
 //mychassis.state=CHASSIS_READY;
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_RESET);
-    HAL_Delay(3000);
+    HAL_Delay(300);
+//    swChassis_init(&mychassis);
+//    swChassis_startCorrect(&mychassis);
     HAL_GPIO_WritePin(LDR_GPIO_Port, LDR_Pin, GPIO_PIN_SET);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -127,13 +132,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      swChassis_executor(&mychassis);
-      swChassis_set_targetVelocity(&mychassis,-10,10,0);
-//      for (int i = 0; i < 4; i++) {
-//          speedServo(500,&hDJI[i]);
-//      }
-//      CanTransmit_DJI_1234(&hcan1, hDJI[0].speedPID.output, hDJI[1].speedPID.output, hDJI[2].speedPID.output,
-//                           hDJI[3].speedPID.output);
+      //swChassis_executor(&mychassis);
+      HAL_GPIO_TogglePin(LDG_GPIO_Port, LDG_Pin);
+      //swChassis_set_targetVelocity(&mychassis,-10,10,0);
+      for (int i = 0; i < 4; i++) {
+          speedServo(200,&hDJI[i]);
+      }
+      CanTransmit_DJI_1234(&hcan1, hDJI[0].speedPID.output, hDJI[1].speedPID.output, hDJI[2].speedPID.output,
+                           hDJI[3].speedPID.output);
+//      CanTransmit_DJI_1234(&hcan1, 0,0,0,0);
       HAL_Delay(5);
   }
   /* USER CODE END 3 */
