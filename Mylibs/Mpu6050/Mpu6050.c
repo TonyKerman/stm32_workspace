@@ -1,13 +1,21 @@
 //
 // Created by tony on 2023/4/12.
-//
+//https://blog.csdn.net/black_sneak/article/details/131253645
 
 #include "Mpu6050.h"
 #include "main.h"
 #include <stdlib.h>
-#include "retarget.h"
+//#include "retarget.h"
+#if   defined ( ARM_MATH_CM4 )
+#include "arm_math.h"
+#else
 #include <math.h>
-
+#endif
+#ifdef SOFT_I2C
+#include "i2c_sw.h"
+#endif
+#include "cmsis_os.h"
+#define Delay_ms(s) osDelay((s)/portTICK_RATE_MS)
 void Mpu6050_writeReg(Mpu6050 * me, uint16_t reg_addr, uint8_t p_data);
 uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr);
 void MPU_Set_Gyro_Fsr(Mpu6050 * me,uint8_t fsr);
@@ -15,11 +23,11 @@ void MPU_Set_Accel_Fsr(Mpu6050 * me,uint8_t fsr);
 void MPU_Set_Rate(Mpu6050 * me,uint16_t rate);
 HAL_StatusTypeDef MPU6050_readLen(Mpu6050 * me,uint8_t p_reg,uint8_t len,uint8_t *buf);
 
-Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate)
-{
-    Mpu6050 * me =(Mpu6050*)malloc(sizeof (Mpu6050));
-    me->i2cHandle=p_i2cHandle;
 
+
+HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me,void * p_i2cHandle,int is_AD0_pull_up,enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate) {
+
+    me->i2cHandle=p_i2cHandle;
     //如果AD0脚(9脚)接地,IIC地址为0X68(不包含最低位).
     //如果接V3.3,则IIC地址为0X69(不包含最低位).
     if(is_AD0_pull_up)
@@ -44,16 +52,9 @@ Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,enum
     me->pitch = 0;
     me->roll = 0;
     me->yaw = 0;
-    return me;
-
-}
-
-
-HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me) {
-
-    HAL_Delay(500);
+    Delay_ms(500);
     Mpu6050_writeReg(me, MPU_PWR_MGMT1_REG, 0X80);    //复位MPU6050
-    HAL_Delay(100);
+    Delay_ms(100);
     Mpu6050_writeReg(me,MPU_PWR_MGMT1_REG, 0X00);    //唤醒MPU6050
     MPU_Set_Gyro_Fsr(me,me->gFsr);					//陀螺仪角速度传感器
     MPU_Set_Accel_Fsr(me,me->aFsr);					//加速度传感器
@@ -67,7 +68,7 @@ HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me) {
         return HAL_OK;
     else
         return HAL_ERROR;
-    HAL_Delay(100);
+    Delay_ms(100);
 }
 
 
@@ -120,6 +121,7 @@ HAL_StatusTypeDef Mpu6050_getTemp(Mpu6050 * me)
 {
     uint8_t buf[2];
     HAL_StatusTypeDef result = MPU6050_readLen(me,MPU_TEMP_OUTH_REG,2,buf);
+    //printf("%d",result);
     if(result == HAL_OK)
     {
         int16_t raw = (buf[0]<<8)| buf[1];
@@ -176,9 +178,36 @@ HAL_StatusTypeDef Mpu6050_getAccelerometer(Mpu6050 * me)
     }
     return result;
 }
+
+#ifdef SOFT_I2C
+HAL_StatusTypeDef MPU6050_readLen(Mpu6050 * me,uint8_t p_reg,uint8_t len,uint8_t *buf)
+{
+    I2C_SW_Handle_t * i2chandle = (I2C_SW_Handle_t * )me->i2cHandle;
+    i2chandle->slave_addr = me->readAddr;
+    uint8_t r = i2c_reg_read(me->i2cHandle,p_reg,len,buf);
+    if(!r)
+        return HAL_OK;
+    else
+        return HAL_ERROR;
+}
+uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr)
+{
+    uint8_t data;
+    I2C_SW_Handle_t * i2chandle = (I2C_SW_Handle_t * )me->i2cHandle;
+    i2c_reg_read(i2chandle,regAddr,One_Byte,&data);
+    return data;
+}
 void Mpu6050_writeReg(Mpu6050 * me, uint16_t reg_addr, uint8_t p_data)
 {
-    HAL_I2C_Mem_Write(me->i2cHandle, me->writeAddr, reg_addr, I2C_MEMADD_SIZE_8BIT, &p_data, 1, 100);
+    I2C_SW_Handle_t * i2chandle = (I2C_SW_Handle_t * )me->i2cHandle;
+    i2c_reg_write(i2chandle,reg_addr,One_Byte,&p_data);
+}
+//HAL_I2C_Mem_Write(me->i2cHandle, me->writeAddr, reg_addr, I2C_MEMADD_SIZE_8BIT, &p_data, 1, 100);
+
+#else
+void Mpu6050_writeReg(Mpu6050 * me, uint16_t reg_addr, uint8_t p_data)
+{
+HAL_I2C_Mem_Write(me->i2cHandle, me->writeAddr, reg_addr, I2C_MEMADD_SIZE_8BIT, &p_data, 1, 100);
 }
 
 uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr)
@@ -187,11 +216,11 @@ uint8_t Mpu6050_readReg(Mpu6050 * me,uint8_t regAddr)
     HAL_I2C_Mem_Read(me->i2cHandle, me->readAddr, regAddr, I2C_MEMADD_SIZE_8BIT, &data, 1, 100);
     return data;
 }
-
 HAL_StatusTypeDef MPU6050_readLen(Mpu6050 * me,uint8_t p_reg,uint8_t len,uint8_t *buf)
 {
     return HAL_I2C_Mem_Read(me->i2cHandle, me->readAddr, p_reg, I2C_MEMADD_SIZE_8BIT, buf, len, 0xfff);
 }
+#endif
 
 
 int Mpup6050_update(Mpu6050 *me)
@@ -202,8 +231,8 @@ int Mpup6050_update(Mpu6050 *me)
     float vx, vy, vz;
     float ex, ey, ez;
 
-    float Kp =100.0; //比例增益支配率收敛到加速度计/磁强计
-    float Ki =0.005; //积分增益支配率的陀螺仪偏见的衔接
+    float Kp =50; //互补滤波系数
+    float Ki =0.0001;//0.005; //积分增益支配率的陀螺仪偏见的衔接
     float halfT = me->dt/2;
     // 读取加速度计和陀螺仪数据
     Mpu6050_getAccelerometer(me);
@@ -211,23 +240,23 @@ int Mpup6050_update(Mpu6050 *me)
 
     if(me->ax*me->ay*me->az == 0)
         return-1; // 未更新
-    // 测量正常化
+    // 加速度测量归一化
     norm = sqrt(me->ax*me->ax + me->ay*me->ay + me->az*me->az);
     ax = me->ax / norm;                   //单位化
     ay = me->ay / norm;
     az = me->az / norm;
 
-    // 估计方向的重力
+    //提取等效旋转矩阵中的重力分量
     vx = 2*(me->quat[1]*me->quat[3] - me->quat[0]*me->quat[2]);
     vy = 2*(me->quat[0]*me->quat[1] + me->quat[2]*me->quat[3]);
     vz = me->quat[0]*me->quat[0] - me->quat[1]*me->quat[1] - me->quat[2]*me->quat[2] + me->quat[3]*me->quat[3];
 
-    // 错误的领域和方向传感器测量参考方向之间的交叉乘积的总和
+    // 求姿态误差，对两向量进行叉乘(定义ex、ey、ez为三个轴误差元素),可以说是由加速度算出的重力矢量
     ex = (ay*vz - az*vy);
     ey = (az*vx - ax*vz);
     ez = (ax*vy - ay*vx);
 
-    // 积分误差比例积分增益
+    // 对加速度算出的重力矢量积分增益
     me->exInt = me->exInt + ex*Ki;
     me->eyInt = me->eyInt + ey*Ki;
     me->ezInt = me->ezInt + ez*Ki;
@@ -237,13 +266,13 @@ int Mpup6050_update(Mpu6050 *me)
     gy = me->gy + Kp*ey + me->eyInt;
     gz = me->gz + Kp*ez + me->ezInt;
 
-    // 整合四元数率和正常化
+    // 整合四元数
     me->quat[0] = me->quat[0] + (-me->quat[1]*gx - me->quat[2]*gy - me->quat[3]*gz)*halfT;
     me->quat[1] = me->quat[1] + (me->quat[0]*gx + me->quat[2]*gz - me->quat[3]*gy)*halfT;
     me->quat[2] = me->quat[2] + (me->quat[0]*gy - me->quat[1]*gz + me->quat[3]*gx)*halfT;
     me->quat[3] = me->quat[3] + (me->quat[0]*gz + me->quat[1]*gy - me->quat[2]*gx)*halfT;
 
-    // 正常化四元
+    // 四元数归一化
     norm = sqrt(me->quat[0]*me->quat[0] + me->quat[1]*me->quat[1] + me->quat[2]*me->quat[2] + me->quat[3]*me->quat[3]);
     me->quat[0] = me->quat[0] / norm;
     me->quat[1] = me->quat[1] / norm;

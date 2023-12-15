@@ -4,7 +4,7 @@
 
 #include "Serial_Servo.h"
 #include <stdlib.h>
-#include "retarget.h"
+
 //宏函数 获得A的低八位
 #define GET_LOW_BYTE(A) ((uint8_t)(A))
 //宏函数 获得A的高八位
@@ -23,16 +23,14 @@ union v16{
  * id:舵机ID
  * offset:偏置（一般=0）
 */
-Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef * uartx, uint8_t id,int16_t offset)
+void Serial_Servo_Init(Serial_Servo * me,UART_HandleTypeDef * uartx, uint8_t id)
 {
-    Serial_Servo * me =(Serial_Servo*)malloc(sizeof (Serial_Servo));
     me->uartHandle=uartx;
     me->id = id;
     me->minPos = 0;
     me->maxPos = 1000;
     me->currentPostion =-1;
-    me->offset = offset;
-    return me;
+    me->offset = 0;
 }
 
 /*
@@ -118,7 +116,7 @@ int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,ui
 int8_t Serial_Servo_ReadCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pData)
 {
     //第一个元素是读命令的序号，第二个是其对应的数据长度
-    const uint8_t readCmds[14][2]={{2,7},{8,7},{14,4},
+    const uint8_t readCmds[14][2]={{2,7},{8,7},{14,7},{14,4},
                                 {19,4},{21,7},{23,7},{25,4},
                                 {26,4},{27,5},{28,5},{30,7},
                                 {32,4},{34,4},{36,4}};

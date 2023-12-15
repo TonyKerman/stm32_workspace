@@ -53,7 +53,7 @@ struct Serial_Servo{
 void Serial_Servo_SetID(const UART_HandleTypeDef * uartHandle,const uint8_t oldID,const uint8_t newID);
 int Serial_Servo_ReadID(UART_HandleTypeDef * uartHandle);
 
-Serial_Servo * Serial_Servo_Create(UART_HandleTypeDef *uartx, uint8_t id, int16_t offset);
+void Serial_Servo_Init(Serial_Servo * me,UART_HandleTypeDef *uartx, uint8_t id);
 
 int8_t Serial_Servo_WriteCmd(Serial_Servo * me,uint8_t cmdName,uint8_t* pArgs,uint8_t size);
 int8_t Serial_Servo_Move(Serial_Servo *me, uint16_t position, uint16_t time);

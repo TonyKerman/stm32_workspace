@@ -9,8 +9,9 @@
 extern "C"
 {
 #endif
+//#define SOFT_I2C
 #include "main.h"
-#include "i2c.h"
+
 
 #define MPU_SELF_TESTX_REG		0X0D	//自检寄存器X
 #define MPU_SELF_TESTY_REG		0X0E	//自检寄存器Y
@@ -86,7 +87,7 @@ enum mpu_GfsrDef{Gfsr_250LSB,Gfsr_500LSB,Gfsr_1000LSB,Gfsr_2000LSB};
 
 typedef struct Mpu6050 Mpu6050;
 struct Mpu6050{
-    I2C_HandleTypeDef * i2cHandle;
+    void * i2cHandle;
     uint16_t deviceAddr, writeAddr,readAddr;
     enum mpu_AfsrDef aFsr;
     enum mpu_GfsrDef gFsr;
@@ -100,14 +101,14 @@ struct Mpu6050{
     uint16_t samplingRate;
 };
 
-Mpu6050 * Mpu6050_Create(I2C_HandleTypeDef * p_i2cHandle,int is_AD0_pull_up,
-                         enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate);
-HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me);
+HAL_StatusTypeDef Mpu6050_Init(Mpu6050 * me,void * p_i2cHandle,int is_AD0_pull_up,
+                               enum mpu_AfsrDef a_fsr,enum mpu_GfsrDef g_fsr,uint16_t samplingRate) ;
+
 HAL_StatusTypeDef Mpu6050_getTemp(Mpu6050 * me);
 HAL_StatusTypeDef Mpu6050_getGyroscope(Mpu6050 * me);
 HAL_StatusTypeDef Mpu6050_getAccelerometer(Mpu6050 * me);
 int Mpup6050_update(Mpu6050 *me);
-void vTaskSensorControl(void *pvParameters);
+
 
 
 #ifdef __cplusplus
