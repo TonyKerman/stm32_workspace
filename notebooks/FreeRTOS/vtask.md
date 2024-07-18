@@ -11,6 +11,56 @@
 
 ## 任务API
 
+### xTaskCreate 创建任务
+
+portBASE_TYPE xTaskCreate( pdTASK_CODE pvTaskCode, const signed portCHAR * const pcName, unsigned portSHORT usStackDepth, void *pvParameters,unsigned portBASE_TYPE uxPriority,xTaskHandle *pxCreatedTask );
+
+#### 参数
+
+* pvTaskCode 任务函数的函数名 eg: mainTask
+
+* pcName 具有描述性的任务名。这个参数不会被 FreeRTOS 使用。其只是单纯地用于辅助调试。eg:"main task"
+
+* usStackDepth 分配多大的栈空间，这个值指定的是栈空间可以保存多少个字(word)，而不是多少个字
+节(byte)。比如说，如果是 32 位宽的栈空间，传入的 usStackDepth
+值为 100，则将会分配 400 字节的栈空间(100 * 4bytes)。
+
+* pvParameters 任务函数接受一个指向 void 的指针(void*)。pvParameters 的值即是传递到任务中的值。
+  
+* 指定任务执行的优先级。优先级的取值范围可以从最低优先级 0 到
+最高优先级(configMAX_PRIORITIES – 1)
+
+* pxCreatedTask pxCreatedTask 用于传出任务的句柄。这个句柄将在 API 调用中对
+该创建出来的任务进行引用，比如改变任务优先级，或者删除任务。
+如果应用程序中不会用到这个任务的句柄，则 pxCreatedTask 可以
+被设为 NULL。
+#### 返回值 
+有两个可能的返回值：
+1. pdTRUE 
+表明任务创建成功。
+2. errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY 
+由于内存堆空间不足，FreeRTOS 无法分配足够的空间来保存任务
+结构数据和任务栈，因此无法创建任务
+
+###  任务优先级api
+#### vTaskPrioritySet 改变任务的优先级
+void vTaskPrioritySet( xTaskHandle pxTask, unsigned portBASE_TYPE uxNewPriority );
+
+
+#### uxTaskPriorityGet 查询任务的优先级
+uxTaskPriorityGet( xTaskHandle pxTask) ;
+
+### vTaskDelete 删除任务
+void vTaskDelete( xTaskHandle pxTaskToDelete );
+* 该函数把删除的任务从各个列表中删除，若删除的是当前正在执行的任务，先放入等待删除列表中，等到空闲任务才真正删除该任务。
+* 在任务创建时，堆栈和任务控制块的有不同的创建方式，则在任务删除时会用不同的方式回收空间。
+* 若通过动态方式创建的任务，会自动回收空间，静态方式需要通过程序员自身释放空间。
+
+
+
+
+
+
 
 
 

@@ -4,36 +4,50 @@
 
 #include "mapping.h"
 #include "stdlib.h"
-#define MIN_OUT (-3.40E+38f)
-#define MAX_OUT 3.40E+38f
+#define FLOAT_MIN (-3.40E+38f)
+#define FLOAT_MAX 3.40E+38f
 
-void mapping_param_init(mapping_param_t *this,float in_a,float in_b,float in_off,float out_a,float out_b,float out_off)
+void mapping_param_init(mapping_param_t *this, float i_a, float i_b, float i_offset, float o_a, float o_b, float o_offset)
 {
-    this->min_out = MIN_OUT;
-    this->max_out = MAX_OUT;
-    this->k_i2o = (float)(out_b - out_a) / (in_b - in_a);
-    this->b_i20 = out_off - (float )(this->k_i2o * in_off);
-    this->k_o2i = (float)(in_b - in_a) / (out_b - out_a);
-    this->b_o2i = in_off - (float )(this->k_o2i * out_off);
+    this->min_i = FLOAT_MIN;
+    this->max_i = FLOAT_MAX;
+    this->min_o = FLOAT_MIN;
+    this->max_o = FLOAT_MAX;
+    this->k_i2o = (float)(o_b - o_a) / (i_b - i_a);
+    this->b_i2o = o_offset - (float )(this->k_i2o * i_offset);
+    this->k_o2i = (float)(i_b - i_a) / (o_b - o_a);
+    this->b_o2i = i_offset - (float )(this->k_o2i * o_offset);
 }
 
-void mapping_set_limit(mapping_param_t *this,float min_out,float max_out)
+void mapping_limit_o(mapping_param_t *this, float min_o, float max_o)
 {
-    this->min_out = min_out;
-    this->max_out = max_out;
+    this->min_o = min_o;
+    this->max_o = max_o;
 }
-float trans_i2o(mapping_param_t *this,float target_pos)
+void mapping_limit_i(mapping_param_t *this, float min_i, float max_i)
 {
-    float target_out = this->k_i2o * target_pos + this->b_i20;
-    if (this->max_out!=MAX_OUT&&target_out > this->max_out)
-        target_out = this->max_out;
-    else if (this->min_out!=MIN_OUT&&target_out < this->min_out)
-        target_out = this->min_out;
-    //printf("k_i2o:%f,b_i20:%d,target_out:%d\n", this->k_i2o, this->b_i20, target_out);
-    //this->pos_out = target_out;
-    return target_out;
+    this->min_i = min_i;
+    this->max_i = max_i;
 }
-float trans_o2i(mapping_param_t *this,float target_out)
+float mapping_i2o(mapping_param_t *this,float val_i)
 {
-    return this->k_o2i * target_out + this->b_o2i;
+    float output_o = this->k_i2o * val_i + this->b_i2o;
+    if (this->max_o != FLOAT_MAX && output_o > this->max_o)
+        output_o = this->max_o;
+    else if (this->min_o != FLOAT_MIN && output_o < this->min_o)
+        output_o = this->min_o;
+    //printf("k_i2o:%f,b_i2o:%d,output_o:%d\n", this->k_i2o, this->b_i2o, output_o);
+    //this->pos_out = output_o;
+    return output_o;
+}
+float mapping_o2i(mapping_param_t *this,float val_o)
+{
+    float output_i = this->k_o2i * val_o + this->b_o2i;
+    if (this->max_i != FLOAT_MAX && output_i > this->max_i)
+        output_i = this->max_i;
+    else if (this->min_i != FLOAT_MIN && output_i < this->min_i)
+        output_i = this->min_i;
+    //printf("k_o2i:%f,b_o2i:%d,output_i:%d\n", this->k_o2i, this->b_o2i, output_i);
+    //this->pos_out = output_o;
+    return output_i;
 }

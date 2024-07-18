@@ -24,7 +24,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Caculate.h"
+#include "DJI.h"
+#include "wtr_can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,7 +92,8 @@ int main(void)
   MX_CAN1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  CANFilterInit(&hcan1);
+  DJI_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,8 +103,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    speedServo(1000,&hDJI[0]);
+    CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,hDJI[0].speedPID.output,hDJI[0].speedPID.output,hDJI[0].speedPID.output);
     HAL_GPIO_TogglePin(LDG_GPIO_Port,LDG_Pin);
-    HAL_Delay(300);
+    HAL_Delay(3);
   }
   /* USER CODE END 3 */
 }

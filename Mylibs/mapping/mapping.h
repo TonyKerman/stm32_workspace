@@ -9,18 +9,21 @@ extern "C" {
 #endif
 #include "main.h"
 typedef struct{
-    double k_i2o;
-    float b_i20;
+    float k_i2o;
+    float b_i2o;
     float k_o2i;
     float b_o2i;
-    float min_out;
-    float max_out;
+    float min_o;
+    float max_o;
+    float min_i;
+    float max_i;
 }mapping_param_t;
 
-void mapping_param_init(mapping_param_t *this,float in_a,float in_b,float in_off,float out_a,float out_b,float out_off);
-void mapping_set_limit(mapping_param_t *this,float min_out,float max_out);
-float trans_i2o(mapping_param_t *this,float target_pos);
-float trans_o2i(mapping_param_t *this,float target_out);
+void mapping_param_init(mapping_param_t *this, float i_a, float i_b, float i_offset, float o_a, float o_b, float o_offset);
+void mapping_limit_o(mapping_param_t *this, float min_o, float max_o);
+void mapping_limit_i(mapping_param_t *this, float min_i, float max_i);
+float mapping_i2o(mapping_param_t *this,float val_i);
+float mapping_o2i(mapping_param_t *this,float val_o);
 
 #ifdef __cplusplus
 }
