@@ -6,8 +6,7 @@
 **/Middlewares
 **/Drivers
 .idea
-**/.vscode
+**/build
 docs
 Mylibs/u8g2
-# 默认忽略的文件
-/ClionProjects/LED-c8t6/.idea/workspace.xml
+
