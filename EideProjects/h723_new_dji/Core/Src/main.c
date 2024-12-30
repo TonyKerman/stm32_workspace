@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "fdcan.h"
+#include "memorymap.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -28,6 +29,13 @@
 /* USER CODE BEGIN Includes */
 #include "ws2812.h"
 #include "vofa.h"
+#include "tim_delay_us.h"
+#include "wtr_can.h"
+#include "DJI.h"
+#include "pid_param_setting.h"
+#include "pid.h"
+                                                                                                        
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,7 +67,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+double lambda =1;
 /* USER CODE END 0 */
 
 /**
@@ -68,8 +76,12 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
+  /* USER CODE BEGIN 1 */
+    
+    PID_AutoSetting_Buffers_t pas;
+    PID_TypeDef pid;
+    
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -98,8 +110,40 @@ int main(void)
     WS2812_Ctrl(10,0,0);
     HAL_Delay(800);
     WS2812_Ctrl(0,10,0);
+    FDCAN1_RX_Filter_Init();
+    FDCAN1_Interrupt_Init();
+    FDCAN1_Start();
+    hDJI[0].motorType = M2006;
+    DJI_Init();    
+    TIM_Delay_init(&htim12);
+    PID_Init_NoParams(&pid);
+    PID_Set_output_limit(&pid,-10000,10000);
+    PID_AutoSetting_Init(&pas,lambda,0,5000,1,0.01,10000);
+    HAL_Delay(800);
+    while(PID_AutoSetting_Update(&pas,hDJI[0].AxisData.AxisVelocity) == PID_AUTOSETTING_PROCESS)
+    {
+        CanTransmit_DJI_1234(10000,1000,1000,1000);
+        TIM_Delay_Us(1000);
+    }
+    for(int i = 0;i<3000;i++)
+    {
+        CanTransmit_DJI_1234(0,0,0,0);
+        TIM_Delay_Us(1000);
+    }
+    // PID_AutoSetting_Set(&pas,&pid);
+    PID_AutoSetting_Set_Param(&pas,&pid.kp,&pid.ki,&pid.kd);
   /* USER CODE END 2 */
-
+    pid.setpoint = 300;
+    for(int t = 0;t<1500;t++)
+    {
+        PID_update(&pid,hDJI[0].AxisData.AxisVelocity);
+        CanTransmit_DJI_1234(pid.output,0,0,0);
+        vofa_send_data(0, pid.setpoint);
+        vofa_send_data(1, hDJI[0].AxisData.AxisVelocity);
+        vofa_send_data(2, pid.output);
+        vofa_sendframetail();
+        TIM_Delay_Us(1000);
+    }
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -107,9 +151,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      vofa_start();
-
-      HAL_Delay(1);
+    //   vofa_start();
+    CanTransmit_DJI_1234(0,0,0,0);
+    WS2812_Ctrl(0,10,0);
+    HAL_Delay(5);
+     
 
   }
   /* USER CODE END 3 */

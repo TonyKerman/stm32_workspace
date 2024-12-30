@@ -1,16 +1,18 @@
-//
-// Created by tony on 24-11-16.
-//
-
+// Last update: 2024-12-29 
 #ifndef PID_AUTOSETTING_H
 #define PID_AUTOSETTING_H
-#include "pid.h"
-
-typedef enum
+// #include "pid.h"
+#include "main.h"
+/**
+ * 使用Lambda法则自动设置自衡对象的PID参数
+ * 原理详见《PID参数整定与复杂控制》冯少辉
+ * Created by tony on 24-11-16.
+ */
+typedef enum _PID_AutoSetting_State
 {
 PID_AUTOSETTING_PROCESS=0,
 PID_AUTOSETTING_DONE=1
-}PID_AutoSetting_State;
+}PID_AutoSetting_State_t;
 typedef struct
 {
 double lambda;
@@ -21,13 +23,22 @@ double init_fdbk;
 double delta;
 double dt_ms;
 double *pv;
-uint16_t pv_num;
-uint16_t pv_index;
-}PID_AutoSetting_Buffers;
+double tau;
+double K;
+double T;
+uint64_t pv_num;
+uint64_t pv_index;
+}PID_AutoSetting_Buffers_t;
 
 
-void PID_AutoSetting_Init(PID_AutoSetting_Buffers *pas,double lambda,double init_fdbk,double dt_ms,double test_output);
-PID_AutoSetting_State PID_AutoSetting_Update(PID_AutoSetting_Buffers *pas,double fdbk);
-void PID_AutoSetting_Set(PIDController *pid,PID_AutoSetting_Buffers *pas);
-
+void PID_AutoSetting_Init(
+    PID_AutoSetting_Buffers_t *pas,
+    double lambda,
+    double init_fdbk,
+    double test_time_ms,
+    double dt_ms,
+    double delta,
+    double test_output);
+PID_AutoSetting_State_t PID_AutoSetting_Update(PID_AutoSetting_Buffers_t *pas,double fdbk);
+void PID_AutoSetting_Set_Param(PID_AutoSetting_Buffers_t *pas,double *Kp,double *Ki,double *Kd);
 #endif //PID_AUTOSETTING_H

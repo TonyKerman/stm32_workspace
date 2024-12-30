@@ -92,8 +92,8 @@ int main(void)
   MX_CAN1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-//   CANFilterInit(&hcan1);
-//   DJI_Init();
+  CANFilterInit(&hcan1);
+  DJI_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */

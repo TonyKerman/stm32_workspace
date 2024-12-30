@@ -67,7 +67,8 @@
           "Drivers/STM32H7xx_HAL_Driver/Inc",
           "Drivers/STM32H7xx_HAL_Driver/Inc/Legacy",
           "Drivers/WS2812/inc",
-          "vofa+"
+          "vofa+",
+          "UC_New"
         ],
         "libList": [],
         "defineList": [
