@@ -118,32 +118,49 @@ int main(void)
     TIM_Delay_init(&htim12);
     PID_Init_NoParams(&pid);
     PID_Set_output_limit(&pid,-10000,10000);
-    PID_AutoSetting_Init(&pas,lambda,0,5000,1,0.01,10000);
+    PID_Set_integral_limit(&pid,500);
+    PID_AutoSetting_Init(&pas,TYPE_INTEGRAL,lambda,0,100,1,0.01,10000);
     HAL_Delay(800);
     while(PID_AutoSetting_Update(&pas,hDJI[0].AxisData.AxisVelocity) == PID_AUTOSETTING_PROCESS)
     {
         CanTransmit_DJI_1234(10000,1000,1000,1000);
         TIM_Delay_Us(1000);
     }
-    for(int i = 0;i<3000;i++)
+    for(int i = 0;i<2000;i++)
     {
         CanTransmit_DJI_1234(0,0,0,0);
+        // if(i<pas.pv_num){
+        // vofa_send_data(0, pas.test_output);
+        // vofa_send_data(1, pas.pv[i]);
+        // vofa_sendframetail();            
+        // }
+        // else
+        // {
+        //     vofa_send_data(0, 0);
+        //     vofa_send_data(1, 0);
+        //     vofa_sendframetail(); 
+        // }
         TIM_Delay_Us(1000);
     }
     // PID_AutoSetting_Set(&pas,&pid);
-    PID_AutoSetting_Set_Param(&pas,&pid.kp,&pid.ki,&pid.kd);
-  /* USER CODE END 2 */
+    PID_AutoSetting_Set_Param(&pas,&pid.kp,&pid.ki,&pid.kd);//kp=246,ki=12.295
     pid.setpoint = 300;
     for(int t = 0;t<1500;t++)
     {
+        TIM_Delay_Us_Start();
         PID_update(&pid,hDJI[0].AxisData.AxisVelocity);
         CanTransmit_DJI_1234(pid.output,0,0,0);
         vofa_send_data(0, pid.setpoint);
         vofa_send_data(1, hDJI[0].AxisData.AxisVelocity);
         vofa_send_data(2, pid.output);
+        vofa_send_data(3, pid.integral);
+        vofa_send_data(4, pid.kp);
+        vofa_send_data(5, pid.ki);
         vofa_sendframetail();
-        TIM_Delay_Us(1000);
+        TIM_Delay_Us_Until(1000);
     }
+  /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
