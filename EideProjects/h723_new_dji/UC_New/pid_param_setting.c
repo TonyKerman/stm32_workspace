@@ -73,7 +73,8 @@ void PID_AutoSetting_Set_Param(PID_AutoSetting_Buffers_t *pas,double *Kp,double 
         final_pv += pas->pv[i];
     }
     final_pv = final_pv/10;
-    while(abs(pas->pv[index]) < abs(final_pv*pas->delta))
+    // assert(fabs(pas->pv[index]) < fabs(final_pv*pas->delta));
+    while(fabs(pas->pv[index]) < fabs(final_pv*pas->delta))
     {
         index++;
     }
@@ -81,7 +82,7 @@ void PID_AutoSetting_Set_Param(PID_AutoSetting_Buffers_t *pas,double *Kp,double 
     pas->K = final_pv/pas->test_output;
     if(pas->type == TYPE_SELF_BALANCING)
     {
-        while(abs(pas->pv[index]) < abs(final_pv*0.632))
+        while(fabs(pas->pv[index]) < fabs(final_pv*0.632))
         {
             index++;
         }

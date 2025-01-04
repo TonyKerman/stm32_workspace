@@ -67,9 +67,10 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-double lambda =1;
-/* USER CODE END 0 */
+double lambda =2;
 
+/* USER CODE END 0 */
+//328,16 387,13
 /**
   * @brief  The application entry point.
   * @retval int
@@ -80,8 +81,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
     
     PID_AutoSetting_Buffers_t pas;
-    PID_TypeDef pid;
-    
+    PID_TypeDef speedpid;
+    PID_TypeDef pospid;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -116,46 +117,62 @@ int main(void)
     hDJI[0].motorType = M2006;
     DJI_Init();    
     TIM_Delay_init(&htim12);
-    PID_Init_NoParams(&pid);
-    PID_Set_output_limit(&pid,-10000,10000);
-    PID_Set_integral_limit(&pid,500);
-    PID_AutoSetting_Init(&pas,TYPE_INTEGRAL,lambda,0,100,1,0.01,10000);
+
+    PID_Init(&speedpid,336,14,0);//速度环pid参数已知
+    PID_Set_output_limit(&speedpid,-10000,10000);
+    PID_Set_integral_limit(&speedpid,500);
+    PID_Init_NoParams(&pospid);
+    PID_Set_output_limit(&pospid,-550,550);
+    PID_Set_integral_limit(&pospid,100);
+    PID_Set_deadband(&pospid,1);
+    PID_AutoSetting_Init(&pas,TYPE_INTEGRAL,5,0,200,1,0.01,500);
     HAL_Delay(800);
-    while(PID_AutoSetting_Update(&pas,hDJI[0].AxisData.AxisVelocity) == PID_AUTOSETTING_PROCESS)
+    speedpid.setpoint = 500;
+    while(PID_AutoSetting_Update(&pas,hDJI[0].AxisData.AxisAngle_inDegree) == PID_AUTOSETTING_PROCESS)
     {
-        CanTransmit_DJI_1234(10000,1000,1000,1000);
+        // TIM_Delay_Us_Start();
+        PID_update(&speedpid,hDJI[0].AxisData.AxisVelocity);
+        CanTransmit_DJI_1234(speedpid.output,1000,1000,1000);
         TIM_Delay_Us(1000);
+        // TIM_Delay_Us_Until(1000);
     }
     for(int i = 0;i<2000;i++)
     {
         CanTransmit_DJI_1234(0,0,0,0);
-        // if(i<pas.pv_num){
-        // vofa_send_data(0, pas.test_output);
-        // vofa_send_data(1, pas.pv[i]);
-        // vofa_sendframetail();            
-        // }
-        // else
-        // {
-        //     vofa_send_data(0, 0);
-        //     vofa_send_data(1, 0);
-        //     vofa_sendframetail(); 
-        // }
+        if(i<pas.pv_num){
+        vofa_send_data(0, pas.test_output);
+        vofa_send_data(1, pas.pv[i]);
+        vofa_sendframetail();            
+        }
+        else
+        {
+            vofa_send_data(0, 0);
+            vofa_send_data(1, 0);
+            vofa_sendframetail(); 
+        }
         TIM_Delay_Us(1000);
     }
-    // PID_AutoSetting_Set(&pas,&pid);
-    PID_AutoSetting_Set_Param(&pas,&pid.kp,&pid.ki,&pid.kd);//kp=246,ki=12.295
-    pid.setpoint = 300;
+    // PID_AutoSetting_Set(&pas,&pospid);
+    PID_Reset(&speedpid,200,10,0);
+    PID_AutoSetting_Set_Param(&pas,&pospid.kp,&pospid.ki,&pospid.kd);
+    /**
+     * kp=2.06,ki=0.0105,t=260ms
+     */
+    
+    pospid.setpoint = 180*2+hDJI[0].AxisData.AxisAngle_inDegree;
     for(int t = 0;t<1500;t++)
     {
         TIM_Delay_Us_Start();
-        PID_update(&pid,hDJI[0].AxisData.AxisVelocity);
-        CanTransmit_DJI_1234(pid.output,0,0,0);
-        vofa_send_data(0, pid.setpoint);
-        vofa_send_data(1, hDJI[0].AxisData.AxisVelocity);
-        vofa_send_data(2, pid.output);
-        vofa_send_data(3, pid.integral);
-        vofa_send_data(4, pid.kp);
-        vofa_send_data(5, pid.ki);
+        PID_update(&pospid,hDJI[0].AxisData.AxisAngle_inDegree);
+        speedpid.setpoint = pospid.output;
+        PID_update(&speedpid,hDJI[0].AxisData.AxisVelocity);
+        CanTransmit_DJI_1234(speedpid.output,0,0,0);
+        vofa_send_data(0, pospid.setpoint);
+        vofa_send_data(1, hDJI[0].AxisData.AxisAngle_inDegree);
+        vofa_send_data(2, pospid.output);
+        vofa_send_data(3, pospid.integral);
+        vofa_send_data(4, pospid.kp);
+        vofa_send_data(5, pospid.ki);
         vofa_sendframetail();
         TIM_Delay_Us_Until(1000);
     }
