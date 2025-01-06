@@ -1,3 +1,9 @@
+# pid自动整定
+原理详见《PID参数整定与复杂控制》冯少辉
+
+用法见注释`Core\Src\pid_param_setting.c`
+
+
 ## M2006调速度环pid代码
 ```c
     FDCAN1_RX_Filter_Init();
@@ -54,6 +60,7 @@
         TIM_Delay_Us_Until(1000);
     }
 ```
+
 ## M2006调位置环pid代码
 
 main函数：
