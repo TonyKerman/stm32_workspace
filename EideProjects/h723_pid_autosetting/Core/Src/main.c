@@ -160,8 +160,15 @@ int main(void)
      */
     
     pospid.setpoint = 180*2+hDJI[0].AxisData.AxisAngle_inDegree;
-    for(int t = 0;t<1500;t++)
-    {
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
         TIM_Delay_Us_Start();
         PID_update(&pospid,hDJI[0].AxisData.AxisAngle_inDegree);
         speedpid.setpoint = pospid.output;
@@ -175,20 +182,6 @@ int main(void)
         vofa_send_data(5, pospid.ki);
         vofa_sendframetail();
         TIM_Delay_Us_Until(1000);
-    }
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-    //   vofa_start();
-    CanTransmit_DJI_1234(0,0,0,0);
-    WS2812_Ctrl(0,10,0);
-    HAL_Delay(5);
      
 
   }

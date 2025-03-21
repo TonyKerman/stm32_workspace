@@ -15,7 +15,7 @@
 
     PID_Init_NoParams(&speedpid);
     PID_Set_output_limit(&speedpid,-10000,10000);
-    PID_Set_integral_limit(&speedpid,1000);
+    PID_Set_integral_limit(&speedpid,1000);//设置积分限幅，效果很好
     PID_AutoSetting_Init(&pas,TYPE_INTEGRAL,1,0,75,1,0.01,10000);
     HAL_Delay(800);
     speedpid.setpoint = 500;
