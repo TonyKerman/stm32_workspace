@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../STM32_Libs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../projects/rc2024/_RC24_r2_arm_test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../projects/rc2024/_RC24_r2_arm_test/stm32/WTR_micro_ros_stm32cubemx_utils" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../projects/rc2024/r1_getplant_test_01_stm/WTR_micro_ros_stm32cubemx_utils" vcs="Git" />
   </component>
 </project>
