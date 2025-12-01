@@ -44,11 +44,23 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+        Drivers/User/TIM_Encoder/TIM_Encoder.c
+        Drivers/User/TB6612/tb6612.c
+        Drivers/User/retarget/retarget.c
+        Drivers/User/pwm_motor/pwm_motor.c
+        Drivers/User/pid/pid.c
     # Add user sources here
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+        Drivers/User
+        Drivers/User/TIM_Encoder
+        Drivers/User/TB6612
+        Drivers/User/retarget
+        Drivers/User/pwm_motor
+        Drivers/User/pid
+
     # Add user defined include paths
 )
 

@@ -1,0 +1,1 @@
+mkdir -p bsp drivers libs interfaces controllers third_party app
